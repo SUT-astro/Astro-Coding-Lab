@@ -1,1 +1,1 @@
-# Astro-Coding-Lab.github.io
+# Astro-Coding-Lab
