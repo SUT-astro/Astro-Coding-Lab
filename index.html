@@ -7,11 +7,6 @@
     <title>Astro-Coding-Lab</title>
     <style>
         body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: url('figture/blackground.jpg') repeat; /* Repeat the background image */
@@ -19,15 +14,14 @@
         }
 
         main {
-            margin-top: 500px;
+            padding-top: 150px; /* Adjust the padding-top value to create space for the logo */
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            /* background-color: #ffffff;  */
-            padding: 20px;
+            padding: 600px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 10px;
         }
 
@@ -36,82 +30,81 @@
         }
 
         img {
-            max-width: 100%; /* Make the image responsive within its container */
+            max-width: 100%;
             height: auto;
-            max-height: 400px; /* Adjust the maximum height as needed */
-            margin-bottom: 20px;
+            max-height: 400px;
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .text-block {
             background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px; /* Add padding for better spacing */
-            border-radius: 10px; /* Add border radius for rounded corners */
+            padding: 20px;
+            border-radius: 10px;
             margin-top: 20px;
-            text-align: left; /* Align text to the left within the text block */
-            max-width: 1200px; /* Set the maximum width for the text block */
-            margin: 0 auto; /* Center the text block */
-            margin-bottom: 20px; /* Add margin to separate h2 and p */
+            text-align: left;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-bottom: 20px;
         }
 
         h2 {
             margin-top: 20px;
-            font-size: 24px; /* Adjust the font size as needed */
-            font-weight: bold; /* Set font weight to bold */
+            font-size: 24px;
+            font-weight: bold;
             text-align: center;
-            color: #007BFF; /* Custom color for the heading */
-            text-transform: uppercase; /* Convert text to uppercase */
+            color: #007BFF;
+            text-transform: uppercase;
         }
 
         p {
             margin-top: 10px;
-            line-height: 1.5; /* Adjust line height for better readability */
+            line-height: 1.5;
         }
         
         .text-block1 {
             background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px; /* Add padding for better spacing */
-            border-radius: 10px; /* Add border radius for rounded corners */
+            padding: 20px;
+            border-radius: 10px;
             margin-top: 20px;
-            text-align: left; /* Align text to the left within the text block */
-            max-width: 1200px; /* Set the maximum width for the text block */
-            margin: 0 auto; /* Center the text block */
+            text-align: left;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         h3 {
             margin-top: 20px;
-            font-size: 24px; /* Adjust the font size as needed */
-            font-weight: bold; /* Set font weight to bold */
+            font-size: 24px;
+            font-weight: bold;
             text-align: center;
-            color: #007BFF; /* Custom color for the heading */
-            text-transform: uppercase; /* Convert text to uppercase */
+            color: #007BFF;
+            text-transform: uppercase;
         }
 
         p1 {
             margin-top: 10px;
-            line-height: 1.5; /* Adjust line height for better readability */
+            line-height: 1.5;
             color: #ac58dd
         }
         
     </style>
 </head>
 <body>
+    <img src="figture/logo1.png" alt="Project Logo">
     <main>
-        <img src="figture/logo1.png" alt="Project Logo">
         <h1>Astro-Coding-Lab</h1>
-        
     </main>
-
-
 
     <div class="text-block">
         <h2>About Us</h2>
-        <p>fsdfsdfasd</p>
+        <p>March, the beginning of Spring.</p>
     </div>
 
     <div class="text-block1">
         <h3>Cooperation</h3>
-        <p1>asdsaasdasd</p1>
+        <p1>If one followed his gaze, at a location roughly seven to eight zhang* away, there was a skinny vulture currently chewing the rotting corpse of a wild dog. It would occasionally cast a vigilant glance at its surroundings.</p1>
     </div>
-
 </body>
 </html>
