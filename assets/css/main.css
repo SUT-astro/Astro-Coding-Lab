@@ -1508,6 +1508,7 @@ section {
 
 .project-details .portfolio-description p {
   padding: 0;
+  text-indent: 20px;
 }
 
 .project-details .portfolio-description .testimonial-item {
