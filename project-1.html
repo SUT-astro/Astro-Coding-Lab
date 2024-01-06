@@ -36,6 +36,22 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <script>
+    function changeContent(event, pageId) {
+      event.preventDefault(); // Prevent the default behavior of the link
+  
+      // Hide all content divs
+      var allContent = document.querySelectorAll('.content-p');
+      allContent.forEach(function(element) {
+        element.classList.add('hidden');
+      });
+  
+      // Show the selected content div
+      var selectedContent = document.getElementById(pageId);
+      selectedContent.classList.remove('hidden');
+    }
+  </script>
+  
 </head>
 
 <body>
@@ -130,8 +146,8 @@
 
           <div class="col-lg-8">
             <div class="portfolio-description">
-              <h2>ดาวแคระน้ำตาล(Brown Dwarfs)คือ?</h2>
-              <div class="content">
+              <div id="page1" class="content-p">
+                <h2>ดาวแคระน้ำตาล(Brown Dwarfs)คือ?</h2>
                 <p>
                   ดาวแคระน้ำตาลคือดาวที่มีมวลมากกว่าดาวเคราะห์ แต่น้อยกว่าดาวฤกษ์ ในทางดาราศาสตร์ ดาวแคระน้ำตาลถูกจัดว่าเป็นวัตถุมวลต่ำกว่าดาวฤกษ์ (substellar object) ซึ่งถูกคาดการณ์การมีอยู่ทางทฤษฎีครั้งแรกโดย Dr. Shiv S. Kumar ในช่วงปี 1960s ในช่วงแรก เราเรียกดาวแคระห์น้ำตาลว่า “ดาวแคระดำ” อันเนื่องมาจากขนาดที่เล็กและอุณหภูมิที่ต่ำ ทำให้ยากต่อการค้นพบจากการสังเกตการณ์ จนกระทั้งในปี 1994-1995 มีการค้นพบดาวแคระน้ำตาล 2 ดวงคือ Gliese 229b(ถูกค้นพบก่อน?) and Teide 1(ตีพิมพ์ก่อน?)จากการสังเกตการณ์ในย่านคลื่นอินฟราเรด
                 </p>
@@ -141,7 +157,8 @@
                   เนื่องจากมวลของดาวแคระน้ำตาลนั้นมีค่ามากกว่ามวลของดาวเคราะห์ แต่น้อยกว่าดาวฤกษ์ (มีมวลระหว่าง 13 ถึง 80 เท่าของดาวพฤหัสบดี) ซึ่งอยู่ในช่วงที่ทำให้เกิดปฎิกริยาฟิวชันของดิวเทอเรียม (Deuterium fusion) ที่แกนกลางของดาว แต่ไม่มากพอที่จะทำให้เกิดเกิดปฎิกริยาฟิวชันของไฮโดรเจนแบบดาวฤกษ์ (มีมวล > 80 เท่าของดาวพฤหัส) ทำให้บางครั้งนักดาราศาสร์เรียกมันว่า “ดาวฤกษ์ที่ล้มเหลว (failed stars)” และด้วยเหตุนี้เองทำให้พวกมันมีค่ากำลังส่องสว่าง (luminosity) และอุณหภมูิที่ต่ำ อีกทั้งยังมีขนาดเล็ก ทำให้ถูกค้นพบในย่านคลื่นอินฟราเรดโดยทั่วไป
                 </p>
                 <!-- <img src="assets/img/blog/blog-inside-post.jpg" class="img-fluid" alt=""> -->
-
+              </div>
+              <div id="page2" class="content-p hidden">
                 <h4>การจำแนกดาวแคระแคระน้ำตาล</h4>
                 <p>
                   ปกตินักดาราศาสตร์จะใช้การวิเคราะห์เส้นสเปกตรัม (Spectrograph) ในการจัดหมวดหมู่ของดาวตั้งแต่ดาวฤกษ์ไปจนถึงดาวแคระตามประเภทต่าง ๆ การวิเคราะห์เส้นสเปกตรัมสามารถทำได้โดยใช้เทคนิค Spectroscopy ซึ่งเป็นการแยกแสงที่ได้มาจากการสังเกตการณ์ด้วยการใช้เกรตติ้งเลี้ยวเบน (Diffraction grating) เพื่อให้เห็นค่าความเข้มแสงของแต่ละย่านคลื่น 
@@ -158,7 +175,6 @@
                   <img src="project-1/fig2.png" alt="fig-2" style="max-width: 100%; height: auto;">
                   <figcaption style="font-style: italic; margin-top: 5px;">รูปที่ 2. Spectrum class ของดาวเมื่อรวมประเภทของดาวแคระน้ำตาล (credit : https://pressbooks.bccampus.ca/astronomy1105/chapter/17-3-the-spectra-of-stars-and-brown-dwarfs/)</figcaption>
                 </figure>
-                <h4>การจำแนกดาวแคระแคระน้ำตาล</h4>
                 <p>
                   นอกจากการใช้เทคนิค Spectroscopy เพื่อจำแนกประเภทดาวแคระน้ำตาลแล้ว เราก็ยังสามารถใช้วิธีทาง Photometric ในการจำแนกประเภทดาวแคระน้ำตาลได้ด้วย โดยเทคนิคนี้ถูกเสนอขึ้นโดย Nathalie Skrzypek ซึ่งเริ่มต้นในปี 2013 และได้ตีพิมพ์ในปี 2015 (Skrzypek et al. 2015) ซึ่งจำแนกดาวแคระน้ำตาลโดยการ fit graph ตาม template ของ color index ดังที่แสดงในรูปที่ 3.
                 </p>
@@ -174,23 +190,16 @@
                   <img src="project-1/fig4.png" alt="fig-4" style="max-width: 100%; height: auto;">
                   <figcaption style="font-style: italic; margin-top: 5px;">รูปที่ 4. Johnson/Bessel UVBRI filter</figcaption>
                 </figure>
-
-             
+              </div>
             </div>
           </div>
-        </div>
-
         
           <div class="col-lg-3" >
-            <div class="portfolio-info">
-              <h3>Project information</h3>
-              <ul>
-                <li><strong>Category</strong> <span>Web design</span></li>
-                <li><strong>Client</strong> <span>ASU Company</span></li>
-                <li><strong>Project date</strong> <span>01 March, 2020</span></li>
-                <li><strong>Project URL</strong> <a href="#">www.example.com</a></li>
-                <li><a href="#" class="btn-visit align-self-start">Visit Website</a></li>
-              </ul>
+            <div class="sidebar-content">
+              <h2 style="color: #fff;">Fascinating Sidebar</h2>
+              <a href="#" onclick="changeContent(event, 'page1')">Page 1</a>
+              <a href="#" onclick="changeContent(event, 'page2')">Page 2</a>
+              <a href="#" onclick="changeContent(event, 'page3')">Page 3</a>
             </div>
           </div>
 

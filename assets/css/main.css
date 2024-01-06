@@ -59,6 +59,44 @@ h5,
 h6 {
   font-family: var(--font-primary);
 }
+/*--------------------------------------------------------------
+# Content Element
+--------------------------------------------------------------*/
+
+.sidebar-content {
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: width 0.3s;
+}
+
+.sidebar-content a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  cursor: pointer; /* Add cursor pointer for better indication */
+}
+
+.sidebar-content a:hover {
+  background-color: #555;
+}
+
+.content-p {
+  flex-grow: 1;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.hidden {
+  display: none;
+}
 
 /*--------------------------------------------------------------
 # Sections & Section Header
