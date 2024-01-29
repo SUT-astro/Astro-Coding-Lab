@@ -2748,7 +2748,6 @@ section {
   color: var(--color-primary);
 }
 
-
 /*--------------------------------------------------------------
 # custom
 --------------------------------------------------------------*/
@@ -2758,5 +2757,29 @@ section {
 
 .project-sidebar {
   position: fixed;
-  top: 5.5rem;
+  top: inherit;
+}
+
+.project-content-inner {
+  counter-reset: fig-count;
+  padding: 2.5rem 6rem 0 14.6rem;
+}
+
+.project-content-inner figure figcaption::before{
+  counter-increment: fig-count; /* Increment the value of section counter by 1 */
+  content: "Figure: " counter(fig-count) " "; /* Display the word 'Figure: ', the value of
+                                                section counter, and a space before the content
+                                                of each figcaption */
+}
+
+.project-content-inner h1{
+  font-size: 3rem;
+}
+
+.project-content-inner h2{
+  font-size: 2rem;
+}
+
+.project-content-inner p{
+  font-size: 1.2rem;
 }
