@@ -160,17 +160,149 @@
 		    <img src="assets/img/project-brown-dwarf-img/fig2.png" alt="fig-2" style="max-width: 100%; height: auto;">
 		    <figcaption style="font-style: italic; margin-top: 5px;">Spectrum class ของดาวเมื่อรวมประเภทของดาวแคระน้ำตาล <br>(credit : https://pressbooks.bccampus.ca/astronomy1105/chapter/17-3-the-spectra-of-stars-and-brown-dwarfs/)</figcaption>
 		  </figure>
-      <b>การจำแนกดาวแคระแคระน้ำตาลด้วยวิธีการทาง Photometric</b>
+      <h3>การจำแนกดาวแคระแคระน้ำตาลด้วยวิธีการทาง Photometric</h3>
       <p>
         นอกจากการใช้เทคนิค Spectroscopy เพื่อจำแนกประเภทดาวแคระน้ำตาลแล้ว เราก็ยังสามารถใช้วิธีทาง Photometric ในการจำแนกประเภทดาวแคระน้ำตาลได้ด้วย โดยเทคนิคนี้ถูกเสนอขึ้นโดย Nathalie Skrzypek ซึ่งเริ่มต้นในปี 2013 และได้ตีพิมพ์ในปี 2015 (Skrzypek et al. 2015) ซึ่งจำแนกดาวแคระน้ำตาลโดยการ fit graph ตาม template ของ color index ดังที่แสดงในรูปที่ 3.
       </p>
       <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
 		    <img src="assets/img/project-brown-dwarf-img/fig3.png" alt="fig-3" style="max-width: 100%; height: auto;">
-		    <figcaption style="font-style: italic; margin-top: 5px;">แนวโน้มของ Color index กับ Spectrum class <br>(credit : https://pressbooks.bccampus.ca/astronomy1105/chapter/17-3-the-spectra-of-stars-and-brown-dwarfs/)</figcaption>
+		    <figcaption style="font-style: italic; margin-top: 5px;">แนวโน้มของ Color index กับ Spectrum class</figcaption>
 		  </figure>
+      <p>การหาค่า color index ทำได้โดยการคำนวณความแตกต่างของ photon flux ระหว่าง 2 ย่านคลื่นที่เราสนใจ โดยค่า photon flux สามารถหาได้จากการใช้ filter กรองแสงในคลื่นย่านอื่นออกไป ซึ่งย่านคลื่นที่ครอบคลุมในแต่ละ filter เป็นดังตัวอย่างในรูปที่ 4. จะเห็นได้ว่าเมื่อใช้ ‘V filter (เส้นสีเขียว)’ ค่า photon flux ที่วัดได้จะอยู่ในช่วงความยาวคลื่น 450 nm to 650 nm ทำให้เราจะได้ค่า Magnitude ของดาวดวงนั้นในย่านคลื่นนี้ การคำนวณค่า color index ทำได้โดยการนำ Magnitude ของ 2 filter มาลบกัน ในตัวอย่างรูปที่ 3. แกน y คือค่า color index ระหว่าง ‘i filter’ และ ‘Z filter’
+        เมื่อได้ค่า color index แล้ว Skrzypek et al. 2015 ได้ใช้วิธีการทางสถิติในการสร้าง template สำหรับ fit graph ระหว่างชนิดของดาวแคระน้ำตาลกับค่า color index โดยรายละเอียดสามารถอ่านเพิ่มเติมได้ในเปเปอร์ Skrzypek et al. 2015
+      </p>
+      <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+		    <img src="assets/img/project-brown-dwarf-img/fig4.png" alt="fig-4" style="max-width: 100%; height: auto;">
+		    <figcaption style="font-style: italic; margin-top: 5px;">Johnson/Bessel UVBRI filter</figcaption>
+		  </figure>
+      <h2>
+        ข้อมูลการสังเกตุการณ์ดาวแคระน้ำตาล
+      </h2>
+      <p>ในปี 2018 บทความวิจัย (Best et al. 2018) ได้รวบรวมข้อมูลดาวแคระในประเภท M, L, และ T จำนวน ~9000 ดวง จากโครงการสังเกตุการณ์ต่าง ๆ ได้แก่ PanSTARRS1 3π Survey (PS1), Two Micron All Sky Survey (2MASS), All-Wide-field Infrared Survey Explorer (AllWISE), และ Gaia DR1 โดยประกอบไปด้วยข้อมูลของดาวแต่ละดวง เช่น ประเภทของสเปกตรัม ,โฟโตเมตริก, Proper Motion และปริมาณทางฟิสิกส์อื่น ๆ
+        บทความวิจัย Avdeeva 2023 ต้องการจำแนกดาวแคระน้ำตาลกับดาวฤกษ์ด้วยการใช้ Machine learning ซึ่งใช้ข้อมูลดาวแคระน้ำตาลจาก (Best et al. 2018) โดยจากนี้เราจะเรียกดาวแคระน้ำตาลว่าเป็น positive class หรือก็คือวัตถุที่เราสนใจ
+        ส่วนข้อมูลของวัตถุอื่นที่ไม่ใช่ดาวแคระน้ำตาล หรือก็คือ negative class นั้นได้มาจากข้อมูลของโครงการสำรวจ Gaia DR3 ซึ่งประกอบด้วย ฐานข้อมูล Simbad ซึ่งมีดาวฤกษ์ใน O-M class รวมถึงฐานข้อมูลย่อยอื่น ๆตามที่บรรยายไว้ใน Avdeeva 2023
+        ในท้ายที่สุดจะมีข้อมูล positive class (ดาวแคระน้ำตาล ใน L-T class) จำนวน ~1600 ข้อมูล และ negative class (ดาวฤกษ์ใน O-M class) จำนวน ~4100 ข้อมูล 
+        ตามลิ้ง <a href="https://github.com/iamaleksandra/ML-Brown-Dwarfs/">https://github.com/iamaleksandra/ML-Brown-Dwarfs</a> ซึ่งเป็นข้อมูลที่เราจะใช้ในแบบฝึกหัดนี้
+      </p>
+      <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+		    <img src="assets/img/project-brown-dwarf-img/fig5.png" alt="fig-5" style="max-width: 100%; height: auto;">
+		    <figcaption style="font-style: italic; margin-top: 5px;">Active range ของ filter ต่างๆที่ถูกใช้ในแบบฝึกหัดนี้</figcaption>
+		  </figure>
+      <h1>
+      แบบฝึกหัด
+      </h1>
+      <h2>การอ่านไฟล์ข้อมูลจากDirectory ด้วย pandas และ Extract ข้อมูลที่จำเป็น</h2>
+      <p>pandas เป็น libraly ของ python ที่นิยมใช้ในการจัดการและวิเคราะห์ข้อมูล pandas มีfeatureในการใช้งานที่มีประสิทธิภาพในการจัดการข้อมูลตาราง โดยมีการแบ่งข้อมูลเป็น Row กับ Column ซึ่งถูกเรียกว่า Data Frame โดยเราสามารถโหลดข้อมูลสกุลไฟล์ต่างๆ เช่น Excel, CSV, eth.
 
-		</div>
-		
+        เราจะทำการดึงไฟล์ข้อมูลของเราจาก google drive โดยใช้คำสั่ง pd.read_csv
+        
+        ตัวอย่างโด้ดถูกจะแสดงใน <a href="https://colab.research.google.com/drive/1Q9OxwK3cMtHcSgPRLzuMExS4RffxWXpL?usp=sharing">Link</a>
+        
+        โดยในส่วนของแบบฝึกหัดจะใช่file id คือ '1RPTYy1D0Z9mDiYFy_ABHClOcLCZnv-zB' และ ต้องการExtract ข้อมูลในส่วนของ column :i, e_i, z, e_z, y, e_y, W1, e_W1, W2, e_W2, J, e_J, H, e_H, K, e_K, label
+      </p>
+      <h2>การเติม(Augmentation) ข้อมูลด้วย Gaussian-distributed noise</h2>
+      <p>
+      จากข้อมูลที่เรามีจะเห็นได้ว่าข้อมูลของดาวฤกษ์และวัตถุอื่นที่เราไม่สนใจ (ซึ่งเรา label เป็น negative class) นั้นมีจำนวนที่มากกว่าดาวแคระน้ำตาล (label เป็น positive class) อยู่ 2.5 เท่า ดังนั้นเราจึงจำเป็นต้องทำให้จำนวนข้อมูลดาวแคระน้ำตาลและดาวฤกษ์ในกลุ่มตัวอย่างของเรามีความสมดุลกันด้วยการทำให้ข้อมูลทั้งสองชุดนี้มีจำนวนที่ใกล้เคียงกัน โดยเราจะใช้การเพิ่มสัญญาณรบกวนในข้อมูล (noise) ตามการกระจายตัวแบบ Gaussian-distributed noise เพื่อปรับจำนวนข้อมูลของทั้งดาวแคระน้ำตาลและดาวฤกษ์ให้มีจำนวนที่ใกล้เคียงกัน Gaussian-distributed noise  
+      </p>
+      <p>Gaussian-distributed noise จะถูกเขียนในรูป probability density function ที่มีการกระจายตัวแบบ Gaussian (หรือ normal) ตามสมการ</p>
+      <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px; position: center;">
+		    <img src="assets/img/project-brown-dwarf-img/fig6.png" alt="fig-6" style="max-width: 100%; height: auto;">
+		  </figure>
+      <p>โดย x คือ ขนาดของสัญญาณรบกวน, σ คือส่วนเบี่ยงเบนมาตรฐาน (standard deviation) ซึ่งจะกำหนดความกว้างของ probability density function และ μ คือค่าเฉลี่ยของข้อมูล (mean) ซึ่งจะเป็นตัวกำหนดจุดกึ่งกลางของ probability density function ดังที่แสดงในรูปที่ 6.
+      </p>
+      <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+		    <img src="assets/img/project-brown-dwarf-img/fig7.png" alt="fig-7" style="max-width: 100%; height: auto;">
+		    <figcaption style="font-style: italic; margin-top: 5px;">ตัวอย่างของ probability density function</figcaption>
+		  </figure>
+      <p>การสร้าง Gaussian-distributed noise นั้นสามารถใช้คำสั่ง [ random.normal (loc=0.0, scale=1.0, size=None) ]  <a href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.normal.html">https://numpy.org/doc/stable/reference/random/generated/numpy.random.normal.html</a> ใน library numpy โดยคำสั่งนั้นจะรับค่า parameter 3 ตัว คือ loc , scale และ size โดยที่ 
+
+        loc คือ ค่าเฉลี่ย (mean) หรือ ก็คือจุดกึ่งกลางของการกระจายตัวของ noise ตาม Gaussian distribution
+        
+        scale คือ ส่วนเบี่ยงเบนมาตรฐาน (σ) หรือก็คือความกว้างของการกระจายตัวของ noise
+        
+        size คือ ขนาดและรูปแบบของ array ที่ output ออกมา 
+        
+        เมื่อเราได้ noise distribution มาแล้วก็ทำการใส่ 'noise' ลงไปในข้อมูลจริงๆ ซึ่งเราอาจจะเขียน function ในภาษา python ได้ดังนี้ 
+      </p>
+      <pre>
+        <code class="language-python">
+          import numpy as np
+
+          def add_gaussian_noise(data, mean, std): 
+              """
+              ฟังก์ชันในการใส่ Gaussian noise ลงไปในชุดข้อมูลใดๆ
+          
+              พารามิเตอร์:
+              - data: คือชุดข้อมูลที่ต้องการใส่ noise
+              - mean: ค่าเฉลี่ย(mean) หรือ ก็คือจุดกึ่งกลางของ การกระจายตัวของnoise (noise distribution)
+              - std: ส่วนเบี่ยงเบนมาตรฐาน(σ) หรือก็คือความกว้างของการกระจายตัวของnoise
+          
+              output : ชูดข้อมูลที่ถูกใส noise แล้ว ซึ่งจะเป็น array รูปแบบเดียวกับชุดข้อมูลที่ถูกใส่เข้ามา 
+          
+              """
+              # Generating Gaussian noise with the same shape as the input data
+              noise = np.random.normal(mean, std, size=data.shape)
+              """
+              การสร้างฟังชันก์การกระจายตัวของnoise โดยให้ 
+              loc = mean ที่ถูกใส่เข้ามา, 
+              scale = std ที่่ถูกใส่เข้ามา
+              size = รูปแบบ array แบบเดียวกับชุดข้อมูลที่ถูกใส่เข้ามา
+              
+              """
+          
+              # Adding the Gaussian noise to the input data
+              noisy_data = data + noise
+              """
+              เมื่อได้ noise distribution แล้ว ก็นำnoise ใส่ในชุดข้อมูลของเรา
+              สุดท้ายเราก็จะได้ ข้อมูลที่ถูกใส่noise คือ " noisy_data " ที่เป็น function ของ data+noise
+              """
+              return noisy_data
+          </code>    
+      </pre>
+      <p>
+      โดยในส่วนของแบบฝึกหัดนั้น เราจะใส่ noise ใน feature โดยใช่ค่า ค่าเฉลี่ย(mean)และส่วนเบี่ยงเบนมาตราฐานของแต่ละ error ของแต่ fearture นั้นๆ 
+
+      ซึ่งตัวอย่างโด้ดถูกจะแสดงใน 
+        <a href="https://colab.research.google.com/drive/1Q9OxwK3cMtHcSgPRLzuMExS4RffxWXpL?usp=drive_link">Link</a>
+      </p>
+
+
+      <h2>การจัดการกับข้อมูลที่หายไป(Missing value)</h2>
+      <p>
+        จากข้อมูลของเราจะเห็นได้ว่า feature (ค่า magnitue ของแต่ล่ะ filler) ของดาวแต่ล่ะดวงนั้นมีบางส่วนที่ขาดหายไป (ช่องสีเหลือง) ดังรูปที่ 7. 
+        ในการจัดการค่าที่หายไปนั้น เราจะใช้ Iterative Imputer จาก Sckit-learn ซึ่งใช้การทำนายค่า (Regression) ด้วย Machine learning ในเติมค่าที่หายไป ด้วยการคาดเดาจากค่าในส่วนอื่น ๆ ของแถว (row) นั้น ๆ
+      </p>
+      <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+		    <img src="assets/img/project-brown-dwarf-img/fig8.png" alt="fig-8" style="max-width: 100%; height: auto;">
+		    <figcaption style="font-style: italic; margin-top: 5px;">ข้อมูลของเราที่ แสดงให้เห็นว่ามี Missing value อยู่ค่อนข้างมาก</figcaption>
+		  </figure>
+      <h2>การใช้ Machine learning ในการจำแนกดาวแคระน้ำตาล</h2>
+      <h3>Decision tree(ต้นไม้การตัดสิดใจ)</h3>
+      <p>
+        Decision tree learning เป็น machine model ที่ใช้ในการแก้ปัญหา classification หรือ resgression โดยอิงตามลำดับขั้นตอนของต้นไม้ที่สร้างขึ้นจากข้อมูลที่มีอยู่โดยใช้ฟังชันก์ทางคณิตศาสตร์
+
+        Decision tree เป็นอัลกอริทึมที่ใช้ในการทำนายผลลัพธ์ของการตัดสินใจ(ในกรณีของเราคือการจำแนกดาวแคระน้ำตาล) โดยมีโครงสร้างของต้นไม้การตัดสินใจที่ประกอบด้วยโหนด (nodes) และเส้นเชื่อม (branches) ซึ่งแทนคำตอบที่เป็นไปได้ทั้งหมด
+        
+        เราสามารถเริ่มต้นด้วยโหนดหลักที่เรียกว่า "โหนดราก" (root node) ที่จะแบ่งข้อมูลออกเป็นกลุ่มย่อยๆ ตามเงื่อนไขที่กำหนด หลังจากนั้นเราจะมีโหนดย่อยที่เชื่อมต่อกับโหนดราก ซึ่งเรียกว่า "โหนดลูก" (child nodes) ที่จะทำการตัดสินใจเพิ่มเติม ตามลำดับเรื่อยๆ จนกระทั่งถึงโหนดที่เรียกว่า "โหนดปลาย" (leaf node) ที่จะให้คำตอบสุดท้าย
+        
+        ยกตัวอย่างเช่นดังรูปที่ 8 แสดงถึง decision tree ของการไปเที่ยวของนาย A โดย โหนดสีน้ำเงินแรกสุด(บนสุด) ของdecision tree คือ โหนดราก และโหนดสีเงินอื่นๆคือโหนดลูก โดยโหนดสีเขียวคือโหนดปลาย หรือก็คือผลลัพย์ของการตัดใจ
+      </p>
+      <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+		    <img src="assets/img/project-brown-dwarf-img/fig9.png" alt="fig-9" style="max-width: 100%; height: auto;">
+		    <figcaption style="font-style: italic; margin-top: 5px;">ตัวอย่างแผนภาพของ Decision Tree model</figcaption>
+		  </figure>
+      <h3>Random forest regression</h3>
+      <p>
+        Random Forest Regression เป็นmachine learning ซึ่งมีการรวม Decision trees หลายๆตัวเพื่อทำนายผลลัพธ์ของข้อมูล โดยการสร้าง Decision tree ที่ไม่เหมือนกัน แต่มีลำดับขั้นตอนที่คล้ายกัน
+        ซึ่งมีกระบวนการ Bootstrapping เป็นส่วนสำคัญที่นำใน Random Forest Regression เพื่อการสร้างความแตกต่างในแต่ล่ะ Decision tree โดยในขั้นตอนนี้จะทำการสุ่มสับเซตข้อมูลจากชุดข้อมูลต้นฉบับ โดยการสุ่มด้วยการคืน (with replacement) ซึ่งหมายความว่าข้อมูลบางส่วนอาจถูกสุ่มมาหลายครั้ง และบางส่วนก็อาจจะไม่ถูกนำมาเลย
+        โดยจะมีการสุ่มตัวอย่างข้อมูลจากชุดข้อมูลต้นฉบับ และนำมาสร้างDecision trees จากนั้นเราทำกระบวนการนี้ซ้ำไปเรื่อยๆ เพื่อสร้าง Decision trees ที่หลากหลายขึ้น จากนั้นทำการรวมทุกๆ Decision trees เข้าด้วยกันเป็น Random Forest Model(เรียกกระบวนการนี้ถูกเรียกว่า Ensemble learning) ที่มีความแม่นยำและทนทานต่อการเกิด Overfitting(การที่เหมาะสมกับชุดข้อมูลที่ถูกนำไปฝึกฝนเท่านั้น เมื่อนำไปทำนายกับชุดอื่นๆ อาจจะให้ผลลัพพ์ที่แย่มากๆได้) เเละสามารถทำนายผลลัพธ์ในข้อมูลที่ไม่เคยเห็นมาก่อนได้ดี ดังที่แสดงในรูปที่ X
+      </p>
+      <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+		    <img src="assets/img/project-brown-dwarf-img/fig10.png" alt="fig-10" style="max-width: 100%; height: auto;">
+		    <figcaption style="font-style: italic; margin-top: 5px;">แผนภาพแสดงถึงขั้นตอน ของ Bootstrapping process</figcaption>
+		  </figure>
+      
+		  </div>
       </div>
     </section><!-- End Projet Details Section -->
 
