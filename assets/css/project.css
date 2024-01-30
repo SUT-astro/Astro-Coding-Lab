@@ -1,0 +1,152 @@
+/*--------------------------------------------------------------
+# breadcrumb head
+--------------------------------------------------------------*/
+.b-head {
+  padding: 2rem 0 0 0;
+  min-height: 4rem;
+  position: sticky;
+  top: 0rem;
+  background-color: #fff;
+}
+
+.b-head:before {
+  background-color: rgba(0, 0, 0, 0);
+  inset: unset;
+}
+
+.b-head h2 {
+  font-size: 2.5rem;
+  color: #000;
+}
+
+/*--------------------------------------------------------------
+# sidebar
+--------------------------------------------------------------*/
+.project-sidebar {
+  position: fixed;
+  top: inherit;
+  overflow-y: scroll;
+  max-height: -webkit-fill-available;
+  width: 20rem;
+}
+
+.project-sidebar a {
+  color: #fff;
+}
+
+.project-sidebar ol{
+  list-style-type: none;
+  padding: 0 0 0 0.5rem;
+}
+
+.project-sidebar ul{
+  list-style-type: none;
+  padding: 0 0 0 0.5rem;
+}
+
+.project-sidebar li{
+  text-align: left;
+}
+
+/*--------------------------------------------------------------
+# content
+--------------------------------------------------------------*/
+.project-content {
+  display: flex;
+}
+
+.project-content-inner h1{
+  font-size: 3rem;
+}
+
+.project-content-inner h2{
+  font-size: 2rem;
+}
+
+.project-content-inner p{
+  font-size: 1.2rem;
+}
+
+/*--------------------------------------------------------------
+# figure, table counter
+--------------------------------------------------------------*/
+.table-of-content-title ol {
+  counter-reset: toc-counter;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.table-of-content-title ol ol {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.table-of-content-title ol ol li{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.table-of-content-title li::before {
+  counter-increment: toc-counter;
+  content: counters(toc-counter, ".");
+}
+
+.project-content-inner {
+  counter-reset: fig-count table-count;
+  padding: 2.5rem 6rem 0 21rem;
+}
+
+.project-content-inner figure figcaption::before{
+  counter-increment: fig-count; /* Increment the value of section counter by 1 */
+  content: "Figure " counter(fig-count) ": "; /* Display the word 'Figure: ', the value of
+                                                section counter, and a space before the content
+                                                of each figcaption */
+}
+
+.project-content-inner figure figcaption{
+  font-size: 1.2rem;
+}
+
+.project-content-inner table caption::before{
+  counter-increment: table-count;
+  content: "Table " counter(table-count) ": ";
+}
+
+/*--------------------------------------------------------------
+# table
+--------------------------------------------------------------*/
+.project-content-inner table {
+  border-collapse: collapse;
+  border: 0px;
+  font-size: 1rem;
+  table-layout: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.project-content-inner th {
+  font-size: 1.1rem;
+}
+
+.project-content-inner td, th {
+  border: 0px;
+  padding: 10px 20px;
+  letter-spacing: 0.05rem;
+}
+
+.project-content-inner td {
+  text-align: left;
+}
+
+.project-content-inner caption {
+  padding: 10px;
+  caption-side: top;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.math-equation {
+  font-size: 1.5rem;
+}
