@@ -1011,8 +1011,8 @@ section {
   padding: 15px;
 }
 
-.projects .portfolio-content .portfolio-info h4 {
-  font-size: 14px;
+.projects .portfolio-content .portfolio-info h1 {
+  font-size: 1.3rem;
   padding: 5px 10px;
   font-weight: 400;
   color: #fff;
@@ -1022,14 +1022,16 @@ section {
 
 .projects .portfolio-content .portfolio-info p {
   position: absolute;
-  bottom: 10px;
+  bottom: 0%;
   text-align: center;
   display: inline-block;
   left: 0;
   right: 0;
-  font-size: 16px;
+  font-size: 1.5rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.8);
+  background-color: var(--bs-gray);
+  padding: 0.5rem 0;
 }
 
 .projects .portfolio-content .portfolio-info .preview-link,
@@ -2002,15 +2004,15 @@ section {
 .hero .info .btn-get-started {
   font-family: var(--font-primary);
   font-weight: 500;
-  font-size: 16px;
+  font-size: 1.5rem;
   letter-spacing: 1px;
   display: inline-block;
-  padding: 12px 40px;
+  padding: 0.6rem 1.6rem;
   border-radius: 50px;
   transition: 0.5s;
   margin: 10px;
   color: #fff;
-  border: 2px solid var(--color-primary);
+  border: 0.15rem solid var(--color-primary);
 }
 
 .hero .info .btn-get-started:hover {
