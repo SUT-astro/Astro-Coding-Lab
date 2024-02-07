@@ -137,7 +137,7 @@
 	    <div class="project-content-inner">
 		
 		  <h1 id="brown-dwarf">
-			ดาวแคระน้ำตาล (Brown Dwarfs)๗๗๗
+			ดาวแคระน้ำตาล (Brown Dwarfs)
 		  </h1>
 		  
 		  <h2 id="what-is-brown-dwarf">
@@ -371,19 +371,28 @@
 			เราสามารถโหลดข้อมูลจากไฟล์สกุลต่าง ๆ ได้ เช่น .xlsx (ไฟล์ Excel), .csv, และสกุลอื่น ๆ
 		  </p>
 		  <p>
-			ในแบบฝึกหัดนี้ เราจะทำการดึงไฟล์ข้อมูลของเราจาก google drive โดยใช้คำสั่ง pd.read_csv
-		  </p>			
-		  <p>			
-			ตัวอย่างโด้ดถูกจะแสดงใน 
-			<a href="https://colab.research.google.com/drive/1I_rE06i8uGG29HsbAJqu_IFnml4QWoGN?usp=sharing">
-			  Link
-			</a>
-		  </p>			
+			ในแบบฝึกหัดนี้ เราจะทำการดึงไฟล์ข้อมูลของเราจาก google drive โดยใช้คำสั่ง pd.read_csv โดยตัวอย่างของโค้ดจะเป็นดังนี้
+		  </p>
+		  <pre>
+			<code class="language-python">
+import pandas as pd
+# file_id ของไฟล์ใน google drive
+file_id = '1hQYrh4zpfxYu-soF4O-rXA8YF_8J-JQc'
+# โหลดไฟล์จาก google drive ด้วย link
+data = pd.read_csv(f'https://drive.google.com/uc?id={file_id}')
+			</code>    
+		  </pre>			
 		  <p>			
 			โดยในส่วนของแบบฝึกหัดจะใช้ file id คือ '1RPTYy1D0Z9mDiYFy_ABHClOcLCZnv-zB' 
 			และต้องการ extract ข้อมูลในส่วนของ 
 			column :i, e_i, z, e_z, y, e_y, W1, e_W1, W2, e_W2, J, e_J, H, e_H, K, e_K, label
 		  </p>
+		  <p>			
+			โดยผลของตัวอย่างโด้ดถูกจะแสดงใน 
+			<a href="https://colab.research.google.com/drive/1I_rE06i8uGG29HsbAJqu_IFnml4QWoGN?usp=sharing">
+			  Colab
+			</a>
+		  </p>			
 	  
 		  <h2 id="data-processing-augmentation">
 			การเติมข้อมูล (Augmentation)
@@ -497,19 +506,40 @@ def add_gaussian_noise(data, mean, std):
 			</a> 
 			จาก Scikit-learn ซึ่งใช้การทำนายค่า (Regression) ด้วย Machine learning ในการเติมค่าที่หายไป 
 			โดยใช้การคาดคะเนด้วยการวิเคราะห์จาก function หลายมิติที่ประกอบด้วยความสัมพันธ์ระหว่างข้อมูลของค่าในหลัก (column) อื่น
-			กระบวนการ Iterative imputation นั้นอยู่ในส่วนล่างของตัวอย่างที่แสดงใน:
-			<a href="https://colab.research.google.com/drive/1Q9OxwK3cMtHcSgPRLzuMExS4RffxWXpL?usp=drive_link">
-			  Colab
-			</a>
 		  </p>
-		  
+		  <p>
+		  </p>
 		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
 			<img src="assets/img/project-brown-dwarf-img/brown-dwarf-data-missing.png" 
 			alt="brown-dwarf-data-missing" 
 			style="max-width: 100%; height: auto;">
 			<figcaption style="margin-top: 5px;">ข้อมูลของเราที่แสดงให้เห็นว่ามีค่าที่หายไป (NaN) อยู่ค่อนข้างมาก</figcaption>
 		  </figure>
-		  
+		  <p>
+			โดยตัวอย่างของโค้ดจะเป็นดังนี้
+		  <pre>
+			<code class="language-python">
+#ตั้งค่า Parameter ต่างๆใน IterativeImputer
+imp = IterativeImputer(estimator=ExtraTreesRegressor(n_estimators =150, max_features = 14, max_depth=15,
+                                                                           min_samples_split =12), initial_strategy = 'median', max_iter =20)
+#การฝึกฝน IterativeImpute ที่เราสร้าางขึ้นด้วยข้อมูล "df_imp_tr" ด้วยคำสั่ง ".fit"
+imp.fit(df_imp_tr)
+			</code>    
+		  </pre>
+		  </p>
+		  <p>
+			โดย เราจะกำหนดให้ IterativeImputer ของเรานั้น ใช้	Extra Trees Regressor ด้วย hyperparameter คือ n_estimators = 150, max_features = 14, max_depth=15, min_samples_split =12, initial_strategy = 'median'
+			และมีการวนซ้ำใน IterativeImputer มากที่สุด 20 ครั้ง (max_iter =20) โดยความหมายของ parameterต่างๆ สามารถอ่านอ่านเพิ่มเติมได้ใน 			
+			<a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesRegressor.html">
+			  Extra Trees Regressor
+			</a> 
+		  </p>
+		  <p>
+			ซึ่งตัวอย่างกระบวนการ Iterative imputation นั้นอยู่ในส่วนล่างของตัวอย่างที่แสดงใน:
+			<a href="https://colab.research.google.com/drive/1b_47HgI_5CCKrNUrS8iSOtda_jBwSzX8?usp=sharing">
+			  Colab
+			</a>
+		  </p>
 		  <h2 id="machine-learning-for-brown-dwarf-classification">
 			การใช้ Machine learning ในการจำแนกดาวแคระน้ำตาล
 		  </h2>
@@ -651,7 +681,12 @@ def add_gaussian_noise(data, mean, std):
 			style="max-width: 100%; height: auto;">
 			<figcaption style="margin-top: 5px;">เปรียบเทียบผลการทำนายระหว่าง Decision tree และ Random forest</figcaption>
 		  </figure>
-
+		  <p>
+			โดยกระบวนการต่างๆ จะถูกแสดงใน 
+			<a href="https://colab.research.google.com/drive/1ke5j2rEaTas_YsXOmfTLX7j8oPxpl7GZ?usp=sharing">
+				Colab
+			</a> 
+		  </p>
 		</div>
       </div>
     </section><!-- End Projet Details Section -->
