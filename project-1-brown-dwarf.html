@@ -87,36 +87,29 @@
 		  <nav class="sidebar-content project-sidebar">
 	  	    <h1 style="color: #ffb800;">Content</h1>
 		    <ol>
-			  <li>
-				<a href="#brown-dwarf">ดาวแคระน้ำตาล (Brown Dwarfs)</a>
-				<ol>
-				  <li>
-					<a href="#what-is-brown-dwarf">ดาวแคระน้ำตาลคืออะไร และทำไมถูกค้นพบได้ยาก</a>
-				  </li>
-				
-				  <li>
-					<a href="#classifying-brown-dwarf">การจำแนกดาวแคระน้ำตาล</a>
-					
-				  </li>
-				  <li>
-					<a href="#Quiz-1">Quiz</a>
-				  </li>				  
-				</ol>
+			  <li><a href="#brown-dwarf">ดาวแคระน้ำตาล (Brown Dwarfs)</a><ol>
+			  <li><a href="#what-is-brown-dwarf">ดาวแคระน้ำตาลคืออะไร และทำไมถูกค้นพบได้ยาก</a></li>
+			  <li><a href="#classifying-brown-dwarf">การจำแนกดาวแคระน้ำตาล</a></li>
+			  <li><a href="#Quiz-I">Quiz I</a></li>				  
+		     </ol>
 			  </li>
 			    
 			  <li>
-				<a href="#brown-dwarf-observation-data">ข้อมูลการสังเกตุการณ์ดาวแคระน้ำตาล</a>
+				<a href="#brown-dwarf-observation-data">ข้อมูลการสังเกตการณ์ดาวแคระน้ำตาล</a>
 				<ol>
 					<li><a href="#Resource">ที่มาและธรรมชาติของข้อมูล</a></li>
 					<li><a href="#using-pandas">การใช้ pandas อ่านข้อมูล</a></li>
 				  	<li><a href="#data-processing-augmentation">การเติมข้อมูล (Augmentation) ด้วย Gaussian-distributed noise</a></li>
 				  	<li><a href="#data-processing-missing-value">การจัดการกับข้อมูลที่หายไป (Missing value)</a></li>
+					<li><a href="#Quiz-II">Quiz II</a>
+				  </li>
 				</ol>
 			 <li>
 				<a href="#machine-learning-for-brown-dwarf-classification">การใช้ Random Forest ในการจำแนกดาวแคระน้ำตาล</a>
 					<ol>
 					  <li><a href="#decision-tree">ต้นไม้การตัดสินใจ (Decision tree)</a></li>
-					  <li><a href="#random-forest-regression">Random forest regression</a></li>
+					  <li><a href="#random-forest-regression">RF regression</a></li>
+					  <li><a href="#BD-RF-class">เขียนโค้ดจำแนกดาวแคระน้ำตาลด้วย RF model  </a></li>
 					</ol>	
 				  </li>				  
 				</ol>			  
@@ -324,8 +317,8 @@
 			<figcaption style="margin-top: 5px;">Johnson/Bessel UVBRI filter</figcaption>
 		  </figure>
 	  
-		  <h2 id="Quiz-1">
-			Quiz
+		  <h2 id="Quiz-I">
+			Quiz I
 		  </h2>
 		  <p>
 			coming soon
@@ -337,7 +330,7 @@
 
 		  
 		  <h1 id="brown-dwarf-observation-data">
-			ข้อมูลการสังเกตุการณ์ดาวแคระน้ำตาล
+			ข้อมูลการสังเกตการณ์ดาวแคระน้ำตาล
 		  </h1>
  		<h2 id="Resource">
 			ที่มาและธรรมชาติของข้อมูล
@@ -542,8 +535,21 @@ imp.fit(df_imp_tr)
 			  Colab
 			</a>
 		  </p>
+
+	<h2 id="Quiz-II">
+			Quiz II
+		  </h2>
+		  <p>
+			coming soon
+		  </p>
+
+		<p>
+			coming soon
+		  </p>
+
+		    
 		  <h1 id="machine-learning-for-brown-dwarf-classification">
-			การใช้ Random Forest ในการจำแนกดาวแคระน้ำตาล
+			แบบจำลอง Random Forest
 		  </h1>
 		  <h2 id="decision-tree">
 			ต้นไม้การตัดสินใจ (Decision tree)
@@ -575,7 +581,8 @@ imp.fit(df_imp_tr)
 			</figcaption>
 		  </figure>
 		  <h2 id="random-forest-regression">
-			Random forest regression
+			RF regression
+			  
 		  </h2>
 		  <p>
 			Random Forest Regression เป็น Machine learning 
@@ -689,6 +696,11 @@ imp.fit(df_imp_tr)
 				Colab
 			</a> 
 		  </p>
+
+	<h2 id="BD-RF-class">
+			เขียนโค้ดจำแนกดาวแคระน้ำตาลด้วย RF model
+	 </h2>
+		    
 		</div>
       </div>
     </section><!-- End Projet Details Section -->
