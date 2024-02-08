@@ -99,7 +99,7 @@
 					
 				  </li>
 				  <li>
-					<a href="#Knowledge-check-1">ทบทวนความรู้ 1</a>
+					<a href="#Quiz-1">Quiz</a>
 				  </li>				  
 				</ol>
 			  </li>
@@ -120,7 +120,7 @@
 					</ol>					
 				  </li>
 				  <li>
-					<a href="#data-processing-missing-value">การจัดการกับข้อมูลที่หายไป (Missing value)</a>
+					<a href="#data-processing-missing-value">การจัดการกับข้อมูลที่หายไป (Missing value) ด้วย Gaussian-distributed noise</a>
 				  </li>
 				  <li>
 					<a href="#machine-learning-for-brown-dwarf-classification">การใช้ Machine learning ในการจำแนกดาวแคระน้ำตาล</a>
@@ -334,12 +334,14 @@
 			<figcaption style="margin-top: 5px;">Johnson/Bessel UVBRI filter</figcaption>
 		  </figure>
 	  
-		  <h2 id="Knowledge-check-1">
-			ทบทวนความรู้ 1
-
-	
+		  <h2 id="Quiz-1">
+			Quiz
 		  </h2>
 		  <p>
+			coming soon
+		  </p>
+
+		<p>
 			coming soon
 		  </p>
 		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
@@ -405,7 +407,7 @@ data = pd.read_csv(f'https://drive.google.com/uc?id={file_id}')
 		  </p>			
 	  
 		  <h2 id="data-processing-augmentation">
-			การเติมข้อมูล (Augmentation)
+			การเติมข้อมูล (Augmentation) ด้วย Gaussian-distributed noise
 		  </h2>
 		  <p>
 			จากข้อมูลที่เรามีจะเห็นได้ว่าข้อมูลของดาวฤกษ์และวัตถุอื่นที่เราไม่สนใจ (ซึ่งเรา label เป็น negative class) 
@@ -415,9 +417,7 @@ data = pd.read_csv(f'https://drive.google.com/uc?id={file_id}')
 			ตามการกระจายตัวแบบ Gaussian-distributed noise 
 			เพื่อปรับจำนวนข้อมูลของทั้งดาวแคระน้ำตาลและดาวฤกษ์ให้มีจำนวนที่ใกล้เคียงกัน   
 		  </p>
-		  <h3 id="gaussian-distributed-noise">
-			Gaussian-distributed noise
-		  </h3>
+		  
 		  <p>
 			Gaussian-distributed noise จะถูกเขียนในรูป probability density function 
 			ที่มีการกระจายตัวแบบ Gaussian (หรือ normal distribution) ตามสมการ
