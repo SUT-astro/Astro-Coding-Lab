@@ -103,25 +103,17 @@
 				  </li>				  
 				</ol>
 			  </li>
+			    
 			  <li>
 				<a href="#brown-dwarf-observation-data">ข้อมูลการสังเกตุการณ์ดาวแคระน้ำตาล</a>
 				<ol>
-				<li>
-					<a href="#Resource">ที่มาและธรรมชาติของข้อมูล</a>
-				  </li>
-					
-				<li>
-					<a href="#using-pandas">การใช้ pandas อ่านข้อมูล</a>
-				  </li>
-				  <li>
-					<a href="#data-processing-augmentation">การเติมข้อมูล (Augmentation) ด้วย Gaussian-distributed noise</a>
-									
-				  </li>
-				  <li>
-					<a href="#data-processing-missing-value">การจัดการกับข้อมูลที่หายไป (Missing value)</a>
-				  </li>
-				  <li>
-					<a href="#machine-learning-for-brown-dwarf-classification">การใช้ Machine learning ในการจำแนกดาวแคระน้ำตาล</a>
+					<li><a href="#Resource">ที่มาและธรรมชาติของข้อมูล</a></li>
+					<li><a href="#using-pandas">การใช้ pandas อ่านข้อมูล</a></li>
+				  	<li><a href="#data-processing-augmentation">การเติมข้อมูล (Augmentation) ด้วย Gaussian-distributed noise</a></li>
+				  	<li><a href="#data-processing-missing-value">การจัดการกับข้อมูลที่หายไป (Missing value)</a></li>
+				</ol>
+			 <li>
+				<a href="#machine-learning-for-brown-dwarf-classification">การใช้ Random Forest ในการจำแนกดาวแคระน้ำตาล</a>
 					<ol>
 					  <li><a href="#decision-tree">ต้นไม้การตัดสินใจ (Decision tree)</a></li>
 					  <li><a href="#random-forest-regression">Random forest regression</a></li>
@@ -342,12 +334,7 @@
 		<p>
 			coming soon
 		  </p>
-		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
-			<img src="assets/img/project-brown-dwarf-img/filter-active-range.png" 
-			alt="filter-active-range" 
-			style="max-width: 100%; height: auto;">
-			<figcaption style="margin-top: 5px;">Active range ของ filter ต่าง ๆที่ถูกใช้ในแบบฝึกหัดนี้</figcaption>
-		  </figure>
+
 		  
 		  <h1 id="brown-dwarf-observation-data">
 			ข้อมูลการสังเกตุการณ์ดาวแคระน้ำตาล
@@ -369,6 +356,13 @@
 			ตามลิ้ง <a href="https://github.com/iamaleksandra/ML-Brown-Dwarfs/">
 			github</a> 
 			ซึ่งเป็นข้อมูลที่เราจะใช้ในแบบฝึกหัดนี้
+
+		<figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="assets/img/project-brown-dwarf-img/filter-active-range.png" 
+			alt="filter-active-range" 
+			style="max-width: 100%; height: auto;">
+			<figcaption style="margin-top: 5px;">Active range ของ filter ต่าง ๆที่ถูกใช้ในแบบฝึกหัดนี้</figcaption>
+		  </figure>
 		  </p>
 
 		    
@@ -548,12 +542,12 @@ imp.fit(df_imp_tr)
 			  Colab
 			</a>
 		  </p>
-		  <h2 id="machine-learning-for-brown-dwarf-classification">
-			การใช้ Machine learning ในการจำแนกดาวแคระน้ำตาล
-		  </h2>
-		  <h3 id="decision-tree">
+		  <h1 id="machine-learning-for-brown-dwarf-classification">
+			การใช้ Random Forest ในการจำแนกดาวแคระน้ำตาล
+		  </h1>
+		  <h2 id="decision-tree">
 			ต้นไม้การตัดสินใจ (Decision tree)
-		  </h3>
+		  </h2>
 		  <p>
 			Decision tree เป็นโมเดลที่สามารถใช้ได้ในการแก้ปัญหาการจำแนกประเภท (classification) และการถดถอย (regression)
 			โดยอิงตามลำดับขั้นตอนของต้นไม้ที่สร้างขึ้นจากข้อมูลที่มีอยู่โดยใช้ฟังชันก์ทางคณิตศาสตร์
@@ -580,9 +574,9 @@ imp.fit(df_imp_tr)
 			Decision forests, Google machine learning course</a>)
 			</figcaption>
 		  </figure>
-		  <h3 id="random-forest-regression">
+		  <h2 id="random-forest-regression">
 			Random forest regression
-		  </h3>
+		  </h2>
 		  <p>
 			Random Forest Regression เป็น Machine learning 
 			ที่ใช้กลุ่มก้อน (ensemble) ซึ่งประกอบไปด้วย Decision tree หลายต้นในการทำนายข้อมูล
