@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>การจำแนกดาวแคระน้ำตาลด้วย Machine learning</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  
+  <!-- Template Main CSS File -->
+  <link href="../assets/css/main.css" rel="stylesheet">
+  <link href="../assets/css/project.css" rel="stylesheet">
+  <link href="../assets/css/default.highlight.style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: UpConstruction
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="../index.html" class="logo logo-project d-flex align-items-center">
+        <h1>AstroCode101<span>.</span></h1>
+      </a>
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+      <nav id="navbar" class="navbar navbar-project">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li class="dropdown"><a href="../index.html#projects" class="active">Projects</a>
+		    <ul>
+              <li><a href="#">Project Brown Dwarf</a></li>
+			</ul>
+		  </li>
+        </ul>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs b-head d-flex">
+	  <div class="container position-relative d-flex flex-column aos-init aos-animate" data-aos="fade">
+        <h1>LAB-1: การจำแนกดาวแคระน้ำตาลด้วย Random Forest</h1>
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Projet Details Section ======= -->
+    <section id="project-details" class="project-details" 
+	style="padding: 0 0 0 0;">
+      <div class="project-content">
+	  
+	    <div class="table-of-content-title">
+		  <nav class="sidebar-content project-sidebar">
+	  	    <h1 style="color: #ffb800;">Content</h1>
+		    <ol>
+			  <li>
+			    <a href="objective.html#Objective">
+				  วัตถุประสงค์
+				</a>
+			  </li>
+
+			  <li>
+			    <a href="brown-dwarf.html#brown-dwarf">
+				  ดาวแคระน้ำตาล (Brown Dwarfs)
+				</a>
+		        <ol>
+			      <li>
+				    <a href="brown-dwarf.html#what-is-brown-dwarf">
+					  ดาวแคระน้ำตาลคืออะไร และทำไมถูกค้นพบได้ยาก
+					</a>
+				  </li>
+			      <li>
+				    <a href="brown-dwarf.html#classifying-brown-dwarf">
+					  การจำแนกดาวแคระน้ำตาล
+					</a>
+				  </li>
+			      <li>
+				    <a href="brown-dwarf.html#Quiz-I">
+				      Quiz I
+				    </a>
+				  </li>				  
+		        </ol>
+			  </li>
+			    
+			  <li>
+				<a href="brown-dwarf-observation-data.html#brown-dwarf-observation-data">
+				  ข้อมูลการสังเกตการณ์ดาวแคระน้ำตาล
+				</a>
+				<ol>
+				  <li>
+				    <a href="brown-dwarf-observation-data.html#Resource">
+					  ที่มาและธรรมชาติของข้อมูล
+					</a>
+				  </li>
+				  <li>
+				    <a href="brown-dwarf-observation-data.html#using-pandas">
+					  การใช้ pandas อ่านข้อมูล
+					</a>
+				  </li>
+				  <li>
+				    <a href="brown-dwarf-observation-data.html#data-processing-augmentation">
+					  การเติมข้อมูล (Augmentation) ด้วย Gaussian-distributed noise
+					</a>
+				  </li>
+				  <li>
+				    <a href="brown-dwarf-observation-data.html#data-processing-missing-value">
+					การจัดการกับข้อมูลที่หายไป (Missing value)
+					</a>
+				  </li>
+				  <li>
+				    <a href="brown-dwarf-observation-data.html#Quiz-II">
+				      Quiz II
+				    </a>
+				  </li>
+				</ol>
+			  </li>
+				
+			  <li>
+				<a href="machine-learning-for-brown-dwarf-classification.html#machine-learning-for-brown-dwarf-classification">
+				  แบบจำลอง Random Forest (RF model)
+				</a>
+				<ol>
+				  <li>
+				    <a href="machine-learning-for-brown-dwarf-classification.html#decision-tree">
+					  ต้นไม้การตัดสินใจ (Decision tree)
+					</a>
+				  </li>
+				  <li>
+				    <a href="machine-learning-for-brown-dwarf-classification.html#random-forest-regression">
+				      RF regression
+				    </a>
+				  </li>
+				  <li>
+				    <a href="machine-learning-for-brown-dwarf-classification.html#brown-dwarf-classification-with-random-forest">
+					  เขียนโค้ดจำแนกดาวแคระน้ำตาลด้วย RF model  
+				    </a>
+				  </li>
+				</ol>	
+			  </li>				  
+			</ol>		
+		  </nav>
+	    </div>
+		  
+	    <div class="project-content-inner">
+		
+		  <h1 id="Objective">
+			วัตถุประสงค์
+		  </h1>
+		  <p>
+			วัตถุประสงค์ของบทเรียนนี้คือ ....
+		  </p>
+		 
+		</div>
+      </div>
+    </section><!-- End Projet Details Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="footer-content position-relative">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-info">
+              <h3>กลุ่มวิจัยดาราศาสตร์</h3>
+              <p>
+			          สาขาวิชาฟิสิกส์  สำนักวิชาวิทยาศาสตร์ <br>
+				มหาวิทยาลัยเทคโนโลยีสุรนารี <br>
+			          111  ถนนมหาวิทยาลัย <br>
+                                        ต. สุรนารี  อ. เมือง  จ.นครราชสีมา<br>
+				30000<br>
+                <strong>Phone:</strong> 044-223-000<br>
+                <strong>Fax:</strong> 044-224-070<br>
+              </p>
+              <div class="social-links d-flex mt-3">
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div><!-- End footer info column-->
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Terms of service</a></li>
+              <li><a href="#">Privacy policy</a></li>
+            </ul>
+          </div><!-- End footer links column-->
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><a href="#">Web Design</a></li>
+              <li><a href="#">Web Development</a></li>
+              <li><a href="#">Product Management</a></li>
+              <li><a href="#">Marketing</a></li>
+              <li><a href="#">Graphic Design</a></li>
+            </ul>
+          </div><!-- End footer links column-->
+
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-legal text-center position-relative">
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>UpConstruction</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/ -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+  <!-- End Footer -->
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/change-content.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</body>
+
+</html>
