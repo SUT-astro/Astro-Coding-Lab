@@ -4,8 +4,6 @@
 .b-head {
   padding: 2rem 0 0 0;
   min-height: 4rem;
-  position: sticky;
-  top: 0rem;
   background-color: #fff;
   margin-bottom: 1rem;
 }
@@ -78,7 +76,7 @@
   }
 
   & p {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 }
 /*--------------------------------------------------------------
@@ -139,7 +137,8 @@
   }
 ;
   margin-left: 20rem;
-  min-height: 39rem;
+  margin-right: 20rem;
+  width: 50rem;
 }
 
 /*--------------------------------------------------------------
