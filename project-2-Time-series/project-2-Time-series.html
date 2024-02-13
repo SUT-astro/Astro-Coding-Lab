@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>การวิเคราะห์ข้อมูลLight Curve ในโดเมนเวลา (Time Series)</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  
+  <!-- Template Main CSS File -->
+  <link href="../assets/css/main.css" rel="stylesheet">
+  <link href="../assets/css/project.css" rel="stylesheet">
+  <link href="../assets/css/default.highlight.style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: UpConstruction
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="../index.html" class="logo logo-project d-flex align-items-center">
+        <h1>AstroCode101<span>.</span></h1>
+      </a>
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+      <nav id="navbar" class="navbar navbar-project">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li class="dropdown"><a href="../index.html#projects" class="active">Projects</a>
+		    <ul>
+              <li><a href="#">Project Brown Dwarf</a></li>
+			</ul>
+		  </li>
+        </ul>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs b-head d-flex">
+	  <div class="container position-relative d-flex flex-column aos-init aos-animate" data-aos="fade">
+        <h1>LAB-2: การวิเคราะห์ข้อมูลLight Curve ในโดเมนเวลา (Time Series)</h1>
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Projet Details Section ======= -->
+    <section id="project-details" class="project-details" 
+	style="padding: 0 0 0 0;">
+      <div class="project-content">
+	  
+	    <div class="table-of-content-title">
+		  <nav class="sidebar-content project-sidebar">
+	  	    <h1 style="color: #ffb800;">Content</h1>
+		    <ol>
+			  <li>
+			    <a href="#Objective">วัตถุประสงค์</a>
+			  </li>
+			   
+	
+
+			  <li>
+			    <a href="#brown-dwarf">ดาวแคระน้ำตาล (Brown Dwarfs)</a>
+		        <ol>
+			      <li><a href="#what-is-brown-dwarf">ดาวแคระน้ำตาลคืออะไร และทำไมถูกค้นพบได้ยาก</a></li>
+			      <li><a href="#classifying-brown-dwarf">การจำแนกดาวแคระน้ำตาล</a></li>
+			      <li><a href="#Quiz-I">Quiz I</a></li>				  
+		        </ol>
+			  </li>
+			    
+			  <li>
+				<a href="#brown-dwarf-observation-data">ข้อมูลการสังเกตการณ์ดาวแคระน้ำตาล</a>
+				<ol>
+				  <li><a href="#Resource">ที่มาและธรรมชาติของข้อมูล</a></li>
+				  <li><a href="#using-pandas">การใช้ pandas อ่านข้อมูล</a></li>
+				  <li><a href="#data-processing-augmentation">การเติมข้อมูล (Augmentation) ด้วย Gaussian-distributed noise</a></li>
+				  <li><a href="#data-processing-missing-value">การจัดการกับข้อมูลที่หายไป (Missing value)</a></li>
+				  <li><a href="#Quiz-II">Quiz II</a></li>
+				</ol>
+			  </li>
+				
+			  <li>
+				<a href="#machine-learning-for-brown-dwarf-classification">แบบจำลอง Random Forest (RF model)</a>
+				<ol>
+				  <li><a href="#decision-tree">ต้นไม้การตัดสินใจ (Decision tree)</a></li>
+				  <li><a href="#random-forest-regression">RF regression</a></li>
+				  <li><a href="#BD-RF-class">เขียนโค้ดจำแนกดาวแคระน้ำตาลด้วย RF model  </a></li>
+				</ol>	
+			  </li>				  
+			</ol>			  
+
+		  </nav>
+	    </div>
+		  
+	    <div class="project-content-inner">
+		
+		  <h1 id="Objective">
+			วัตถุประสงค์
+		  </h1>
+		  <p>
+			วัตถุประสงค์ของบทเรียนนี้คือ ....
+		  </p>
+		
+		  <h1 id="brown-dwarf">
+			กราฟแสง (Light Curve)
+		  </h1>
+		  
+		  <h2 id="what-is-brown-dwarf">
+			Light curve คือ ?
+		  </h2>
+		  <p>
+			Light curve หรือ กราฟแสง เป็นการแสดงผลการวัดความเข้มของแสงในโดเมนของเวลา (แกน X เป็นเวลา และแกน Y เป็นการรับแสงหรือความสว่างที่ถูกตรวจวัดได้) 
+			โดยเราอาจแบ่งประเภทของการตรวจวัด light curve ได้ดังนี้
+			<ul>
+				<li>Light curve เป็นเครื่องมือสำคัญที่ใช้ในการค้นพบวัตถุใหม่ ๆ ในทางดารารศาสตร์ ซึ่งการสำรวจLight curve ของวัตถุที่มีความแปรปวรน้อยบ่อยครั้งช่วยให้นักดาราศาสตร์ค้นพบวัตถุที่น่าสนใจและเข้าใจเกี่ยวกับลักษณะของพวกเขา
+				</li>
+				<li>การวิเคราะห์Light curveสามารถใช้ในการระบุคุณลักษณะต่างๆของวัตถุทางดาราศาสตร์ เช่น การตรวจจับรูปแบบการเคลื่อนที่ของดาวเคราะห์, การทำนายช่วงการเกิดเหตุการณ์สำคัญ(e.g. supernova)
+				</li>
+				<li>นักดาราศาสตร์ยังสามารถใช้ Light curve เพื่อศึกษาเชิงทฤษฎีและการทดลอง ในบางครั้งมีการนำข้อมูลแสงมาวิเคราะห์เพื่อสามารถยืนยันหรือปฏิเสธทฤษฎีทางฟิสิกส์ได้อีกด้วย</li>
+				<li>การวิเคราะห์ฟกราฟแสงนั้นสามารถใช้ระบุลักษณะของวัตถุที่ไม่สามารถมองเห็นได้ด้วยตาเปล่า เช่น หลุมดำ, วัตถุทีแผ่รังสีในย่านคลื่น X-ray, หรือวัตถุที่มีการรับแสงได้น้อยและไม่อยู่ใช่ช่วงแสงที่สามารถมองเห็นได้ด้วยตาเปล่า</li>
+			</ul>
+		  </p>
+		  
+		  <h2 id="classifying-brown-dwarf">
+			ค่าเฉลี่ย (Mean) ความแปรปรวน (Variance) และ Autocovariance
+		  </h2>
+		 
+		  <p>
+			ค่าเฉลี่ย (Mean): ค่าเฉลี่ยของ Light Curve คือค่าเฉลี่ยของการรับแสงหรือความสว่างที่ถูกวัดได้ในช่วงเวลาที่กำหนด การคำนวณค่าเฉลี่ยสามารถช่วยให้เราเข้าใจว่ามีความสว่างเฉลี่ยเท่าใดในระหว่างช่วงเวลาที่ต้องการศึกษา
+		  </p>
+		  <p>
+			ความแปรปรวน (Variance): ความแปรปรวนของ Light Curve บ่งบอกถึงกระจายตัวของข้อมูล ค่าความแปรปรวนมีความสัมพันธ์กับค่าความคลาดเคลื่อนของข้อมูลจากค่าเฉลี่ย ถ้าความแปรปรวนมีค่ามาก แสดงว่ามีความคลาดเคลื่อนมากในข้อมูล 
+		  </p>
+		  <p>
+			Autocovariance : Autocovariance คือการวัดความสัมพันธ์ของค่าใน Light Curve กับค่าในตำแหน่งก่อนหน้า ค่า Autocovariance มีประโยชน์ในการหารูปแบบซ้ำ ๆ ที่เกิดขึ้นในข้อมูล
+		  </p>
+		  <p>
+			การใช้ค่าสถิติเหล่านี้ในการวิเคราะห์ Light Curve ช่วยให้เราทำความเข้าใจกับพฤติกรรมแสงของดาวฤกษ์ได้ลึกซึ้งมากขึ้น ซึ่งมีประโยชน์ในการศึกษาแนวโน้ม, การจับความสัมพันธ์กับตัวแปรอื่น ๆ, หรือการตรวจจับรูปแบบที่ซับซ้อนในข้อมูล Light Curve ที่มีความสำคัญสำหรับการวิเคราะห์ดาวฤกษ์และระบบดาวฤกษ์ต่าง ๆ ในจักรวาลได้ของเรา
+		  </p>
+
+		  <h1 id="brown-dwarf-observation-data">
+			Stationary and Non-stationary light curves
+		  </h1>
+ 		  <h2 id="Resource">
+			Stationary light curves
+		  </h2>
+		  <p>
+			Stationary light curves คือ  light curves ของความสว่างของวัตถุทางดาราศาสตร์ในช่วงเวลาหนึ่ง โดยที่คุณสมบัติทางสถิติโดยรวมคือค่าความสว่างของมันไม่เปลี่ยนแปลงตามเวลา หรือก็คือ รูปแบบความสว่างจะเกิดซ้ำในลักษณะที่คาดเดาได้ 
+			ซึ่งหมายความว่าความสว่างโดยเฉลี่ย ค่าความแปรปรวน (ความสว่างเปลี่ยนแปลงไปมากน้อยเพียงใด) และรูปการเปลี่ยนแปลงใดๆ ตามเวลาจะมีค่าคงที่ทั้งหมด
+		  </p>
+		  
+		  <p>คุณลักษณะของ Stationary light curves
+			<ul>
+				<li>ไม่มีการเปลี่ยนแปลงแนวโน้ม : ความสว่างโดยรวมจะมีแนวโน้มแนว(trend)ที่ไม่เปลี่ยนแปลง ในระยะยาวใดๆ ไม่ว่าจะเพิ่มขึ้นหรือลดลง
+				</li>
+				<li>ความแปรปรวน (Variance) คงที่: ค่าความผันผวนของความสว่างจะยังคงสม่ำเสมอเมื่อเวลาผ่านไป
+				</li>
+				<li>รูปแบบที่เกิดซ้ำ: สามารถคาดเดารูปแบบความสว่างที่แปรผันตามเวลาได้ แม้ว่าเมื่อเวลาผ่านไปแต่ละรูปแบบอาจไม่เหมือนกันทุกประการ
+				</li>
+			</ul>
+		  </p>
+		  <p>
+			อีกทั้ง Stationary light curves สามารถใช้เป็นเครื่องมือสำหรับนักดาราศาสตร์ที่ต้องการศึกษาคุณลักษณะต่างๆของวัตถุท้องฟ้าได้ดังนี้
+		  </p>
+		  <p>
+			ระบุประเภทของดาวต่างๆ: ดาวประเภทต่างๆ นั้น มีรูปแบบลักษณะความแปรปรวนเฉพาะที่แตกต่างกัน ซึ่งสามารถนำไปใช้ในการจำแนกประเภทดาวฤกษ์เหล่านั้นได้
+		  </p>
+		  <p>
+			การศึกษากระบวนการทางกายภาพในดาวฤกษ์: ความแปรผันของความสว่างของดาวฤกษ์อาจเกิดจากกระบวนการทางกายภาพต่างๆ เช่น การเต้นของดาวฤกษ์(การยุบและขยายที่ต้องการักษาสมดุลของตัวมันเอง [Stellar pulsation])  
+			การหมุน และสนามแม่เหล็กของดาว ด้วยการศึกษากราฟแสงของพวกมัน นักดาราศาสตร์สามารถศึกษาดพิ่มเติมเกี่ยวกับกระบวนการเหล่านี้ได้
+		  </p>
+		  <p>
+			การตรวจจับดาวเคราะห์นอกระบบ: ดาวเคราะห์นอกระบบสุริยะบางดวงอาจทำให้ความสว่างของดาวฤกษ์แม่ลดลงเป็นระยะๆ ขณะที่มันเคลื่อนผ่านหน้าดาวฤกษ์แม่ ด้วยการค้นหาการลดลงเหล่านี้ในกราฟแสงของดาวฤกษ์ 
+			นักดาราศาสตร์สามารถตรวจจับการมีอยู่ของดาวเคราะห์นอกระบบได้ และอาจจะสามารถระบุธาตุที่เป็นองประกอบของดาวฤกษ์นั้นๆได้อีกด้วย
+		  </p>
+		  <h2 id="using-pandas">
+			Non-stationary light curves
+		  </h2>
+		  <p>
+			Non-stationary light curves เป็น light curve ของวัตถุทางดาราศาสตร์ในช่วงเวลาใดเวลาหนึ่งหนึ่ง 
+			โดยที่คุณสมบัติทางสถิติโดยรวมจะมีการแปรผันของความสว่างเปลี่ยนแปลงตามเวลา หรือก็คือ รูปแบบความสว่างนั้นจะไม่เกิดซ้ำในลักษณะที่สามารถคาดเดาได้ ซึ่งหมายความว่าความสว่างโดยเฉลี่ย 
+			ค่าความแปรปรวน และรูปการเปลี่ยนแปลงใดๆ ล้วนสามารถเปลี่ยนแปลงได้ตลอดเวลา
+		  </p>
+		  <p>คุณลักษณะของ Non-Stationary light curves
+			<ul>
+				<li>การเปลี่ยนแปลงแนวโน้ม: ความสว่างโดยรวมสามารถแสดงแนวโน้มว่าสามารถเปลี่ยนแปลงได้ ไม่ว่าจะมีค่าเพิ่มขึ้นหรือลดลง
+				</li>
+				<li>ความแปรปรวนแปรผันตามเวลา: จำนวนความผันผวนของความสว่างสามารถเปลี่ยนแปลงได้ตลอดเวลา
+				</li>
+				<li>ไม่มีรูปแบบที่เกิดซ้ำ: ความแปรผันของความสว่างจะไม่เกิดซ้ำในลักษณะที่คาดเดาได้ แม้ว่าอาจมีโครงสร้างดังเดิมอยู่บ้างก็
+				</li>
+			</ul>
+		  </p>
+		  <p>
+			และNon-Stationary light curves สามารถใช้เป็นเครื่องมือสำหรับนักดาราศาสตร์ที่ต้องการศึกษาคุณลักษณะและเหตุการณ์ต่างๆของวัตถุท้องฟ้าได้ดังนี้
+		  </p>
+		  <p>
+			การศึกษาวัตถุที่มีพฤติกรรมซับซ้อน: มีวัตถุทางดาราศาสตร์จำนวนมาก เช่น ควาซาร์ บลาซาร์ และหลุมดำที่กำลังสะสมอยู่ มีเส้นโค้งแสงที่ไม่คงที่ ด้วยการศึกษาเส้นโค้งแสงเหล่านี้ เราสามารถเรียนรู้เพิ่มเติมเกี่ยวกับกระบวนการทางกายภาพที่ซับซ้อนที่ภายในวัตถุเหล่านี้ได้
+		  </p>
+		  <p>
+			การระบุเหตุการณ์ที่เกิดขึ้นเป็นครั้งคราว: Non-Stationary light curves บางครั้งมีสาเหตุจากเหตุการณ์ที่เกิดขึ้นชั่วขณะ หนึ่ง เช่น การเกิดแสงแฟลร์ของดาวฤกษ์ 
+			และเหตุการณ์ที่นานครั้งจะเกิดขึ้น เช่น ซูเปอร์โนวา การระบุเหตุการณ์เหล่านี้ช่วยให้นักดาราศาสตร์สามารถเข้าใจกระบวนการทางกายภาพของพวกมันได้
+		  </p>
+		  <p>
+			รูปที่ 1 แสดงให้เห็นถึงความแตกต่างระหว่าง Stationary light curves และ Non-stationary light curves โดยเราจะเห็นว่า Stationary light curves มีค่ากวัดแกว่งอยู่รอบๆค่าใดค่าหนึ่ง(ค่าเฉลี่ยคงที่)
+			และมีขนาดของการกวัดแกว่งคงที่(ค่าความแปรปรวนคงที่) ในขณะที่ Non-Stationary light curves นั้นมีค่าการกวัดแกว่งที่ไม่ได้อยู่รอบค่าใดค่าหนึ่ง(ค่าเฉลี่ยคงไม่ที่) และมีขนาดของการกวัดแกว่งที่ไม่คงที่(ค่าความแปรปรวนไม่คงที่)
+		  </p>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-Time-series-img/stationary and Non-stationary.png" 
+			alt="decision-tree-example" 
+			style="max-width: 100%; height: auto;">
+			<figcaption style="margin-top: 5px;">
+			ตัวอย่างของ Stationary light curves และ Non-stationary light curves<br>
+			(credit:.....)
+			</figcaption>
+		  </figure>
+
+
+
+		  <h1>
+			Autoregressive Model
+		  </h1>
+		  <p>
+			Autoregressive Model เป็นโมเดลทางสถิติที่ใช้ในการวิเคราะห์และทำนายข้อมูลชุดตัวเลขในโดเมนเวลา โมเดลนี้ได้รับการใช้งานอย่างแพร่หลายในการศึกษาและการทำนายแนวโน้มของชุดข้อมูลที่มีการเปลี่ยนแปลงตามเวลา เช่น ราคาหุ้น, อุณหภูมิประจำวัน, หรือปริมาณการขายของสินค้า
+			อีกทั้งมันยังสามารถใช้เป็นเครื่องในการสร้าง light curves วัตถุทางดาราศาสตร์บางประเภท โดยเฉพาะวัตถุที่มี light curves เป็น Stationary light curves
+		  </p>
+		  <p>
+			โดย Autoregressive Model ถูกสร้างขึ้นจากแนวคิดที่ว่าข้อมูลในปัจจุบันนั้นสามารถอธิบายได้ด้วยชุดข้อมูลในอดีตและสามารถนำมาทำนายสิ่งที่จะเกิดขึ้นในอนาคตได้อีกด้วย โดยสามารถเขียนเป็นสมการได้ดังนี้
+		  </p>
+
+		  <span class="math-equation">
+			$$
+			x_t = \sum_{i=1}^{p} \phi_i x_{t-i} + \varepsilon_t
+			$$
+		  </span>
+		  <p>where:</p>
+		  <ul>
+			<li>\(x_t\): เส้นโค้งแสง ณ เวลา t</li>
+			<li>\(\phi_i\): Coefficients of the AR model (weight of past values) ค่าสัมประสิทธิ์ของโมเดล AR \(\phi_1\) หมายถึงน้ำหนักของค่าที่ในอดีดผ่านมาล่าสุด 
+				และ \(\phi_2\) หมายถึงน้ำหนักของค่าอดีตในอันดับสองของค่าปัจจุบัน</li>
+			<li>\(p\): ค่า Order ของโมเดล AR ซึ่งจะกำหนดจำนวนของค่าในอดีตที่ใช้ในการทำนายค่าปัจจุบัน</li>
+			<li>\(\varepsilon_t\): ค่าความคลาดเคลื่อนแบบสุ่ม</li>
+		  </ul>
+
+		  โดยตัวอย่างของโค้ดAR โมเดลที่ใช้ในการการสร้าง light curves จะเป็นดังนี้ 
+		  <pre>
+			<code class="language-python">
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def generate_AR_series(n_obs, phi_values):
+    """
+    Generate a synthetic time series based on an AR(p) model.
+
+    Parameters:
+    - n_obs: Number of observations
+    - phi_values: Coefficients for the AR(p) model (list or array)
+
+    Returns:
+    - time_series: Generated time series
+    """
+    p = len(phi_values)
+    np.random.seed(42)
+
+    # Generate white noise
+    white_noise = np.random.normal(size=n_obs)
+
+    # Generate time series based on AR(p) model
+    time_series = [white_noise[i] for i in range(p)]
+
+    for t in range(p, n_obs):
+        X_t = sum(phi * time_series[t-i-1] for i, phi in enumerate(phi_values)) + white_noise[t]
+        time_series.append(X_t)
+
+    return time_series
+			</code>    
+		  </pre>
+
+		  <h1>
+			Moving-Average Mode
+		  </h1>
+		  <p>
+			sadadasdasdasdasdasdasdasdasdasd
+		  </p>
+
+
+		  
+		    
+		</div>
+      </div>
+    </section><!-- End Projet Details Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="footer-content position-relative">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-info">
+              <h3>กลุ่มวิจัยดาราศาสตร์</h3>
+              <p>
+			          สาขาวิชาฟิสิกส์  สำนักวิชาวิทยาศาสตร์ <br>
+				มหาวิทยาลัยเทคโนโลยีสุรนารี <br>
+			          111  ถนนมหาวิทยาลัย <br>
+                                        ต. สุรนารี  อ. เมือง  จ.นครราชสีมา<br>
+				30000<br>
+                <strong>Phone:</strong> 044-223-000<br>
+                <strong>Fax:</strong> 044-224-070<br>
+              </p>
+              <div class="social-links d-flex mt-3">
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div><!-- End footer info column-->
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Terms of service</a></li>
+              <li><a href="#">Privacy policy</a></li>
+            </ul>
+          </div><!-- End footer links column-->
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><a href="#">Web Design</a></li>
+              <li><a href="#">Web Development</a></li>
+              <li><a href="#">Product Management</a></li>
+              <li><a href="#">Marketing</a></li>
+              <li><a href="#">Graphic Design</a></li>
+            </ul>
+          </div><!-- End footer links column-->
+
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-legal text-center position-relative">
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>UpConstruction</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/ -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+  <!-- End Footer -->
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/change-content.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</body>
+
+</html>
