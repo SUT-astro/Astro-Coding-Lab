@@ -158,13 +158,13 @@
 		  </h2>
 		 
 		  <p>
-			ค่าเฉลี่ย (Mean): ค่าเฉลี่ยของ Light Curve คือค่าเฉลี่ยของการรับแสงหรือความสว่างที่ถูกวัดได้ในช่วงเวลาที่กำหนด การคำนวณค่าเฉลี่ยสามารถช่วยให้เราเข้าใจว่ามีความสว่างเฉลี่ยเท่าใดในระหว่างช่วงเวลาที่ต้องการศึกษา
+			ค่าเฉลี่ย (Mean): ค่าเฉลี่ยของ Light Curve คือค่าเฉลี่ยของการรับแสงหรือความสว่างที่ถูกวัดได้ในช่วงเวลาที่กำหนด การคำนวณค่าเฉลี่ยสามารถช่วยให้เราเข้าใจว่ามีความสว่างเฉลี่ยเท่าใดในระหว่างช่วงเวลาที่สังเกตุ
 		  </p>
 		  <p>
 			ความแปรปรวน (Variance): ความแปรปรวนของ Light Curve บ่งบอกถึงกระจายตัวของข้อมูล ค่าความแปรปรวนมีความสัมพันธ์กับค่าความคลาดเคลื่อนของข้อมูลจากค่าเฉลี่ย ถ้าความแปรปรวนมีค่ามาก แสดงว่ามีความคลาดเคลื่อนมากในข้อมูล 
 		  </p>
 		  <p>
-			Autocovariance : Autocovariance คือการวัดความสัมพันธ์ของค่าใน Light Curve กับค่าในตำแหน่งก่อนหน้า ค่า Autocovariance มีประโยชน์ในการหารูปแบบซ้ำ ๆ ที่เกิดขึ้นในข้อมูล
+			Autocovariance : Autocovariance คือการวัดความสัมพันธ์ของค่า ณ เวลาใดๆ Light Curve กับค่าในเวลาก่อนหน้านั้น ค่า Autocovariance มีประโยชน์ในการหารูปแบบซ้ำ ๆ ที่เกิดขึ้นในข้อมูล
 		  </p>
 		  <p>
 			การใช้ค่าสถิติเหล่านี้ในการวิเคราะห์ Light Curve ช่วยให้เราทำความเข้าใจกับพฤติกรรมแสงของดาวฤกษ์ได้ลึกซึ้งมากขึ้น ซึ่งมีประโยชน์ในการศึกษาแนวโน้ม, การจับความสัมพันธ์กับตัวแปรอื่น ๆ, หรือการตรวจจับรูปแบบที่ซับซ้อนในข้อมูล Light Curve ที่มีความสำคัญสำหรับการวิเคราะห์ดาวฤกษ์และระบบดาวฤกษ์ต่าง ๆ ในจักรวาลได้ของเรา
@@ -250,11 +250,14 @@
 
 
 		  <h1>
-			Autoregressive Model
+			Autoregressive Model(AR Model)
 		  </h1>
 		  <p>
 			Autoregressive Model เป็นโมเดลทางสถิติที่ใช้ในการวิเคราะห์และทำนายข้อมูลชุดตัวเลขในโดเมนเวลา โมเดลนี้ได้รับการใช้งานอย่างแพร่หลายในการศึกษาและการทำนายแนวโน้มของชุดข้อมูลที่มีการเปลี่ยนแปลงตามเวลา เช่น ราคาหุ้น, อุณหภูมิประจำวัน, หรือปริมาณการขายของสินค้า
-			อีกทั้งมันยังสามารถใช้เป็นเครื่องในการสร้าง light curves วัตถุทางดาราศาสตร์บางประเภท โดยเฉพาะวัตถุที่มี light curves เป็น Stationary light curves
+			อีกทั้งมันยังสามารถใช้เป็นเครื่องมือในการสร้าง light curves (<a href="
+			https://doi.org/10.1007/978-981-16-4544-0_137-1
+			">
+				Fourier Methods by Matteo Bachetti & Daniela Huppenkothen</a>) วัตถุทางดาราศาสตร์บางประเภท โดยเฉพาะวัตถุที่มี light curves เป็น Stationary light curves
 		  </p>
 		  <p>
 			โดย Autoregressive Model ถูกสร้างขึ้นจากแนวคิดที่ว่าข้อมูลในปัจจุบันนั้นสามารถอธิบายได้ด้วยชุดข้อมูลในอดีตและสามารถนำมาทำนายสิ่งที่จะเกิดขึ้นในอนาคตได้อีกด้วย โดยสามารถเขียนเป็นสมการได้ดังนี้
@@ -267,14 +270,14 @@
 		  </span>
 		  <p>เมื่อ :</p>
 		  <ul>
-			<li>\(x_t\): เส้นโค้งแสง ณ เวลา t</li>
+			<li>\(x_t\): เส้นโค้งแสง ณ เวลา t ใดๆ</li>
 			<li>\(\phi_i\): Coefficients of the AR model (weight of past values) ค่าสัมประสิทธิ์ของโมเดล AR \(\phi_1\) หมายถึงน้ำหนักของค่าที่ในอดีดผ่านมาล่าสุด 
 				และ \(\phi_2\) หมายถึงน้ำหนักของค่าอดีตในอันดับสองของค่าปัจจุบัน</li>
-			<li>\(p\): ค่า Order ของโมเดล AR ซึ่งจะกำหนดจำนวนของค่าในอดีตที่ใช้ในการทำนายค่าปัจจุบัน</li>
-			<li>\(\varepsilon_t\): ค่าความคลาดเคลื่อนแบบสุ่ม</li>
+			<li>\(p\): ค่า Order ของโมเดล AR ซึ่งจะกำหนดจำนวนของค่าในอดีตที่ใช้ในการทำนายค่าปัจจุบัน แต่กรณีของเราหมายถึงจำนวนของค่าในอดีตที่ต้องการใช้สร้าง light curves ในปัจจุบัน</li>
+			<li>\(\varepsilon_t\): ค่าความคลาดเคลื่อนแบบสุ่ม(white noise)</li>
 		  </ul>
 
-		  โดยตัวอย่างของโค้ดAR โมเดลที่ใช้ในการการสร้าง light curves จะเป็นดังนี้ 
+		  โดยตัวอย่างของโค้ด AR โมเดลที่ใช้ในการการสร้าง light curves จะเป็นดังนี้ 
 		  <pre>
 			<code class="language-python">
 import numpy as np
@@ -310,14 +313,58 @@ def generate_AR_series(n_obs, phi_values):
 		  </pre>
 
 		  <h1>
-			Moving-Average Mode
+			Moving-Average Mode (MA model)
 		  </h1>
 		  <p>
-			sadadasdasdasdasdasdasdasdasdasd
+			Moving-Average Model เป็นหนึ่งในแนวทางการวิเคราะห์ข้อมูลที่เกี่ยวข้องกับแนวโน้มของข้อมูลในโดเมนเวลา ซึ่งใช้กันทั่วไปในการประมวลผล ทางเศรษฐมิติ และทางวิทยาศาสตร์ วิศวกรรมศาสตร์ต่างๆ โมเดลเหล่านี้มีเอกลักษณ์เฉพาะด้วยการใช้ฟังก์ชันตอบสนอง(response function) 
+			ซึ่งอธิบายว่าค่าในอดีตของโดเมนเวลาใดๆทั้งหมด ส่งผลค่าปัจจุบันอย่างไร ซึ่งแตกต่างจากโมเดล AR ที่จะกำหนดว่าเราจะพิจาณาจำนวนข้อมูลในอดีตเท่าไรก่อนจะนำมาคำนวนค่าในปัจจุบัน
 		  </p>
+		  <p>
+			ในโมเดล MA นั้นค่าปัจจุบันของโดเมนเวลาจะได้มาจากการ convolving(	<a href="https://colab.research.google.com/drive/1ke5j2rEaTas_YsXOmfTLX7j8oPxpl7GZ?usp=sharing">
+				ด้วย convolution theorem</a>) ที่ค่าผ่านมาของโดเมนเวลาใดๆด้วยฟังก์ชันตอบสนอง เพื่อให้ได้ค่าในปัจจุบันตามสมการ : 
+		  </p>
+		  <span class="math-equation">
+			$$
+			x_t = \sum_{i=-\infty}^{\infty} C_i x_{t-i}
+			$$
+		  </span>
+		  <p>เมื่อ :</p>
+		  <ul>
+			<li>\(x_t\): เส้นโค้งแสง ณ เวลา t ใดๆ</li>
+			<li>\(C_i\): ฟังก์ชันการตอบสนอง(response function)หรือค่าสัมประสิทธิ์ตัวกรอง โดยพิจารณาการมีส่วนร่วมของค่าในอดีตแต่ละค่ากับค่าปัจจุบันของโดเมนเวลาตามฟังก์ชันการตอบสนองใดๆ</li>
+			<li>\(x_{t-i}\): เป็นพจน์ที่แสดงถึง ค่าที่ผ่านมาของโดเมนเวลาจะขึ้นอยู่กับ \(lag k\) โดยที่ \(k\) มีค่าตั้งแต่ \(-\infty\) ไปจนถึง \(-\infty\)</li>
+		  </ul>
+		  โดยตัวอย่างของโค้ด MA โมเดลที่ใช้ในการการสร้าง light curves จะเป็นดังนี้ 
+		  <pre>
+			<code class="language-python">
+import numpy as np
+import matplotlib.pyplot as plt
 
+def generate_ma_time_series(response_function, noise_level, num_points):
+    """
+    Generate a time series using a Moving Average (MA) model with a response function.
 
-		  
+    Parameters:
+    - response_function: Response function (transfer function) of the MA model.
+    - noise_level: Level of white noise to add.
+    - num_points: Number of points in the time series.
+
+    Returns:
+    - time_series: Generated time series.
+    """
+
+    # Generate white noise
+    white_noise = np.random.normal(scale=noise_level, size=num_points)
+
+    # Compute response function for past values
+    response_values = response_function(np.arange(len(white_noise)))
+
+    # Convolve past values with the response function to get present values
+    time_series = np.convolve(white_noise, response_values, mode='full')
+
+    return time_series,  response_values 
+			</code>    
+		  </pre>
 		    
 		</div>
       </div>
