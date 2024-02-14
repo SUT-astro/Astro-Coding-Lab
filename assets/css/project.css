@@ -182,3 +182,26 @@
 .math-equation {
   font-size: 1.5rem;
 }
+
+/*--------------------------------------------------------------
+# Chapter button
+--------------------------------------------------------------*/
+.chapter-button {
+  text-align: center;
+  
+  & a {
+	font-size: 1.7rem;
+	letter-spacing: 2rem;
+	}
+
+  & button {
+	color: #000;
+	border-radius: 0.5rem;
+	letter-spacing: 0.05rem;
+	min-width: 25%;
+	}
+
+  & button:hover {
+	color: #ffb800;
+	}
+}
