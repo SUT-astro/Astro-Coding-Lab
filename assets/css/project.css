@@ -39,30 +39,26 @@
   overflow-y: scroll;
   height: -webkit-fill-available;
   width: 20rem;
-
-  &
-  a {
+  position: fixed;
+  
+  & a {
 	color: #fff;
   }
 
-  &
-  ol {
+  & ol {
 	list-style-type: none;
   padding: 0 0 0 0.5rem;
   }
 
-  &
-  ul {
+  & ul {
 	list-style-type: none;
   padding: 0 0 0 0.5rem;
   }
 
-  &
-  li {
+  & li {
 	text-align: left;
   }
-;
-  position: fixed;
+  
 }
 
 /*--------------------------------------------------------------
@@ -84,7 +80,7 @@
 /*--------------------------------------------------------------
 # Table of Content
 --------------------------------------------------------------*/
-.table-of-content-title { 
+.table-of-content-title {
   & ol {
 	counter-reset: toc-counter;
 	margin-top: 1rem;
@@ -118,28 +114,25 @@
 .project-content-inner {
   counter-reset: fig-count table-count;
   padding: 2.5rem 6rem 0 1rem;
-
-  &
-  figure figcaption {
+  margin-left: 20rem;
+  min-height: 39rem;
+  
+  & figure figcaption {
 	font-size: 1.2rem;
   }
 
-  &
-  figure figcaption::before {
+  & figure figcaption::before {
 	counter-increment: fig-count; /* Increment the value of section counter by 1 */
-  content: "Figure " counter(fig-count) ": "; /* Display the word 'Figure: ', the value of
+	content: "Figure " counter(fig-count) ": "; /* Display the word 'Figure: ', the value of
 												section counter, and a space before the content
 												of each figcaption */
   }
 
-  &
-  table caption::before {
+  & table caption::before {
 	counter-increment: table-count;
-  content: "Table " counter(table-count) ": ";
+	content: "Table " counter(table-count) ": ";
   }
-;
-  margin-left: 20rem;
-  min-height: 39rem;
+
 }
 
 /*--------------------------------------------------------------
