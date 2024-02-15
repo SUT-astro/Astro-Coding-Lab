@@ -176,128 +176,113 @@
 		-->
 		  
 	    <div class="project-content-inner">
-		
-		  <h1 id="brown-dwarf">
-			ดาวแคระน้ำตาล (Brown Dwarfs)
-		  </h1>
 		  
-		  <h2 id="classifying-brown-dwarf">
-			การจำแนกดาวแคระน้ำตาล
+		  <h1 id="brown-dwarf-observation-data">
+			ข้อมูลการสังเกตการณ์ดาวแคระน้ำตาล
+		  </h1>	
+	  
+		  <h2 id="data-processing-augmentation">
+			การเติมข้อมูล (Augmentation) ด้วย Gaussian-distributed noise
 		  </h2>
-		 
 		  <p>
-			ดาวฤกษ์มีการแผ่รังสีแบบวัตถุดำ (Blackbody radiation) โดยมีสเปกตรัมขึ้นกับอุณหภูมิของดาว 
-			ธาตุที่เป็นองค์ประกอบของดาวจะสามารถดูดกลืนแสงบางช่วงความยาวคลื่น ทำให้เกิดเส้นการดูดกลืน (Absorbtion line) 
-			ที่ความยาวคลื่นเฉพาะ (ตามคุณสมบัติของธาตุนั้นๆ) บนเส้นสเปกตรัม
-			นักดาราศาสตร์สามารถใช้เกรตติ้งเลี้ยวเบน (Diffraction grating) ทำการแยกแสงของดาวที่แต่ละช่วงความยาวคลื่น
-			และใช้การวิเคราะห์สเปกตรัม (Spectroscopy) ในการจัดหมวดหมู่ดาวฤกษ์
-			รวมถึงดาวแคระประเภทต่างๆ ตามค่าอุณหภูมิและลักษณะเฉพาะที่ปรากฏบนเส้นสเปกตรัม
-			Spectrum class มาตราฐานของดาวมีอยู่ 7 ประเภทหลัก ได้แก่ O, B, A, F, G, K และ M 
-			เรียงตามอุณหภูมิพื้นผิวจากร้อนสุด (ประมาณ 25,000 K) ไปหาเย็นสุด (ประมาณ 3,300 K) ดัง Figure. 1
-
+			จากข้อมูลที่เรามีจะเห็นได้ว่าข้อมูลของดาวฤกษ์และวัตถุอื่นที่เราไม่สนใจ (ซึ่งเรา label เป็น negative class) 
+			นั้นมีจำนวนที่มากกว่าดาวแคระน้ำตาล (label เป็น positive class) อยู่ 2.5 เท่า 
+			ดังนั้นเราจึงจำเป็นต้องทำให้จำนวนข้อมูลดาวแคระน้ำตาลและดาวฤกษ์ในกลุ่มตัวอย่างของเรามีความสมดุลกัน
+			ด้วยการทำให้ข้อมูลทั้งสองชุดนี้มีจำนวนที่ใกล้เคียงกัน โดยเราจะใช้การเพิ่มสัญญาณรบกวนในข้อมูล (noise) 
+			ตามการกระจายตัวแบบ Gaussian-distributed noise 
+			เพื่อปรับจำนวนข้อมูลของทั้งดาวแคระน้ำตาลและดาวฤกษ์ให้มีจำนวนที่ใกล้เคียงกัน   
 		  </p>
-		 
+		  
 		  <p>
-			เมื่อพิจารณาการมีอยู่ของดาวแคระน้ำตาลซึ่งมีอุณหภูมิต่ำกว่าดาวฤกษ์ประเภท M และมีค่าความเป็นโลหะที่มากกว่าดาวฤกษ์ทั่วไป 
-			จึงมีการแบ่ง Spectrum class ย่อยเพิ่มขึ้นมาอีก 3 ประเภทคือ L, T และ Y 
-			ดังแสดงในตารางที่ 1 ซึ่งในบางครั้งนักดาราศาสตร์ยังจัดว่าดาวแคระแดง (Red dwarf) ที่อยู่ในประเภท M ช่วงปลาย (M6-M9) 
-			เป็นดาวแคระแคระน้ำตาลด้วย ขึ้นอยู่กับเส้นการดูดกลืนของดาวแคระแดง 
-			ว่ามีเส้นสเปกตรัมของธาตุ Li ที่เกิดมาจากปฎิกริยาฟิวชันของดิวเทอเรียมหรือไม่
+			Gaussian-distributed noise จะถูกเขียนในรูป probability density function 
+			ที่มีการกระจายตัวแบบ Gaussian (หรือ normal distribution) ตามสมการ
+		  </p>
+		  <span class="math-equation">
+		  	$$
+			f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2} \left(\frac{x-\mu}{\sigma}\right)^2}
+			$$
+		  </span>
+		  <p>
+			โดย \(x\) คือ ขนาดของสัญญาณรบกวน, \(\sigma\) คือส่วนเบี่ยงเบนมาตรฐาน (standard deviation) 
+			ซึ่งจะกำหนดความกว้างของ probability density function และ 
+			\(\mu\) คือค่าเฉลี่ยของข้อมูล (mean) ซึ่งจะเป็นตัวกำหนดจุดกึ่งกลางของ probability density function 
+			ดังที่แสดงใน Figure 2.
 		  </p>
 		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
-		    <img src="project-brown-dwarf-img/spectra-classification.png" 
-			alt="spectra-classification" 
-			style="max-width: 100%; height: auto;">
-		    <figcaption style="margin-top: 5px;">เส้นการดูดกลืนแสงของแต่ล่ะ Spectrum class<br>
-			  (credit : Spectral Atlas for Amateur Astronomers)
+			<iframe src="https://www.desmos.com/calculator/kazwqbnnkf?embed" 
+			width="500" 
+			height="300" 
+			style="border: 1px solid #ccc" 
+			frameborder=0>
+			</iframe>
+			<figcaption style="margin-top: 5px;">
+			ตัวอย่างของ Gaussian distribution ที่มีค่า \(\mu = 0, \sigma = 0.5 \)
 			</figcaption>
 		  </figure>
-		  
-		  <table>
-		    <caption>
-			  Spectrum class ของดาวเมื่อรวมประเภทของดาวแคระน้ำตาล
-			</caption>
-			<thead>
-			  <tr>
-				<th scope="col">Spectral<br>Class</th>
-				<th scope="col">Colour</th>
-				<th scope="col">Approximate<br>Temperature (K)</th>
-			  </tr>
-			</thead>
-			<tbody>
-			  <tr>
-				<th scope="row">O</td>
-				<td>Blue</td>
-				<td>&gt;30,000</td>
-			  </tr>
-			  <tr>
-				<th scope="row">B</td>
-				<td>Blue-<br>white</td>
-				<td>10,000-30,000</td>
-			  </tr>
-			  <tr>
-				<th scope="row">A</td>
-				<td>White</td>
-				<td>7,500-10,000</td>
-			  </tr>
-			  <tr>
-				<th scope="row">F</td>
-				<td>Yellow-<br>white</td>
-				<td>6,000-7,500</td>
-			  </tr>
-			  <tr>
-				<th scope="row">G</td>
-				<td>Yellow</td>
-				<td>5,200-6,000</td>
-			  </tr>
-			  <tr>
-				<th scope="row">K</td>
-				<td>Orange</td>
-				<td>3,700-5,200</td>
-			  </tr>
-			  <tr>
-				<th scope="row">M</td>
-				<td>Red</td>
-				<td>2,400-3,700</td>
-			  </tr>
-			  <tr>
-				<th scope="row">L</td>
-				<td>Red</td>
-				<td>1,300-2,400</td>
-			  </tr>
-			  <tr>
-				<th scope="row">T</td>
-				<td>Magenta</td>
-				<td>700-1,300</td>
-			  </tr>
-			  <tr>
-				<th scope="row">Y</td>
-				<td>Infrared</td>
-				<td>&lt;700</td>
-			  </tr>
-			</tbody>
-		  </table>
-		 
 		  <p>
-			นอกจากนี้นักดาราศาสตร์ยังสามารถใช้วิธีทาง Photometric ในการจำแนกดาวแคระน้ำตาล
-			เทคนิคนี้ถูกเสนอโดย Nathalie Skrzypek ในปี 2013 และได้ตีพิมพ์ในปี 2015 (Skrzypek et al. 2015)
-			โดยเริ่มจากการใช้ฟิลเตอร์ (filter) กรองแสงให้เหลือแต่แสงในย่านคลื่นที่สนใจรวม 2 ย่านคลื่น 
-			ซึ่ง Skrzypek ได้เลือกฟิลเตอร์ i ( - nm) และ z ( - nm)
-			และทำการคำนวณค่า color index ซึ่งคือผลต่างของ photon flux ระหว่าง 2 ย่านคลื่นดังกล่าว  
-			จากนั้นจึงจำแนกดาวแคระน้ำตาลโดยการฟิตกราฟ color index ด้วย template color index ที่สร้างขึ้นด้วยวิธีการทางสถิติ 
-			ดังที่แสดงใน Figure. 2
-			
+			การสร้าง Gaussian-distributed noise นั้นสามารถใช้คำสั่ง [random.normal (loc=0.0, scale=1.0, size=None)]
+			<a href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.normal.html">
+			  numpy random.normal
+			</a> 
+			ใน library numpy โดยคำสั่งนั้นจะรับค่า parameter 3 ตัว คือ loc , scale และ size โดยที่ 
+			loc คือ ค่าเฉลี่ย (mean) หรือ ก็คือจุดกึ่งกลางของการกระจายตัวของ noise ตาม Gaussian distribution
+			scale คือ ส่วนเบี่ยงเบนมาตรฐาน (\(\sigma\)) หรือก็คือความกว้างของการกระจายตัวของ noise
+			size คือ ขนาดและรูปแบบของ array ที่ output ออกมา 
+			เมื่อเราได้ noise distribution มาแล้วก็ทำการใส่ 'noise' ลงไปในข้อมูลจริงๆ 
+			ซึ่งเราอาจจะเขียน function ในภาษา python ได้ดังนี้ 
 		  </p>
-		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
-				<img src="project-brown-dwarf-img/spectral-template.png" 
-				alt="spectral-template.png" 
-				style="max-width: 100%; height: auto;">
-				<figcaption style="margin-top: 5px;">แนวโน้มของ Color index กับ Spectrum class</figcaption>
-		  </figure>
+		  <pre>
+			<code class="language-python">
+import numpy as np
+
+def add_gaussian_noise(data, mean, std): 
+	"""
+	ฟังก์ชันในการใส่ Gaussian noise ลงไปในชุดข้อมูล
+  
+	parameters:
+	- data: ชุดข้อมูลที่ต้องการใส่ noise
+	- mean: ค่าเฉลี่ย (mean) จุดกึ่งกลางของการกระจายตัวของ noise
+	- std: ส่วนเบี่ยงเบนมาตรฐาน (σ) ความกว้างของการกระจายตัวของ noise
+
+	output: ชูดข้อมูลที่ถูกใส่ noise แล้ว ซึ่งจะเป็น array รูปแบบเดียวกับชุดข้อมูลที่ถูกใส่เข้ามา
+
+	"""
+	
+	# Generating Gaussian noise with the same shape as the input data
+	noise = np.random.normal(loc = mean, scale = std, size = data.shape)
+	
+	"""
+	การสร้างฟังชันก์การกระจายตัวของ noise โดยให้ 
+	loc = mean
+	scale = std
+	size = รูปแบบของ output array ให้เป็นแบบเดียวกับชุดข้อมูลที่ถูกใส่เข้ามา
+	"""
+
+	# Adding the Gaussian noise to the input data
+	noisy_data = data + noise
+	
+	"""
+	เมื่อได้ noise distribution แล้ว ก็นำ noise ใส่ในชุดข้อมูลของเรา
+	สุดท้ายเราก็จะได้ ข้อมูลที่ถูกใส่ noise คือ "noisy_data"
+	"""
+	
+	return noisy_data
+			</code>    
+		  </pre>
+	  
+		  <p>
+			ในแบบฝึกหัดนั้น เราจะใส่ Gaussian-distributed noise ในแต่ละ feature 
+			โดยใช้ค่าเฉลี่ย (mean) ของข้อมูลใน feature เป็นค่า \(\mu\) ใน Gaussian distribution 
+			และส่วนเบี่ยงเบนมาตราฐานของค่า error ของแต่ feature เป็นค่า \(\sigma\) ใน Gaussian distribution
+			ตัวอย่างโด้ดที่แสดงรายละเอียดขั้นตอนการเติมข้อมูล (Augmentation) นั้นสามารถดูได้ที่นี่: 
+			<a href="https://colab.research.google.com/drive/1Q9OxwK3cMtHcSgPRLzuMExS4RffxWXpL?usp=drive_link">
+			  Colab
+			</a>
+		  </p>
 
 		  <section class="chapter-button">
 		    
-			<a href="module-1.1.html">
+			<a href="module-2.2.html">
 			  <button>
 			    &lt; &lt; <br>
 				...
@@ -310,7 +295,7 @@
 			  </button>
 			</a>
 		    
-			<a href="module-1.3.html">
+			<a href="module-2.4.html">
 			  <button>
 			    &gt; &gt; <br>
 				...
@@ -318,7 +303,7 @@
 			</a>
 			
 		  </section>
-		  
+    
 		</div>
       </div>
     </section><!-- End Projet Details Section -->
@@ -404,7 +389,6 @@
   <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
-
   <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/vendor/aos/aos.js"></script>
   <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>

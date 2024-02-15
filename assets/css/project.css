@@ -64,7 +64,9 @@
 /*--------------------------------------------------------------
 # Content inner
 --------------------------------------------------------------*/
-.project-content-inner { 
+.project-content-inner {
+  max-width: 80%;
+	
   & h1 {
     font-size: 3rem;
   }
@@ -76,6 +78,14 @@
   & p {
     font-size: 1.4rem;
   }
+  
+}
+
+.objective-inner{
+  & li {
+    font-size: 1.4rem;
+  }
+	
 }
 /*--------------------------------------------------------------
 # Table of Content
@@ -169,6 +179,14 @@
 	caption-side: top;
 	text-align: center;
 	font-size: 1.2rem;
+  }
+  
+  & .dataframe {
+	overflow-x: scroll;
+	
+	& table {
+	  background-color: #f3f3f3;
+	}
   }
 }
 
