@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>การจำแนกดาวแคระน้ำตาลด้วย Machine learning</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  
+  <!-- Template Main CSS File -->
+  <link href="../assets/css/main.css" rel="stylesheet">
+  <link href="../assets/css/project.css" rel="stylesheet">
+  <link href="../assets/css/default.highlight.style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: UpConstruction
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="../index.html" class="logo logo-project d-flex align-items-center">
+        <h1>AstroCode101<span>.</span></h1>
+      </a>
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+      <nav id="navbar" class="navbar navbar-project">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li class="dropdown"><a href="../index.html#projects" class="active">Projects</a>
+		    <ul>
+              <li><a href="objective.html">Project Brown Dwarf</a></li>
+			</ul>
+		  </li>
+        </ul>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs b-head d-flex">
+	  <div class="container position-relative d-flex flex-column aos-init aos-animate" data-aos="fade">
+        <h1>LAB-1: การจำแนกดาวแคระน้ำตาลด้วย Random Forest</h1>
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Projet Details Section ======= -->
+    <section id="project-details" class="project-details" 
+	style="padding: 0 0 0 0;">
+      <div class="project-content">
+	  
+	    <!--
+	    <div class="table-of-content-title">
+		  <nav class="sidebar-content project-sidebar">
+	  	    <h1 style="color: #ffb800;">Content</h1>
+		    <ol>
+			  <li>
+			    <a href="objective.html#Objective">
+				  วัตถุประสงค์
+				</a>
+			  </li>
+
+			  <li>
+			    <a href="brown-dwarf.html#brown-dwarf">
+				  ดาวแคระน้ำตาล (Brown Dwarfs)
+				</a>
+		        <ol>
+			      <li>
+				    <a href="brown-dwarf.html#what-is-brown-dwarf">
+					  ดาวแคระน้ำตาลคืออะไร และทำไมถูกค้นพบได้ยาก
+					</a>
+				  </li>
+			      <li>
+				    <a href="brown-dwarf.html#classifying-brown-dwarf">
+					  การจำแนกดาวแคระน้ำตาล
+					</a>
+				  </li>
+			      <li>
+				    <a href="brown-dwarf.html#Quiz-I">
+				      Quiz I
+				    </a>
+				  </li>				  
+		        </ol>
+			  </li>
+			    
+			  <li>
+				<a href="brown-dwarf-observation-data.html#brown-dwarf-observation-data">
+				  ข้อมูลการสังเกตการณ์ดาวแคระน้ำตาล
+				</a>
+				<ol>
+				  <li>
+				    <a href="brown-dwarf-observation-data.html#Resource">
+					  ที่มาและธรรมชาติของข้อมูล
+					</a>
+				  </li>
+				  <li>
+				    <a href="brown-dwarf-observation-data.html#using-pandas">
+					  การใช้ pandas อ่านข้อมูล
+					</a>
+				  </li>
+				  <li>
+				    <a href="brown-dwarf-observation-data.html#data-processing-augmentation">
+					  การเติมข้อมูล (Augmentation) ด้วย Gaussian-distributed noise
+					</a>
+				  </li>
+				  <li>
+				    <a href="brown-dwarf-observation-data.html#data-processing-missing-value">
+					การจัดการกับข้อมูลที่หายไป (Missing value)
+					</a>
+				  </li>
+				  <li>
+				    <a href="brown-dwarf-observation-data.html#Quiz-II">
+				      Quiz II
+				    </a>
+				  </li>
+				</ol>
+			  </li>
+				
+			  <li>
+				<a href="machine-learning-for-brown-dwarf-classification.html#machine-learning-for-brown-dwarf-classification">
+				  แบบจำลอง Random Forest (RF model)
+				</a>
+				<ol>
+				  <li>
+				    <a href="machine-learning-for-brown-dwarf-classification.html#decision-tree">
+					  ต้นไม้การตัดสินใจ (Decision tree)
+					</a>
+				  </li>
+				  <li>
+				    <a href="machine-learning-for-brown-dwarf-classification.html#random-forest-regression">
+				      RF regression
+				    </a>
+				  </li>
+				  <li>
+				    <a href="machine-learning-for-brown-dwarf-classification.html#brown-dwarf-classification-with-random-forest">
+					  เขียนโค้ดจำแนกดาวแคระน้ำตาลด้วย RF model  
+				    </a>
+				  </li>
+				</ol>	
+			  </li>				  
+			</ol>		
+		  </nav>
+	    </div>
+		-->
+
+	    <div class="project-content-inner">
+		    
+		  <h1 id="machine-learning-for-brown-dwarf-classification">
+			แบบจำลอง Random Forest (RF model)
+		  </h1>
+		  <h2 id="decision-tree">
+			ต้นไม้การตัดสินใจ (Decision tree)
+		  </h2>
+		  <p>
+			Decision tree เป็นโมเดลที่สามารถใช้ได้ในการแก้ปัญหาการจำแนกประเภท (classification) และการถดถอย (regression)
+			โดยอิงตามลำดับขั้นตอนของต้นไม้ที่สร้างขึ้นจากข้อมูลที่มีอยู่โดยใช้ฟังชันก์ทางคณิตศาสตร์
+			Decision tree เป็นอัลกอริทึมที่ใช้ในการทำนายผลลัพธ์ของการตัดสินใจ (ในกรณีของเราคือ การจำแนกประเภทของดาวแคระน้ำตาล) 
+			โดยโครงสร้างของ Decision tree จะประกอบไปด้วยโหนด (node) ต่าง ๆเชื่อมหากัน
+		  </p>
+		  <p>
+			เราเรียกจุดเริ่มต้นของ Decision tree ว่า "ราก" (root) ซึ่งเป็นเงื่อนไขเริ่มต้นในการแบ่งข้อมูลออกเป็นกลุ่มย่อย
+			โหนดย่อยที่เชื่อมต่อกับราก เรียกว่า "โหนดลูก" (child nodes) ซึ่งเป็นเงื่อนไขการแบ่งข้อมูลเพิ่มเติม 
+			โหนดที่อยู่ ณ จุดสิ้นสุดของแต่ละเงื่อนไขคือ "โหนดปลาย" (leaf node) ซึ่งจะให้ผลลัพธ์ของการทำนายออกมา
+		  </p>
+		  <p>
+			ตัวอย่างใน Figure 1. แสดง decision tree ในการจำแนกสัตว์ 3 ตัว ประกอบด้วย dog, spider, และ penguin 
+			โดยโหนดบนสุดของ decision tree คือราก และมีโหนดของเงื่อนไขเป็นโหนดลูก 
+			โหนดตรงปลายคือผลการทำนาย ซึ่งในตัวอย่างนี้คือประเภทของสัตว์
+		  </p>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-brown-dwarf-img/decision-tree-example.png" 
+			alt="decision-tree-example" 
+			style="max-width: 100%; height: auto;">
+			<figcaption style="margin-top: 5px;">
+			ตัวอย่างของ Decision Tree model<br>
+			(credit: <a href="https://developers.google.com/machine-learning/decision-forests/decision-trees">
+			Decision forests, Google machine learning course</a>)
+			</figcaption>
+		  </figure>
+		  <h2 id="random-forest-regression">
+			RF regression
+			  
+		  </h2>
+		  <p>
+			Random Forest Regression เป็น Machine learning 
+			ที่ใช้กลุ่มก้อน (ensemble) ซึ่งประกอบไปด้วย Decision tree หลายต้นในการทำนายข้อมูล
+			โดยการสร้างกลุ่มก้อนของ Decision tree นั้นมาจากกระบวนการ Bootstrapping และ Attribute sampling 
+			ซึ่งสองกระบวนการนี้เป็นส่วนสำคัญที่ทำให้ได้ Decision tree แต่ละต้นที่มีความแตกต่างกัน
+		  </p>
+		  <p>
+			Bootstrapping คือการสุ่มสับเซตข้อมูลจากชุดข้อมูลต้นฉบับ
+			โดยใช้การสุ่มแบบใส่คืน (Sampling with Replacement) ซึ่งมีความหมายทางคณิตศาสตร์ว่า การสุ่มแต่ละครั้งเป็นอิสระต่อกัน (independent)
+			หมายความว่าข้อมูลบางตัวอาจถูกสุ่มมาหลายครั้ง แต่บางตัวก็อาจจะไม่ถูกสุ่มมาเลย
+			โดยจำนวนครั้งที่ทำการสุ่มนั้นมีค่าเท่ากับขนาดของข้อมูลต้นฉบับ
+			หมายความว่าจำนวนของข้อมูลที่ได้จากการทำ Bootstrapping จะมีขนาดเท่ากันกับจำนวนข้อมูลต้นฉบับ
+		  </p>
+		  <p>
+			ตัวอย่างใน Table 1. แสดงจำนวนข้อมูลที่ได้จากการทำ Bootstrapping 
+			จะเห็นได้ว่าในบางครั้งเราได้ข้อมูลบางตัวที่ปรากฏซ้ำ (Bootstrap round 1 ได้ sample 4 ออกมา 2 ตัว)
+			ในขณะที่บางครั้งมีข้อมูลบางตัวที่หายไป (Bootstrap round 2 ได้ sample 2, 4, และ 6 ออกมา 0 ตัว)
+		  </p>
+		  <table>
+		    <caption>
+			ผลของจำนวนของข้อมูลจากการทำ Bootstrapping จำนวน 3 ครั้ง ของข้อมูล 6 ตัว 
+			</caption>
+			<thead>
+			  <tr>
+				<th scope="col">&nbsp;</th>
+				<th scope="col" colspan="6">training examples</th>
+			  </tr>
+			  <tr>
+				<th scope="col">&nbsp;</th>
+				<th scope="col"># sample 1</th>
+				<th scope="col"># sample 2</th>
+				<th scope="col"># sample 3</th>
+				<th scope="col"># sample 4</th>
+				<th scope="col"># sample 5</th>
+				<th scope="col"># sample 6</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr>
+				<th scope="row">original dataset</td>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+			  </tr>
+			  <tr>
+				<th scope="row">Bootstrap round 1</td>
+				<td>1</td>
+				<td>1</td>
+				<td>0</td>
+				<td>2</td>
+				<td>1</td>
+				<td>1</td>
+			  </tr>
+			  <tr>
+				<th scope="row">Bootstrap round 2</td>
+				<td>3</td>
+				<td>0</td>
+				<td>1</td>
+				<td>0</td>
+				<td>2</td>
+				<td>0</td>
+			  </tr>
+			  <tr>
+				<th scope="row">Bootstrap round 3</td>
+				<td>0</td>
+				<td>1</td>
+				<td>3</td>
+				<td>1</td>
+				<td>0</td>
+				<td>1</td>
+			  </tr>
+			</tbody>
+		  </table>
+		  <p>
+			Attribute sampling คือการสุ่มเลือก feature ที่มีความเหมาะในขั้นตอนการสร้างโหนดลูกที่ระบุเงื่อนไขการแบ่งข้อมูล
+			หมายความว่าในขั้นตอนการสร้างโหนดลูกไม่ได้พิจารณาทุก feature แต่จะสุ่มเลือกแค่บาง feature มาพิจารณาเท่านั้น 
+			ก่อนทำการหา feature ที่ดีที่สุด
+		  </p>
+		  <p>
+			ตัวอย่างใน Figure 2. แสดง Attribute sampling ของข้อมูลที่มี 5 feature: f1, f2, f3, f4, และ f5
+			โดย feature ที่สุ่มมาใช้ในการพิจารณาคือสีน้ำเงิน ส่วนสีขาวคือ feature ที่ไม่ได้พิจารณา
+			กรอบสีแดงแสดง feature ที่ดีที่สุดที่ถูกเลือกในการสร้างเงื่อนไข
+		  </p>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-brown-dwarf-img/attribute-sampling.png" 
+			alt="attribute-sampling" 
+			style="max-width: 100%; height: auto;">
+			<figcaption style="margin-top: 5px;">
+			ขั้นตอน Attribute sampling ตอนสร้างโหนดลูก
+			</figcaption>
+		  </figure>
+		  <p>
+			สับเซตข้อมูลที่ได้จากสองกระบวนการนี้จะถูกนำมาสร้าง Decision trees 
+			จากนั้นเราทำกระบวนการเหล่านี้ซ้ำไปเรื่อย ๆ เพื่อสร้าง Decision trees ขึ้นมาหลายต้นเพื่อรวมเป็นกลุ่มก้อน (ensemble) 
+			เข้าด้วยกันเป็น Random Forest Model (เรียกกระบวนการนี้ถูกเรียกว่า Ensemble learning) 
+			ซึ่งมีความแม่นยำมากกว่า และเสี่ยงต่อการเกิด Overfitting น้อยกว่า เมื่อเปรียบเทียบกับการใช้ Decision tree เพียงต้นเดียวดังที่แสดงใน Figure 3.
+		  </p>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-brown-dwarf-img/comparison-decision-tree-random-forest.png" 
+			alt="comparison-decision-tree-random-forest" 
+			style="max-width: 100%; height: auto;">
+			<figcaption style="margin-top: 5px;">เปรียบเทียบผลการทำนายระหว่าง Decision tree และ Random forest</figcaption>
+		  </figure>
+		  <p>
+			โดยกระบวนการต่างๆ จะถูกแสดงใน 
+			<a href="https://colab.research.google.com/drive/1ke5j2rEaTas_YsXOmfTLX7j8oPxpl7GZ?usp=sharing">
+				Colab
+			</a> 
+		  </p>
+
+		  <h2 id="brown-dwarf-classification-with-random-forest">
+			เขียนโค้ดจำแนกดาวแคระน้ำตาลด้วย RF model
+		  </h2>
+		    
+		  <section class="chapter-button">
+		    
+			<a href="module-2.html">
+			  <button>
+			    &lt; &lt; <br>
+				ข้อมูลการสังเกตการณ์<br>ดาวแคระน้ำตาล
+			  </button>
+			</a>
+			
+			<a href="objective.html">
+			  <button>
+			    สารบัญ
+			  </button>
+			</a>
+		    
+			<a>
+			  <button>
+			    &gt; &gt;
+			  </button>
+			</a>
+			
+		  </section>
+			
+		</div>
+      </div>
+    </section><!-- End Projet Details Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="footer-content position-relative">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-info">
+              <h3>กลุ่มวิจัยดาราศาสตร์</h3>
+              <p>
+			          สาขาวิชาฟิสิกส์  สำนักวิชาวิทยาศาสตร์ <br>
+				มหาวิทยาลัยเทคโนโลยีสุรนารี <br>
+			          111  ถนนมหาวิทยาลัย <br>
+                                        ต. สุรนารี  อ. เมือง  จ.นครราชสีมา<br>
+				30000<br>
+                <strong>Phone:</strong> 044-223-000<br>
+                <strong>Fax:</strong> 044-224-070<br>
+              </p>
+              <div class="social-links d-flex mt-3">
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div><!-- End footer info column-->
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Terms of service</a></li>
+              <li><a href="#">Privacy policy</a></li>
+            </ul>
+          </div><!-- End footer links column-->
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><a href="#">Web Design</a></li>
+              <li><a href="#">Web Development</a></li>
+              <li><a href="#">Product Management</a></li>
+              <li><a href="#">Marketing</a></li>
+              <li><a href="#">Graphic Design</a></li>
+            </ul>
+          </div><!-- End footer links column-->
+
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-legal text-center position-relative">
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>UpConstruction</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/ -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+  <!-- End Footer -->
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/change-content.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</body>
+
+</html>
