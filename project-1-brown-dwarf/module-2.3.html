@@ -229,7 +229,7 @@
 			scale คือ ส่วนเบี่ยงเบนมาตรฐาน (\(\sigma\)) หรือก็คือความกว้างของการกระจายตัวของ noise
 			size คือ ขนาดและรูปแบบของ array ที่ output ออกมา 
 			เมื่อเราได้ noise distribution มาแล้วก็ทำการใส่ 'noise' ลงไปในข้อมูลจริงๆ 
-			ซึ่งเราอาจจะเขียน function ในภาษา python ได้ดังนี้ 
+			ซึ่งเราอาจจะเขียนเป็น function ในภาษา python ได้ดังนี้ 
 		  </p>
 		  <pre>
 			<code class="language-python">
@@ -248,7 +248,7 @@ def add_gaussian_noise(data, mean, std):
 
 	"""
 	
-	# Generating Gaussian noise with the same shape as the input data
+	# สร้าง Gaussian noise ซึ่งมี shape เดียวกันกับ input data 
 	noise = np.random.normal(loc = mean, scale = std, size = data.shape)
 	
 	"""
@@ -258,27 +258,114 @@ def add_gaussian_noise(data, mean, std):
 	size = รูปแบบของ output array ให้เป็นแบบเดียวกับชุดข้อมูลที่ถูกใส่เข้ามา
 	"""
 
-	# Adding the Gaussian noise to the input data
-	noisy_data = data + noise
-	
+
 	"""
 	เมื่อได้ noise distribution แล้ว ก็นำ noise ใส่ในชุดข้อมูลของเรา
 	สุดท้ายเราก็จะได้ ข้อมูลที่ถูกใส่ noise คือ "noisy_data"
 	"""
+	# ใส่ noise ลงใน input data
+	noisy_data = data + noise
 	
+
+	"""
+	และเมื่อเราเรียกใช้ฟังก์ชันนี้ จะให้ผลลัพล์(return) เป็น "noisy_data"
+	"""
 	return noisy_data
 			</code>    
 		  </pre>
-	  
 		  <p>
 			ในแบบฝึกหัดนั้น เราจะใส่ Gaussian-distributed noise ในแต่ละ feature 
-			โดยใช้ค่าเฉลี่ย (mean) ของข้อมูลใน feature เป็นค่า \(\mu\) ใน Gaussian distribution 
+			โดยใช้ค่าเฉลี่ย (mean) ของ error ของแต่ feature เป็นค่า \(\mu\) ใน Gaussian distribution 
 			และส่วนเบี่ยงเบนมาตราฐานของค่า error ของแต่ feature เป็นค่า \(\sigma\) ใน Gaussian distribution
 			ตัวอย่างโด้ดที่แสดงรายละเอียดขั้นตอนการเติมข้อมูล (Augmentation) นั้นสามารถดูได้ที่นี่: 
-			<a href="https://colab.research.google.com/drive/1Q9OxwK3cMtHcSgPRLzuMExS4RffxWXpL?usp=drive_link">
+			<!-- <a href="https://colab.research.google.com/drive/1Q9OxwK3cMtHcSgPRLzuMExS4RffxWXpL?usp=drive_link">
 			  Colab
-			</a>
+			</a> -->
 		  </p>
+	      <p>
+			โดยตัวอย่างการเติมข้อมูล possitive class ด้วย Gaussian-distributed noise จะเป็นดังนี้
+		  </p>
+		  <pre>
+			<code class="language-python">
+aug_pos = Pos_class.drop(['e_feature_1', 'e_feature_2', 'e_feature_3'], axis=1) ## สร้าง data frame สำหรับเก็บค่า feature ทั้งหมด
+pos_er = Pos_class[ ['e_feature_1', 'e_feature_2', 'e_feature_3'] ] ## สร้าง data frame สำหรับเก็บค่า error feature ทั้งหมด
+
+## คำาสั่ง 'zip' จะเป็นการรัน for ลูป ของ colomn ใน data frame() หลายตัวพร้อมๆกัน ในกรณีเรา ต้องการวนลูปของ ของ colomn ใน "aug_pos" และ "pos_er" พร้อมๆกัน
+## attribute ""[aug_pos.columns[:-1]]"" กำหนดขอบเขต for loop ไม่ให้รันถึง colomn สุดท้ายใน data frame 'aug_pos'เนื่องจากเป็น label หรือตัวกำหนด class ของเรา
+for column, column1 in zip( aug_pos[aug_pos.columns[:-1]] , pos_er): 
+    
+    ## คำนวน mean จาก error ของแต่ละ feature
+    mean = np.mean(pos_er[column1]) 
+
+    ## คำนวนส่วนเบี่ยงเบนมาตราฐาน จาก error ของแต่ละ feature
+    std = np.std(pos_er[column1]) 
+   
+    ##ใส่ noise ลงไปในแต่ล่ะ feature ในชุดข้อมูล ด้วย noise ที่คำนวนจาก mean และ  std จาก error ของแต่ละ feature
+    aug_pos[column] = add_gaussian_noise(aug_pos[column], mean=mean, std=std) 
+
+display(aug_pos)
+			</code>    
+		  </pre>
+		  <p>ผลที่ได้ของการใส่ noise จะเป็นดังนี้</p>
+		 
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-brown-dwarf-img/out put-5.png" 
+			style="max-width: 100%; height: auto;">
+		  </figure>
+
+		  <p>ขั้นตอนถัดไปจะเป็นการรวม data frame ของ Positve class ที่ถูกใส่ noise และ ข้อมูลดังเดิมเข้าด้วยกัน </p>
+		  <p>
+			โดยตัวอย่างโค้ดจะเป็นดังนี้
+		  </p>
+		  <pre>
+			<code class="language-python">
+#รวมข้อมูลที่ถูกใส่noise กับข้อมูลดั้งเดิม
+all_pos = pd.concat([Pos_class.drop(['e_feature_1', 'e_feature_2', 'e_feature_3'], axis=1), aug_pos])
+display(all_pos)
+
+#ชุดข้อมูล negative class ที่ถูกนำ colomn ที่เป็นค่า error ของแต่ละ feature ออกไป
+all_neg = Neg_class.drop( ['e_feature_1', 'e_feature_2', 'e_feature_3'], axis=1 )
+display(all_neg)
+			</code>    
+		  </pre>
+		  <p>ผลที่ได้จะเป็นดังนี้</p>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-brown-dwarf-img/out put-6.png" 
+			style="max-width: 100%; height: auto;">
+		  </figure>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-brown-dwarf-img/out put-7.png" 
+			style="max-width: 100%; height: auto;">
+		  </figure>
+		  <p>
+			จากตาราง data-frame ด้านบน จะเห็นได้ว่าชุดข้อมูลของ possitive class 3196 (1598 จากข้อมูลดังเดิม + 1598 จากข้อมูลที่ถูกใส่ noise) ตัว นั้นมีจำนวนใกล้เคียงกับ negative class 3657 ตัว แล้ว
+		  </p>
+		  <p>ขั้นตอนถัดไปจะเป็นสร้าง color indices เพื่อใช้ในการจำแนกดาวเคระน้ำตาลจาก</p>
+		  <p> 
+			โดยการสร้างนั้น color indices ทำได้ด้วยการจากนำของMagnitude ของ 2 fillter มาลบกัน โดยตัวอย่างจะเป็นดังนี้
+		  </p>
+		  <pre>
+			<code class="language-python">
+# สร้าง color index 3 ตัว คือ "f1-f2", "f1-f3", "f2-f3" ลงใน data frame ของเรา
+all_df['f1-f2'] = all_df['feature_1']-all_df['feature_2']
+all_df['f1-f3'] = all_df['feature_1']-all_df['feature_3']
+all_df['f2-f3'] = all_df['feature_2']-all_df['feature_3']
+			</code>    
+		  </pre>
+		  <p>ผลที่ได้จะเป็นดังนี้</p>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-brown-dwarf-img/out put-8.png" 
+			style="max-width: 100%; height: auto;">
+		  </figure>
+		  <p>
+			แต่ในแบบฝึกหัดของนักเรียนนั้นต้องการใช้ color indice จำนวน 9 index ประกอบดด้วย index 
+			'i-z'', 'i-y', 'z-y', 'z-J', 'y-J', J-H','H-K','K-W1', W1-W2'
+		  </p>
+		  <p>
+			จากตาราง data-frame ด้านบน จะเห็นได้ว่า ชุดข้อมูลของเรามีจำนวน missing values('NaN) อยู่จำนวนมาก
+			โดยวิธีการจัดการนั้นกับข้อมูลเหล่านั้นเหล่านั้นเราจะทำกันใน section ถัดไป
+		  </p>
+		  
 
 		  <section class="chapter-button">
 		    

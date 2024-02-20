@@ -204,174 +204,70 @@ data = pd.read_csv(f'https://drive.google.com/uc?id={file_id}')
 		  <p>
 			ผลที่ได้จะเป็นดังนี้
 		  </p>
-		
-		  <pre class="dataframe">
-			<table>
-			  <thead>
-				<tr>
-				  <th></th>
-				  <th>number_tag</th>
-				  <th>feature_1</th>
-				  <th>e_feature_1</th>
-				  <th>feature_2</th>
-				  <th>e_feature_2</th>
-				  <th>feature_3</th>
-				  <th>e_feature_3</th>
-				  <th>feature_4</th>
-				  <th>e_feature_4</th>
-				  <th>label</th>
-				</tr>
-			  </thead>
-			  
-			  <tbody>
-				  <tr>
-					<th>0</th>
-					<td>1</td>
-					<td>18.960442</td>
-					<td>-0.024960</td>
-					<td>18.507771</td>
-					<td>-0.693314</td>
-					<td>15.448488</td>
-					<td>-0.913787</td>
-					<td>15.342802</td>
-					<td>-0.914572</td>
-					<td>1</td>
-				  </tr>
-				  <tr>
-					<th>1</th>
-					<td>2</td>
-					<td>18.177287</td>
-					<td>-1.483447</td>
-					<td>15.976807</td>
-					<td>1.620923</td>
-					<td>14.361705</td>
-					<td>-1.395623</td>
-					<td>13.722926</td>
-					<td>-1.642661</td>
-					<td>1</td>
-				  </tr>
-				  <tr>
-					<th>2</th>
-					<td>3</td>
-					<td>NaN</td>
-					<td>NaN</td>
-					<td>19.430701</td>
-					<td>-0.707142</td>
-					<td>13.713070</td>
-					<td>-0.046677</td>
-					<td>12.958407</td>
-					<td>-0.154532</td>
-					<td>1</td>
-				  </tr>
-				  <tr>
-					<th>3</th>
-					<td>4</td>
-					<td>21.606455</td>
-					<td>0.156549</td>
-					<td>18.270933</td>
-					<td>0.774664</td>
-					<td>13.189301</td>
-					<td>0.097145</td>
-					<td>17.167002</td>
-					<td>-0.409185</td>
-					<td>1</td>
-				  </tr>
-				  <tr>
-					<th>4</th>
-					<td>5</td>
-					<td>20.105074</td>
-					<td>0.857661</td>
-					<td>18.122687</td>
-					<td>-0.739109</td>
-					<td>11.727690</td>
-					<td>-0.111059</td>
-					<td>16.269068</td>
-					<td>-0.823802</td>
-					<td>1</td>
-				  </tr>
-				  <tr>
-					<th>...</th>
-					<td>...</td>
-					<td>...</td>
-					<td>...</td>
-					<td>...</td>
-					<td>...</td>
-					<td>...</td>
-					<td>...</td>
-					<td>...</td>
-					<td>...</td>
-					<td>...</td>
-				  </tr>
-				  <tr>
-					<th>5250</th>
-					<td>5251</td>
-					<td>16.665298</td>
-					<td>0.602723</td>
-					<td>16.483063</td>
-					<td>0.428417</td>
-					<td>13.978844</td>
-					<td>1.039314</td>
-					<td>14.202522</td>
-					<td>0.463535</td>
-					<td>0</td>
-				  </tr>
-				  <tr>
-					<th>5251</th>
-					<td>5252</td>
-					<td>19.231914</td>
-					<td>1.317640</td>
-					<td>19.721310</td>
-					<td>0.666056</td>
-					<td>17.033687</td>
-					<td>-2.152195</td>
-					<td>NaN</td>
-					<td>NaN</td>
-					<td>0</td>
-				  </tr>
-				  <tr>
-					<th>5252</th>
-					<td>5253</td>
-					<td>15.384649</td>
-					<td>-0.770500</td>
-					<td>13.083206</td>
-					<td>1.899165</td>
-					<td>14.063927</td>
-					<td>-0.186519</td>
-					<td>13.577554</td>
-					<td>0.047372</td>
-					<td>0</td>
-				  </tr>
-				  <tr>
-					<th>5253</th>
-					<td>5254</td>
-					<td>16.070072</td>
-					<td>0.730877</td>
-					<td>16.796264</td>
-					<td>0.560675</td>
-					<td>14.926216</td>
-					<td>0.035852</td>
-					<td>15.336394</td>
-					<td>0.624089</td>
-					<td>0</td>
-				  </tr>
-				  <tr>
-					<th>5254</th>
-					<td>5255</td>
-					<td>18.429541</td>
-					<td>0.060022</td>
-					<td>14.810722</td>
-					<td>-0.333724</td>
-					<td>13.510191</td>
-					<td>0.822076</td>
-					<td>14.055284</td>
-					<td>-0.942862</td>
-					<td>0</td>
-				  </tr>
-			  </tbody>
-			</table>
-			</pre>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-brown-dwarf-img/out put-1.png" 
+			style="max-width: 100%; height: auto;">
+		  </figure>
+		  <p>
+			เมื่อเราได้ข้อมูลมาแล้วแล้ว ต่อมาเป็นขั้นตอนการ Extract เฉพาะข้อมูลที่เราต้องการใช้ โดยการไม่เรียกใช้ข้อมูลที่ไม่จำเป็น เช่น เราไม่ต้องการส่วนของ number_tag และ feature_4 
+			เหลือไว้เพียง แค่ส่วนของ feature_1, e_feature_1, feature_2, e_feature_2, feature_3, e_feature_3,  'label'  ซึ่งตัวอย่างจะถูกแสดงใน code ด้านล่าง
+		  </p>
+		  <pre>
+			<code class="language-python">
+# Extract the data from the dataset
+df = data[['feature_1', 'e_feature_1', 'feature_2', 'e_feature_2', 'feature_3', 'e_feature_3',  'label']]
+			</code>    
+		  </pre>
+		  <p>ผลที่ได้จะเป็นดังนี้</p>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-brown-dwarf-img/out put-2.png.png" 
+			style="max-width: 100%; height: auto;">
+		  </figure>
+		  <p>
+			ต่อมาเป็นการตรวจสอบมูลชุดข้อในเบื้องต้น จากข้อมูลตาราง Dataframe ด้านบน เราจะเห็นว่ามี label ของข้อมูลอยู่ 2 ชนิดคือ
+		  </p>
+		  <p>
+			postive class คือดาวแคระน้ำตาล (label เป็น 1)
+		  </p>
+		  <p>
+			negative class คือไม่เป็นดาวแคระน้ำตาล (label เป็น 0)
+		  </p>
+		  <p>
+			โดยเราใช้คำสั้ง df.loc ใช้การ sorting มูลในส่วนที่เราสนใจ เช่น
+			ต้องการ sorting possitive class และ negative class เพื่อดูจำนวนข้อมูลในแต่ class
+			ซึ่งตัวอย่างโค้ดจะถูกแสดงด้านล่าง
+		  </p>
+		  <pre>
+			<code class="language-python">
+##เลือกทุกแถวที่มี label = 1 ลงใน Pos_class
+Pos_class=df.loc[df['label'] ==1 ]
+แสดง Dataframe ที่ชื่อ "Pos_class"
+display(Pos_class)
+
+
+##เลือกทุกแถวที่มี label = 0 ลงใน Neg_class
+Neg_class=df.loc[df['label'] ==0 ]
+แสดง Dataframe ที่ชื่อ "Neg_class"
+display(Neg_class)
+			</code>    
+		  </pre>
+		  <p>ผลที่ได้จะเป็นดังนี้</p>
+
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-brown-dwarf-img/out put-3.png" 
+			style="max-width: 100%; height: auto;">
+		  </figure>		  
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-brown-dwarf-img/out put-4.png" 
+			style="max-width: 100%; height: auto;">
+		  </figure>
+
+		  <p>
+			จะเห็นว่า negative class มีมากกว่า possitive class ประมาณ 2.5 เท่า ดังนั้น จึงต้องมีการทำให้ข้อมูลสมดุลกันด้วยการ Augmention(การเติม)ข้อมูล ซึ่งจะแสดงใน section ถัดไป
+		  </p>
+	
 		  <p>			
-			โดยในส่วนของแบบฝึกหัดจะใช้ file id คือ '1RPTYy1D0Z9mDiYFy_ABHClOcLCZnv-zB' 
+			และในส่วนของแบบฝึกหัดของนักศึกษาจะใช้ file id คือ '1RPTYy1D0Z9mDiYFy_ABHClOcLCZnv-zB' 
 			และต้องการ extract ข้อมูลในส่วนของ 
 			column :i, e_i, z, e_z, y, e_y, W1, e_W1, W2, e_W2, J, e_J, H, e_H, K, e_K, label
 		  </p>
