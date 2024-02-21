@@ -186,12 +186,194 @@
 		  </h2>
 
 		  <p>
-			coming soon coming soon coming soon coming soon coming soon coming soon
+			ขั้นตอนแรก จะเป็นการ Extract ข้อมูลต่างๆที่จะต้องใช้ในขั้นตอนนี้
+      โดย X คือ ข้อมูลที่จะถูกใช้ในการฝึกฝน(feature) Random forest classification model
+      y คือ คำตอบใช้บอกRandom forest classification model ว่าเป็นดาวชนิดไหน(label)
+      จากนั้นทำการจัดการกับข้อมูลที่หายไป (Missing value) ใน X ด้วย IterativeImputer ที่ถูกฝึกฝนมาใน section ก่อนหน้านี้
 		  </p>
-
+      <p>
+        โดยตัวอย่างโค้ดจะเป็นดังนี้  
+      </p>
+      <pre>
+        <code class="language-python">
+# Extract ข้อมูลที่จะถูกใช้ในการฝึกฝนหรือ feature (X) และ ชนิดของดาว (y) จากข้อมูลทั้งหมด
+X = all_df.drop('label', axis = 1)
+y = all_df['label']
+display(X)
+display(y)
+print("---------------------------------------------------------------------------------------------------------------------------------------------------------")
+print("---------------------------------------------------------------------------------------------------------------------------------------------------------")
+# ทำการ Imputation ชุดข้อมูลของเราด้วย ด้วยคำสั่ง '.transform'
+X= pd.DataFrame(imp.transform(X))
+display(X)
+        </code>    
+      </pre>
+      <p>
+        ผลลัพธ์จะเป็นดังนี้
+        </p>
+      <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+        <img src="project-brown-dwarf-img/out put-12.png" 
+        style="max-width: 100%; height: auto;">
+      </figure>
+      </p>
+      <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+        <img src="project-brown-dwarf-img/out put-13.png" 
+        style="max-width: 100%; height: auto;">
+      </figure>
 		  <p>
-			coming soon
+        และทำการตัดข้อมูลใน colunm ที่ไม่ใช่ color index ออกไปทั้งหมด ก่อนนำไปฝึกฝน(train) Machine learing ด้วยคำสั่ง ".drop"
+        ในกรณีนี้เมื่อเปรียบเทียบตารางด้านบนก่อนและหลัง Imputation จะเห็นว่าข้อมูล color index นั้น อยู่ใน coloum ที่ '3' '4' และ '5' ดังนั้นเราจะตัด coloum ที่'0' '1' และ '2' ออก 
+        และทำการแบ่งข้อมูลออกเป็น 2 ชุด สำหรับการฝึกฝึน (X_trian และ y_train) และประเมิณผล (X_test และ y_test) Random forest classification model 
 		  </p>
+      <p>
+        โดยตัวอย่างโค้ดจะเป็นดังนี้  
+      </p>
+      <pre>
+        <code class="language-python">
+  ## ตัด column ที่ coloum ที่ '0' '1' และ '2' ออก 
+  X = X.drop([X.columns[0], X.columns[1], X.columns[2]], axis=1)
+  display(X)
+  
+  # แบ่งข้อมูลเป็น 2 ชุด ชุดหนึ่งสำหรับการฝึกฝึน machine learing(80 % จากทั้งหมด) และ อีกชุดหนึงสำหรับทดสอบและประเมิณผลของ machine learning (20% จากทั้งหมด)ด้วยคำสั่ง  'train_test_spli'
+  X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=50)
+        </code>    
+      </pre>
+      <p>
+        ผลลัพธ์จะเป็นดังนี้
+        </p>
+      <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+        <img src="project-brown-dwarf-img/out put-14.png" 
+        style="max-width: 100%; height: auto;">
+      </figure>
+      <p>
+      ต่อไปเป็นขั้นตอนการฝึกฝน Random forest classification model โดยเราจะทำการหา hyperparameter ที่ดีที่สุด (fine-ture hyperparameter)  
+      ด้วยฟังก์ชัน GridSearchCV() ของ libray Sci-kit learn โดยเราจะทำการ tuing hyperparameter ที่สำคัญ 2 ตัวคือ max_depth และ n_estimators      
+      </p>
+      <p>
+        โดย
+      </p>
+      <p>
+        max_depth คือ maximam depth หรือก็ความลึกของต้นไม้แต่ละต้นจาก root node
+      </p>
+      <p>
+        และ n_estimators คือ จำนวนของต้นไม้การตัดสินใจ(Decision tree)ใน Random forest classification model
+      </p>
+      <p>
+        โดยที่จะให้ฟังก์ชัน GridSearchCV() หาค่าของ max_depth ที่ดีที่สุดในช่วง 2-25 โดยมีตัวแปรจำนวน 10 ตัว และ n_estimators ที่ดีที่สุด ของตัวแปรต่อไปนี้ 1, 5, 50, 150, 200
+      </p>
+      <p>
+        โดยตัวอย่างโค้ดจะเป็นดังนี้  
+      </p>
+      <pre>
+        <code class="language-python">
+# กำหนดขอบเขตของ max_depth
+md =  np.arange(2, 31, 4, 'int')
+# กำหนดตัวแปร n_estimator
+n_e =[1, 5, 50, 150, 200]
+
+# ใส่Parameterต่างๆใน ลงในฟังก์ชัน GridSearchCV() และกำหนด machine learning model ที่จะใช้ในการจำแนกผล กรณีนี้คือ Random Forest Classifier
+param_grid = dict(max_depth=md, n_estimators=n_e)
+grid = GridSearchCV(RandomForestClassifier(), param_grid=param_grid, cv=5)
+
+# ฝึกฝน Machine learning ด้วยข้อมุล X_train และ y_train
+grid.fit(X_train, y_train)
+
+para = grid.best_params_
+print('hyperparameters ทีดีที่สุดคือ', para)
+
+score = grid.best_score_
+print('ค่าความแม่นยำของชุดฝึกฝน =', score)
+
+# คำสั่งพล็อต Heat map ของ hyparameter ต่าง ๆ
+from matplotlib.colors import Normalize
+class MidpointNormalize(Normalize):
+    def __init__(self, vmin=None, vmax=None, midpoint=None, clip=False):
+        self.midpoint = midpoint
+        Normalize.__init__(self, vmin, vmax, clip)
+
+    def __call__(self, value, clip=None):
+        x, y = [self.vmin, self.midpoint, self.vmax], [0, 0.5, 1]
+        return np.ma.masked_array(np.interp(value, x, y))
+
+scores = grid.cv_results_['mean_test_score'].reshape(len(md),
+                                                     len(n_e))
+
+plt.figure(figsize=(8, 6))
+plt.subplots_adjust(left=.2, right=0.95, bottom=0.15, top=0.95)
+plt.imshow(scores, interpolation='nearest', cmap=plt.cm.Reds,
+           norm=MidpointNormalize(vmin=0.2, midpoint=0.92))
+plt.ylabel('$max_depth$')
+plt.xlabel('n_estimators')
+
+plt.colorbar()
+plt.xticks(np.arange(len(n_e)), n_e, rotation=45)
+plt.yticks(np.arange(len(md)), md)
+plt.show()
+        </code>    
+      </pre>
+      <p>
+        ผลลัพธ์จะเป็นดังนี้
+        </p>
+      <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+        <img src="project-brown-dwarf-img/out put-15.png" 
+        style="max-width: 100%; height: auto;">
+      </figure>
+      <p>
+        เราจะเห็นว่า hyperparameter ที่ดีที่สุดคือ max_depth = 10 และ n_estimators = 200
+        และมีความแม่นยำสำหรับชุดที่ใช้ฝึกฝน ~ 0.84(~84%)
+      </p>
+      <p>
+        ขั้นต่อไปจะเป็นการแสดงถึง ค่าความแม่นยำ และ Confusion Matrix สำหรับชุดที่ใช้ทดสอบ(ประเมิณผล)
+      </p>
+      <p>
+        โดยตัวอย่างโค้ดจะเป็นดังนี้  
+      </p>
+      <pre>
+        <code class="language-python">
+#ประเมิณผลขอ model ด้วยชุดทดสอบ
+y_predictions = grid.predict(X_test)
+#คำนวนค่าความแม่นยำด้วยคำสั่ง r2_score
+r2score = r2_score(y_test, y_predictions)
+print('ค่าความแม่นยำของชุดทดสอบ =', score)
+#การแสดง Confusion Matrix แบบจำนวน
+cm = confusion_matrix(y_test, y_predictions, labels=grid.classes_)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=grid.classes_)
+
+print("-----------------------------------------------------------------------------------------------------------------------------------------")
+print("-----------------------------------------------------------------------------------------------------------------------------------------")
+
+
+#การแสดง Confusion Matrix แบบPercentage
+cmn = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+dispp = ConfusionMatrixDisplay(confusion_matrix=cmn, display_labels=grid.classes_)
+
+disp.plot()
+dispp.plot()
+plt.show()
+        </code>    
+      </pre>
+      <p>
+        ผลลัพธ์จะเป็นดังนี้
+        </p>
+      <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+        <img src="project-brown-dwarf-img/out put-16.png" 
+        style="max-width: 100%; height: auto;">
+      </figure>
+      <p>
+        เราจะเห็นว่า ค่าความแม่นยำของชุดทดสอบสูงกว่าค่าความแม่นยำของชุดฝึกฝนเล็กน้อย(~1%) โดยมีความแม่นยำอยู่ที่ ~0.86(~86%) และในส่วนของ Confusion Matrix นั้นแสดงให้เห็นว่า model ของเรานั้นค่า
+      </p>
+      <p>
+        True Positive (TP) ทำนายว่า “จริง” และ มีค่าที่เป็น “จริง” อยู่ที่ 88%
+      </p>
+      <p>
+        True Negative (TN) ทำนายว่า “ไม่จริง” และ มีค่า “ไม่จริง” อยู่ที่ 83%
+      </p>
+      <p>
+        False Positive ( FP ) ทำนายว่า “จริง” แต่มีค่าเป็น “ไม่จริง” อยู่ที่ 17%
+      </p>
+      <p>
+        False Negative ( FN ) คืทำนายว่า “ไม่จริง” แต่มีค่าเป็น “จริง” อยู่ที่ 12%
+      </p>
  
 		  <section class="chapter-button">
 		    

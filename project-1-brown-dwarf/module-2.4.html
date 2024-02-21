@@ -202,36 +202,118 @@
 			<figcaption style="margin-top: 5px;">ข้อมูลของเราที่แสดงให้เห็นว่ามีค่าที่หายไป (NaN) อยู่ค่อนข้างมาก</figcaption>
 		  </figure>
 		  <p>
-			โดยตัวอย่างของโค้ดจะเป็นดังนี้
+			โดยตัวอย่างขั้นการ Imputation จะเป็นดังนี้
+		  </p>
+		  <p>
+			ขั้นแรก เราจะสร้างdata-frame 2 ตัวคือ
+			df_imp_tr สำหรับนำไปฝึกฝน(train) Imputing machince learning
+			df_imp_eva สำหรับนำไปประเมิณผล(evaluate)ของ Imputing machince learning
+			โดยการตัดข้อมูลในแถว(row) ที่มี'NaN' value
+			ดังนั้นเราจะมี data-frame df_imp_tr และ df_imp_eva ที่เหมือนกันทุกประการ
+		  </p>
+		  <p>
+			โดยตัวอย่างโค้ดจะเป็นดังนี้
+		  </p>
+		  <pre>
+			<code class="language-python">
+#ทำการกำจัด ข้อมุลในแถว(row)ที่มี "NaN" ออกไปทั้งหมด ด้วยคำสั่ง '.dropna()'
+df_imp_tr = all_df.dropna()
+df_imp_eva = all_df.dropna()
+#ทำการตัด column ของ label class ออก เนื่องจากไม่มีความจำเป็นขั้นตอนนี้
+df_imp_tr = df_imp_tr.drop('label', axis = 1)
+df_imp_eva = df_imp_eva.drop('label', axis = 1)
+display(df_imp_eve)
+display(df_imp_tr)
+			</code>    
+		  </pre>
+		  <p>
+			ผลลัพธ์จะเป็นดังนี้
+		  </p>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-brown-dwarf-img/out put-9.png" 
+			style="max-width: 100%; height: auto;">
+		  </figure>
+
+		  <p>
+			จากนั้นจะทำการสุ่มข้อมูล 5 % ใน df_imp_tr ให้เป็น 'NaN' value เพื่อใช้ในการฝึกฝน Iterative Imputer ของเรา
+ 		  </p>
+		  <p>
+			**เหตุใดเราจึงต้องตัด 'NaN' value  ใน all_df ก่อน แล้วจึงไปสุ่ม 5% ให้เป็น NaN อีกรอบก่อนนำไปฝน Iterative Imputer ของเรา ทำไมไม่ใช่ all_df ที่มี 'NaN' value อยู่แต่เดิมแล้วในการฝึกฝน
+		  </p>
+		  <p>
+			เหตุผลคือ 'NaN' value ใน all_df ของเรานั้นเราไม่รู้ค่าแท้จริงของมันถ้าหากเราใช้มันในการฝึกฝน Iterative Imputer เราไม่อาจรู้ได้เลยว่า Iterative Imputer ที่ได้ออกมานั้นมีประสิทธิภาพเป็นอย่างไร
+			แต่ถ้าใช้ df_imp_tr ที่ถูกสุ่มให้ข้อมูลบางส่วนเป็น 'NaN' value การฝึกฝนนั้นและผ่านการImputation(การทำนายค่า 'NaN' value เป็นค่าจริงๆ) ออกมา เราสามารถใช้ df_imp_eva ซึ่งมีการเก็บค่าที่แท้จริงไว้ ในการประเมิณผลได้ค่าที่ผ่านการทำนายได้
+		  </p>
+		  <p>
+			โดยตัวอย่างโค้ดจะเป็นดังนี้
+		  </p>
+		  <pre>
+			<code class="language-python">
+# สร้าง array ของ True, False ที่มี shape ตรงกับ df_imp_tr ทุกประการ โดยสุ่มให้มีค่า True 5%(0.05) และค่า False 95%(0.95) 
+missing_mask = np.random.choice([True, False], size=df_imp_tr.shape, p=[0.05, 0.95])
+# ให้ค่าในตำแหน่งของข้อมูลใน df_imp_tr ซึ่งตรงกับ missing_mask ที่มีค่าเป็น True เท่ากับ 'NaN' value ซึ่งจะทำให้ค่าใน df_imp_tr มีค่าเท่ากับ 'NaN' value  5% พอดี
+df_imp_tr[missing_mask] = np.nan
+display(df_imp_tr)
+			</code>    	
+		  </pre>
+		  <p>
+			ผลลัพธ์จะเป็นดังนี้
+		  </p>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-brown-dwarf-img/out put-10.png" 
+			style="max-width: 100%; height: auto;">
+		  </figure>
+		  <p>
+			ต่อไปเป็นขั้นตอนการฝึกฝน IterativeImputer โดย เราจะกำหนดให้ IterativeImputer ของเรานั้น ใช้ Extra Trees Regressor 
+			ด้วย hyperparameter คือ n_estimators = 150, max_features = 14, max_depth=15, 
+			min_samples_split =12, initial_strategy = 'median'
+			และมีการวนซ้ำใน IterativeImputer มากที่สุด 20 ครั้ง (max_iter = 20) ในการใช้งานงานในจริงๆ parameter เหล่านี้ควรจะต้องมีการ fine-ture เพื่อให้ได้ IterativeImputer ที่ดีที่สุด แต่เนื่องจากเราทำแบบฝึกหัดตามขั้นตอนใน <a href="https://doi.org/10.48550/arXiv.2308.03045"> Avdeeva 2023 </a> ดังนั้นเราจะใช้ parameter ต่างๆ ตามบทความนี้ไปเลย
+			โดยความหมายของ parameter ต่างๆ สามารถอ่านเพิ่มเติมได้ใน 			
+			<a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesRegressor.html">
+			  Extra Trees Regressor
+			</a> และตัวอย่างการ fine-ture hyperparameter สามารถอ่านเพิ่มเติมได้ใน <a href="https://machinelearningmastery.com/iterative-imputation-for-missing-values-in-machine-learning/">
+				Iterative Imputation
+			  </a>
+		  </p>
+		  <p>
+			โดยตัวอย่างโค้ดจะเป็นดังนี้
+		  </p>
 		  <pre>
 			<code class="language-python">
 #ตั้งค่า Parameter ต่างๆใน IterativeImputer
-imp = IterativeImputer(estimator = ExtraTreesRegressor(n_estimators = 150, 
-                                                       max_features = 14, 
-                                                       max_depth = 15,
-                                                       min_samples_split = 12), 
-                       initial_strategy = 'median', 
-                                          max_iter = 20)
-#การฝึกฝน IterativeImpute ที่เราสร้างขึ้นด้วยข้อมูล "df_imp_tr" ด้วยคำสั่ง ".fit"
+imp = IterativeImputer(estimator=ExtraTreesRegressor(n_estimators =150, max_features = 14, max_depth=15,
+                                                                           min_samples_split =12), initial_strategy = 'median', max_iter =20)
+#การฝึกฝน IterativeImpute ที่เราสร้าางขึ้นด้วยข้อมูล "df_imp_tr" ด้วยคำสั่ง ".fit"
 imp.fit(df_imp_tr)
+
+# ทำการ Imputation ชุดข้อมูลของเราด้วย imputing machince learning ทีถูกฝึกฝนมาแล้ว ด้วยคำสั่ง '.transform'
+Im_data = pd.DataFrame(imp.transform(df_imp_tr))
+
+
+# คำนวนความแม่นยำของIterativeImputerของเรา
+#โดยเราจะใช้คำสั่ง np.isclose ในการเปรียบค่าที่ถูก Imputation กับค่าแท้จริงนั้นใกล้เคียงกันหรือหรือไม่ จากนั้น ใช้คำสั้ง mean คำนวนความแม่นยำ
+accuracy = np.mean(np.isclose(df_imp_tr[missing_mask], Im_data[missing_mask], equal_nan=True))
+print("ค่าความแม่ยำของการ Imputation :", accuracy*100)
+display(Im_data)
 			</code>    
 		  </pre>
-		  </p>
 		  <p>
-			โดย เราจะกำหนดให้ IterativeImputer ของเรานั้น ใช้ Extra Trees Regressor 
-			ด้วย hyperparameter คือ n_estimators = 150, max_features = 14, max_depth=15, 
-			min_samples_split =12, initial_strategy = 'median'
-			และมีการวนซ้ำใน IterativeImputer มากที่สุด 20 ครั้ง (max_iter = 20) โดยความหมายของ parameter ต่างๆ สามารถอ่านเพิ่มเติมได้ใน 			
-			<a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesRegressor.html">
-			  Extra Trees Regressor
-			</a> 
+			ผลลัพธ์จะเป็นดังนี้
 		  </p>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-brown-dwarf-img/out put-11.png" 
+			style="max-width: 100%; height: auto;">
+		  </figure>
 		  <p>
+			ซึ่งเราจะเห็นว่าค่าความแม่นยำในการ Imputation อยูที่ ~78% และค่า 'NaN' value ในdata frame นั้นถูกทำให้เป็นค่าตัวเลขจริงๆทั้งหมดแล้วหากเปรียบเทียบกับ data frame ในขั้นตอนก่อนหน้า 
+		  </p>
+		  <p>section ถัดไป จะเป็นการจำแนกดาวเคระน้ะตาล ด้วย Random forest regression</p>
+		  <!-- <p>
 			ซึ่งตัวอย่างกระบวนการ Iterative imputation นั้นอยู่ในส่วนล่างของตัวอย่างที่แสดงใน:
 			<a href="https://colab.research.google.com/drive/1b_47HgI_5CCKrNUrS8iSOtda_jBwSzX8?usp=sharing">
 			  Colab
 			</a>
-		  </p>
+		  </p> -->
 
 		  <section class="chapter-button">
 		    

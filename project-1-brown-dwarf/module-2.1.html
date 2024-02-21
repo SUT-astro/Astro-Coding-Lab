@@ -189,15 +189,17 @@
 			จากโครงการสังเกตุการณ์ต่าง ๆ ได้แก่ PanSTARRS1 3π Survey (PS1), Two Micron All Sky Survey (2MASS), 
 			All-Wide-field Infrared Survey Explorer (AllWISE), และ Gaia DR1 
 			โดยประกอบไปด้วยข้อมูลของดาวแต่ละดวง เช่น ประเภทของสเปกตรัม , โฟโตเมตริก, Proper Motion และปริมาณทางฟิสิกส์อื่น ๆ
-			บทความวิจัย Avdeeva 2023 ต้องการจำแนกดาวแคระน้ำตาลกับดาวฤกษ์ด้วยการใช้ Machine learning 
+			บทความวิจัย <a href="https://doi.org/10.48550/arXiv.2308.03045">
+				Avdeeva 2023 </a>  ต้องการจำแนกดาวแคระน้ำตาลกับดาวฤกษ์ด้วยการใช้ Machine learning 
 			ซึ่งใช้ข้อมูลดาวแคระน้ำตาลจาก (Best et al. 2018) โดยจากนี้เราจะเรียกดาวแคระน้ำตาลว่าเป็น positive class หรือก็คือวัตถุที่เราสนใจ
 			ส่วนข้อมูลของวัตถุอื่นที่ไม่ใช่ดาวแคระน้ำตาล หรือก็คือ negative class นั้นได้มาจากข้อมูลของโครงการสำรวจ Gaia DR3 
-			ซึ่งประกอบด้วย ฐานข้อมูล Simbad ซึ่งมีดาวฤกษ์ใน O-M class รวมถึงฐานข้อมูลย่อยอื่น ๆตามที่บรรยายไว้ใน Avdeeva 2023
+			ซึ่งประกอบด้วย ฐานข้อมูล Simbad ซึ่งมีดาวฤกษ์ใน O-M class รวมถึงฐานข้อมูลย่อยอื่น ๆตามที่บรรยายไว้ใน <a href="https://doi.org/10.48550/arXiv.2308.03045">
+				Avdeeva 2023 </a> 
 			ในท้ายที่สุดจะมีข้อมูล positive class (ดาวแคระน้ำตาล ใน L-T class) จำนวน ~1600 ข้อมูล 
 			และ negative class (ดาวฤกษ์ใน O-M class) จำนวน ~4100 ข้อมูล 
 			ตามลิ้ง <a href="https://github.com/iamaleksandra/ML-Brown-Dwarfs/">
-			github</a> 
-			ซึ่งเป็นข้อมูลที่เราจะใช้ในแบบฝึกหัดนี้
+			github</a> ซึ่งเป็นข้อมูลที่เราจะใช้ในแบบฝึกหัดนี้ 
+			และแบบฝึกหัดนี้จะทำตามขั้นตามจากบทความวิจัย <a href="https://doi.org/10.48550/arXiv.2308.03045"> Avdeeva 2023 </a> ด้วยเช่นกัน
 
 		<figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
 			<img src="project-brown-dwarf-img/filter-active-range.png" 
