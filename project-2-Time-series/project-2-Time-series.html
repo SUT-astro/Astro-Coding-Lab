@@ -133,16 +133,20 @@
 			วัตถุประสงค์ของบทเรียนนี้คือ ....
 		  </p>
 		
-		  <h1 id="brown-dwarf">
-			กราฟแสง (Light Curve)
+		  <h1>
+			อนุกรมเวลา (Time series)
 		  </h1>
 		  
-		  <h2 id="what-is-brown-dwarf">
-			Light curve คือ ?
+		  <h2>
+			ข้อมูลทางอนุกรมเวลาในทางดาราศาสตร์
 		  </h2>
+
 		  <p>
-			Light curve หรือ กราฟแสง เป็นการแสดงผลการวัดความเข้มของแสงในโดเมนของเวลา (แกน X เป็นเวลา และแกน Y เป็นการรับแสงหรือความสว่างที่ถูกตรวจวัดได้) 
-			โดยเราอาจแบ่งประเภทของการตรวจวัด light curve ได้ดังนี้
+			ข้อมูลทางอนุกรมเวลาที่มักถูกใช้ในทางดาราศาสตร์ คือกราฟแสง หรือ light Light curve
+		  </p>
+		  <p>
+			กราฟแสงเป็นการแสดงผลการวัดความเข้มของแสงของวัตถุทางดาราศาสตร์ในโดเมนของเวลา (แกน X เป็นเวลา และแกน Y เป็นการรับแสงหรือความสว่างที่ถูกตรวจวัดได้) 
+			ตัวอย่างประโยชน์ต่างๆของกราฟแสงมีดังนี้ เช่น
 			<ul>
 				<li>Light curve เป็นเครื่องมือสำคัญที่ใช้ในการค้นพบวัตถุใหม่ ๆ ในทางดารารศาสตร์ ซึ่งการสำรวจLight curve ของวัตถุที่มีความแปรปวรน้อยบ่อยครั้งช่วยให้นักดาราศาสตร์ค้นพบวัตถุที่น่าสนใจและเข้าใจเกี่ยวกับลักษณะของพวกเขา
 				</li>
@@ -153,7 +157,7 @@
 			</ul>
 		  </p>
 		  
-		  <h2 id="classifying-brown-dwarf">
+		  <h2>
 			ค่าเฉลี่ย (Mean) ความแปรปรวน (Variance) และ Autocovariance
 		  </h2>
 		 
@@ -239,16 +243,21 @@
 		  </p>
 		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
 			<img src="project-Time-series-img/stationary and non-stationary.png" 
-			alt="decision-tree-example" 
 			style="max-width: 100%; height: auto;">
 			<figcaption style="margin-top: 5px;">
 			ตัวอย่างของ Stationary light curves และ Non-stationary light curves<br>
 			(credit:.....)
 			</figcaption>
 		  </figure>
+
+
+
 		  <h1>
-			Autoregressive Model(AR Model)
+			แบบจำลองกราฟแสง
 		  </h1>
+		  <h2>
+			Autoregressive Model(AR Model)
+		  </h2>
 		  <p>
 			Autoregressive Model เป็นโมเดลทางสถิติที่ใช้ในการวิเคราะห์และทำนายข้อมูลชุดตัวเลขในโดเมนเวลา โมเดลนี้ได้รับการใช้งานอย่างแพร่หลายในการศึกษาและการทำนายแนวโน้มของชุดข้อมูลที่มีการเปลี่ยนแปลงตามเวลา เช่น ราคาหุ้น, อุณหภูมิประจำวัน, หรือปริมาณการขายของสินค้า
 			อีกทั้งมันยังสามารถใช้เป็นเครื่องมือในการสร้าง light curves (<a href="
@@ -309,9 +318,9 @@ def generate_AR_series(n_obs, phi_values):
 			</code>    
 		  </pre>
 
-		  <h1>
+		  <h2>
 			Moving-Average Mode (MA model)
-		  </h1>
+		  </h2>
 		  <p>
 			Moving-Average Model เป็นหนึ่งในแนวทางการวิเคราะห์ข้อมูลที่เกี่ยวข้องกับแนวโน้มของข้อมูลในโดเมนเวลา ซึ่งใช้กันทั่วไปในการประมวลผล ทางเศรษฐมิติ และทางวิทยาศาสตร์ วิศวกรรมศาสตร์ต่างๆ โมเดลเหล่านี้มีเอกลักษณ์เฉพาะด้วยการใช้ฟังก์ชันตอบสนอง(response function) 
 			ซึ่งอธิบายว่าค่าในอดีตของโดเมนเวลาใดๆทั้งหมด ส่งผลค่าปัจจุบันอย่างไร ซึ่งแตกต่างจากโมเดล AR ที่จะกำหนดว่าเราจะพิจาณาจำนวนข้อมูลในอดีตเท่าไรก่อนจะนำมาคำนวนค่าในปัจจุบัน
@@ -362,7 +371,51 @@ def generate_ma_time_series(response_function, noise_level, num_points):
     return time_series,  response_values 
 			</code>    
 		  </pre>
-		    
+		  <h2>
+			สัญญานรบกวน (Noise) 
+		  </h2>
+		  <b>		  
+			<p>
+			white noise
+		  	</p>
+		  </b> 
+
+		  <p>
+			ในอนุกรมเวลา white noise จะปรากฏเป็นความผันผวนอย่างรวดเร็วและคาดเดาไม่ได้รอบๆ ค่าเฉลี่ยที่คงที่ ความผันผวนเหล่านี้เกิดขึ้นอย่างต่อเนื่องเมื่อเวลาผ่านไป 
+			และไม่มีรูปแบบหรือความสม่ำเสมอที่ชัดเจน โดยค่าwhite noise ในเวลาใดๆก็ตามจะไม่ขึ้นอยู่กับค่าของมันในเวลาอื่นๆ ซึ่งหมายความว่าไม่มีความสัมพันธ์ใดๆระหว่างค่าของในอตีด ต่อ ปัจจุบัน หรือ ในอนาคต 
+		  </p>
+		  <p>
+			โดยรูปด้านล่างแสดงให้ว่า white noise แปรปวรอย่างรวดเร็วรอบๆค่าเฉลี่ยที่คงที่ (~10)
+		  </p>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-Time-series-img/white noise.png" 
+			style="max-width: 100%; height: auto;">
+			<figcaption style="margin-top: 5px;">
+			ตัวอย่างของ white noise<br>
+			(credit:.....)
+			</figcaption>
+		  </figure>
+		  <b>		  
+			<p>
+			Red noise 
+		  	</p>
+		  </b> 
+
+		  <p>
+			ในอนุกรมเวลา Red noise จะมีความผันผวนแบบไม่สุ่มต่างจาก white noise  โดย Red noise จะปรากฏเป็นเป็นรูปแบบและผันผวนอย่างต่อเนื่องรอบๆ ค่าเฉลี่ยคงที่ แต่ความผันผวนเหล่านี้มีแนวโน้มที่เปลี่ยนแปลงช้าและค่อยเป็นค่อยไป ซึ่งหมายความ
+			สัญญาณรบกวนสีแดงแสดงความสัมพันธ์เชิงบวกเมื่อเวลาผ่านไป โดยค่าที่สูงหรือต่ำมีแนวโน้มที่จะตามมาด้วยค่าที่ใกล้เคียงกัน ทำให้เกิดแนวโน้มที่คงอยู่ซึ่งสามารถคงอยู่เป็นระยะเวลานานเมื่อเทียบกับ white nois
+		  </p>
+		  <p>
+			โดยรูปด้านล่างแสดงให้ว่า Red noise แปรปวรอย่างช้าๆรอบๆค่าเฉลี่ยที่คงที่ (~10)
+		  </p>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-Time-series-img/red noise.png" 
+			style="max-width: 100%; height: auto;">
+			<figcaption style="margin-top: 5px;">
+			ตัวอย่างของ red noise<br>
+			(credit:.....)
+			</figcaption>
+		  </figure>
 		</div>
       </div>
     </section><!-- End Projet Details Section -->
