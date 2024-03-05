@@ -78,6 +78,15 @@
   & p {
     font-size: 1.4rem;
   }
+  & ul {
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  & b, strong {
+    font-weight: bolder;
+
+  }
   
 }
 
