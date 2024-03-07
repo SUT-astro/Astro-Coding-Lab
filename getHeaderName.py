@@ -6,7 +6,7 @@ import os
 import numpy as np
 from bs4 import BeautifulSoup
 
-all_project_folder = ['project-1-brown-dwarf', 'project-2-Time-series']
+all_project_folder = ['project-1-brown-dwarf', 'project-2-Time-series', 'project-3-AGN-ODR']
 
 class project_html_scraper(object):
     
@@ -42,9 +42,13 @@ class project_html_scraper(object):
 
         h1_all_name = [self.read_h_name(html_name = i,
                                         h_level = 'h1')[0] for i in project_module]
-        h1_unique_name = np.unique(h1_all_name,
-                                   return_index=False,
-                                   return_counts=False)    # all <h1> element
+        
+        h1_unique_array = np.unique(h1_all_name,
+                                   return_index=True,
+                                   return_counts=True)    # all <h1> element
+        h1_unique_index = np.sort(h1_unique_array[1])
+        
+        h1_unique_name = [h1_all_name[i] for i in h1_unique_index]
         
         h2_all_name = [self.read_h_name(html_name = i,
                                         h_level = 'h2')[0] for i in project_module]     # all <h2> elements
@@ -72,10 +76,10 @@ class project_html_scraper(object):
         file_open.close()
 
 # choose target project
-project_1_scraper = project_html_scraper(target_project = all_project_folder[0])
+project_3_scraper = project_html_scraper(target_project = all_project_folder[2])
 
 # search all <h1> and <h2> content in .html file
-project_1_header = project_1_scraper.get_all_h_name()
+project_3_header = project_3_scraper.get_all_h_name()
 
 # write all <h1> and <h2> content in 'module-list.js' file
-project_1_scraper.write_js_file()
+project_3_scraper.write_js_file()
