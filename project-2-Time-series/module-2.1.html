@@ -182,61 +182,187 @@
 		  </h1>
 		  
  		  <h2 id="Resource">
-			Moving-Average Mode (MA model)
+        Autoregressive Model (AR model)
 		  </h2>
 
-		  <p>
-			Moving-Average Model เป็นหนึ่งในแนวทางการวิเคราะห์ข้อมูลที่เกี่ยวข้องกับแนวโน้มของข้อมูลในโดเมนเวลา ซึ่งใช้กันทั่วไปในการประมวลผล ทางเศรษฐมิติ และทางวิทยาศาสตร์ วิศวกรรมศาสตร์ต่างๆ โมเดลเหล่านี้มีเอกลักษณ์เฉพาะด้วยการใช้ฟังก์ชันตอบสนอง(response function) 
-			ซึ่งอธิบายว่าค่าในอดีตของโดเมนเวลาใดๆทั้งหมด ส่งผลค่าปัจจุบันอย่างไร ซึ่งแตกต่างจากโมเดล AR ที่จะกำหนดว่าเราจะพิจาณาจำนวนข้อมูลในอดีตเท่าไรก่อนจะนำมาคำนวนค่าในปัจจุบัน
+      <p>
+			Autoregressive Model เป็นโมเดลทางสถิติที่ใช้ในการวิเคราะห์และทำนายข้อมูลชุดตัวเลขในโดเมนเวลา โมเดลนี้ได้รับการใช้งานอย่างแพร่หลายในการศึกษาและการทำนายแนวโน้มของชุดข้อมูลที่มีการเปลี่ยนแปลงตามเวลา เช่น ราคาหุ้น, อุณหภูมิประจำวัน, หรือปริมาณการขายของสินค้า
+			อีกทั้งมันยังสามารถใช้เป็นเครื่องมือในการสร้าง light curves (<a href="
+			https://doi.org/10.1007/978-981-16-4544-0_137-1
+			">
+				Fourier Methods by Matteo Bachetti & Daniela Huppenkothen</a>) วัตถุทางดาราศาสตร์บางประเภท โดยเฉพาะวัตถุที่มี light curves เป็น Stationary light curves
 		  </p>
 		  <p>
-			ในโมเดล MA นั้นค่าปัจจุบันของโดเมนเวลาจะได้มาจากการ convolving(	<a href="https://colab.research.google.com/drive/1ke5j2rEaTas_YsXOmfTLX7j8oPxpl7GZ?usp=sharing">
-				ด้วย convolution theorem</a>) ที่ค่าผ่านมาของโดเมนเวลาใดๆด้วยฟังก์ชันตอบสนอง เพื่อให้ได้ค่าในปัจจุบันตามสมการ : 
+			โดย Autoregressive Model ถูกสร้างขึ้นจากแนวคิดที่ว่าข้อมูลในปัจจุบันนั้นสามารถอธิบายได้ด้วยชุดข้อมูลในอดีตและสามารถนำมาทำนายสิ่งที่จะเกิดขึ้นในอนาคตได้อีกด้วย โดยสามารถเขียนเป็นสมการได้ดังนี้
 		  </p>
+
 		  <span class="math-equation">
 			$$
-			x_t = \sum_{i=-\infty}^{\infty} C_i x_{t-i}
+			x_t = \sum_{i=1}^{p} \phi_i x_{t-i} + \varepsilon_t
 			$$
 		  </span>
 		  <p>เมื่อ :</p>
 		  <ul>
 			<li>\(x_t\): เส้นโค้งแสง ณ เวลา t ใดๆ</li>
-			<li>\(C_i\): ฟังก์ชันการตอบสนอง(response function)หรือค่าสัมประสิทธิ์ตัวกรอง โดยพิจารณาการมีส่วนร่วมของค่าในอดีตแต่ละค่ากับค่าปัจจุบันของโดเมนเวลาตามฟังก์ชันการตอบสนองใดๆ</li>
-			<li>\(x_{t-i}\): เป็นพจน์ที่แสดงถึง ค่าที่ผ่านมาของโดเมนเวลาจะขึ้นอยู่กับ \(lag k\) โดยที่ \(k\) มีค่าตั้งแต่ \(-\infty\) ไปจนถึง \(-\infty\)</li>
+			<li>\(\phi_i\): ค่าสัมประสิทธิ์ของโมเดล AR \(\phi_1\) หมายถึงค่าน้ำหนักของค่าที่ในอดีดผ่านมาล่าสุด 
+				และ \(\phi_2\) หมายถึงน้ำหนักของค่าอดีตในอันดับสองของค่าปัจจุบัน</li>
+			<li>\(p\): ค่า Order ของโมเดล AR ซึ่งจะกำหนดจำนวนของค่าในอดีตที่ใช้ในการทำนายค่าปัจจุบัน แต่กรณีของเราหมายถึงจำนวนของค่าในอดีตที่ต้องการใช้สร้าง light curves ในปัจจุบัน</li>
+			<li>\(\varepsilon_t\): ค่าความคลาดเคลื่อนแบบสุ่ม(white noise)</li>
 		  </ul>
-		  <p>		  
-			โดยตัวอย่างของโค้ด MA โมเดลที่ใช้ในการการสร้าง light curves จะเป็นดังนี้ 
-		  </p>
+      <p>
+        ตัวอย่างของฟังก์ชันโค้ดโมเดล AR ที่ใช้ในการการสร้างกราฟแสงจะเป็นดังนี้ 
+      </p>
 		  <pre>
-			<code class="language-python">
+			  <code class="language-python">
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 
-def generate_ma_time_series(response_function, noise_level, num_points):
+def generate_AR_series(n_obs, phi_values):
     """
-    Generate a time series using a Moving Average (MA) model with a response function.
+    สร้างกราฟแสงจากโมเดล AR(p)
 
     Parameters:
-    - response_function: Response function (transfer function) of the MA model.
-    - noise_level: Level of white noise to add.
-    - num_points: Number of points in the time series.
+    - n_obs: จำนวนจุดของกราฟแสงที่ต้องการสร้าง
+    - phi_values:  ค่าสัมประสิทธิ์ของโมเดล AR(p) ใดๆ (list หรือ array)
 
-    Returns:
-    - time_series: Generated time series.
+    ผลลัพธ์:
+    - time_series: time series ของกราฟแสง
     """
 
-    # Generate white noise
-    white_noise = np.random.normal(scale=noise_level, size=num_points)
+    p = len(phi_values)    # Order ของโมเดล AR อยู่กับ array  'phi_values' โดยค่าแรกของarray คือ phi_1 และถัดมาจะเป็น phi_2, phi_3, ...
+    np.random.seed(42)
 
-    # Compute response function for past values
-    response_values = response_function(np.arange(len(white_noise)))
+    #สร้าง wihte noise
+    white_noise = np.random.normal(size=n_obs)
 
-    # Convolve past values with the response function to get present values
-    time_series = np.convolve(white_noise, response_values, mode='full')
+    # สร้าง time series โดยขึ้นอยู่กับโมเดล AR(p) ใดๆ 
+    time_series = [white_noise[i] for i in range(p)]
 
-    return time_series,  response_values 
-			</code>    
-		  </pre>
+    #สร้างกราฟแสงโดยใช้สมการของโมเดล AR
+    for t in range(p, n_obs):
+        X_t = sum(phi * time_series[t-i-1] for i, phi in enumerate(phi_values)) + white_noise[t]
+        time_series.append(X_t)
+
+    return time_series
+			  </code>
+      </pre>
+      <p>
+        จากฟังก์ชันด้านบนเราจะแสดงตัวอย่างการใช้งานโดย จะสร้างกราฟแสงด้วยโมเดล AR(1)และ AR(2) โดยเราจะให้จำนวนจุดของกราฟแสงเท่ากับ 1024 ค่าสัมประสิทธิ์ของโมเดล AR(1) นั้นมีค่าเท่ากับ -0.2 
+        และค่าสัมประสิทธิ์ของโมเดล AR(2) นั้นมีค่าเท่ากับ 0.4 และ 0.5 ตามลำดับ โดยตัวอย่างโค้ดและผลลัพธ์จะเป็นดังนี้
+      </p>
+      <b>		  
+        <p>
+        โมเดล AR(1) 
+        </p>
+      </b> 
+      <pre>
+        <code class="language-python">
+# ตัวอย่างการใช้งานฟังก์ชันเพื่อสร้างกราฟแสงด้วยโมเดล AR(1)
+n_obs_example = 1024 # กำหนดจำนวนจุดข้อมูลของกราฟแสง
+phi_values_example = [-0.2] # กำหนดค่าสัมประสิทธิ์ของโมเดล 
+
+# ใช้ฟังก์ชันในการสร้างกราฟแสง
+
+light_curve = generate_AR_series(n_obs_example, phi_values_example)
+
+# พล็อตกราฟของกราฟแสง
+plt.plot(light_curve, label='Generated Time Series (AR(1))')
+plt.legend()
+plt.title('Generated Time Series from AR(1) Model')
+plt.show()
+        </code>
+      </pre>
+      <p>
+          โดยผลลัพธ์จะเป็นดังนี้
+      </p>
+      <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+        <img src="project-Time-series-img/out put-1.png" 
+          style="max-width: 100%; height: auto;">
+      </figure>
+      <b>		  
+        <p>
+        โมเดล AR(2) 
+        </p>
+      </b> 
+      <pre>
+        <code class="language-python">
+# ตัวอย่างการใช้งานฟังก์ชันเพื่อสร้างกราฟแสงด้วยโมเดล AR(2)
+n_obs_example = 1024 # กำหนดจำนวนจุดข้อมูลของกราฟแสง
+phi_values_example = [0.4, 0.5] # กำหนดค่าสัมประสิทธิ์ของโมเดล 
+
+# ใช้ฟังก์ชันในการสร้างกราฟแสง
+
+light_curve = generate_AR_series(n_obs_example, phi_values_example)
+
+# พล็อตกราฟของกราฟแสง
+plt.plot(light_curve, label='Generated Time Series (AR(2))')
+plt.legend()
+plt.title('Generated Time Series from AR(2) Model')
+plt.show()
+        </code>
+      </pre>
+      <p>
+        โดยผลลัพธ์จะเป็นดังนี้
+      </p>
+      <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+        <img src="project-Time-series-img/out put-2.png" 
+        style="max-width: 100%; height: auto;">
+      </figure>
+
+      <p>
+        ขั้นตอนต่อไปจะแสดงตัวอย่างการหาค่าเฉลี่ย ค่าความแปรปรวน ค่าAutocovariance และการแปลง fourier จากโดมเมนเวลา(time domain)ไปสู่โดเมนความถี่(freqency domain) ของกราฟแสงที่สร้างด้วยโมเดล AR(2)
+        โดยโดเมนความถี่จะแสดงในรูปแบบของ Power Spectrum Density (PSD) โดยจะใช้ฟังก์ชัน '' ไปก่อน โดยข้อมูลและคณิตศาสตร์ของฟังก์ชันจะถูกอธิบายใน section ที่ 3
+      </p>
+      <p>
+        ตัวอย่างการหาค่าเฉลี่ย ค่าความแปรปรวน ค่าAutocovariance จะเป็นดังนี้
+      </p>
+      <pre>
+        <code class="language-python">
+from statistics import mean, variance
+#ใช้คำสั่ง 'mean' ใน libraly 'statistics' เพื่อหาค่าเฉลี่ย
+mean_of_light_curve = mean(light_curve)
+#แสดงค่าเฉลี่ยของกราฟแสง
+print("Mean is % s " %(mean_of_light_curve))
+
+#ใช้คำสั่ง 'variance' ใน libraly 'statistics' เพื่อหาค่าความแปรปรวน 
+variance_of_light_curve = variance(light_curve)
+#แสดงค่าความแปรปรวน 
+print("Variance is % s " %(variance_of_light_curve))
+#Autocovariance....
+......
+        </code>
+      </pre>
+      <p>
+        โดยผลลัพธ์จะเป็นดังนี้
+      </p>
+      <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+        <img src="project-Time-series-img/out put-3.png" 
+        style="max-width: 100%; height: auto;">
+      </figure>
+
+      <p>
+        ตัวอย่างการการแปลง fourier จากกราฟแสงเป็น PSD
+      </p>
+      <pre>
+        <code class="language-python">
+#สร้าง array แกน X(แกน X แสดงถึง เวลาใดๆ ที่ทำให้เกิดจุดข้อมูลกราฟแสงนั้นๆ) เพื่อใช้ในการคำนวน PSD
+tt=np.arange(len(light_curve))
+
+#ใช้ฟังก์ชัน 'time_series_to_psd' ในการคำนวน PSD
+f, PSD =  time_series_to_psd(tt, light_curve)
+#แสดงกราฟ PSD
+plt.plot(f[:-1],PSD[:-1]) #แสดงถึงจุดข้อมูลรองสุดท้ายใน array 'f' และ 'PSD' เนื่องจากข้อมูลตัวสุดท้ายเป็นค่าที่ไม่ได้สะท้อนค่าที่แท้จริงอันเนื่องมาจากกระบวนการแปลง fourier
+plt.xscale('log')
+plt.yscale('log')
+plt.title('Power Spectrum Density of Light Cuve')
+        </code>
+      </pre>
+      <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+        <img src="project-Time-series-img/out put-4.png" 
+        style="max-width: 100%; height: auto;">
+      </figure>
+
 
 		  <section class="chapter-button">
 		    

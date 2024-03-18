@@ -182,7 +182,7 @@
 		  </h1>
 		  
  		  <h2 id="Resource">
-			Autoregressive Model(AR Model)
+        Moving-Average Model(MA Model)
 		  </h2>
 
 		  <p>
@@ -195,21 +195,18 @@
 		  </p>
 		  <span class="math-equation">
 			$$
-			x_t = \sum_{k=-\infty}^{\infty} C_k x_{t-k}
+			x_t = \sum_{i=-\infty}^{\infty} C_i x_{t-i}
 			$$
 		  </span>
 		  <p>เมื่อ :</p>
 		  <ul>
 			<li>\(x_t\): เส้นโค้งแสง ณ เวลา t ใดๆ</li>
-			<li>\(C_k\): ฟังก์ชันการตอบสนอง(response function)หรือค่าสัมประสิทธิ์ตัวกรอง โดยพิจารณาการมีส่วนร่วมของค่าในอดีตแต่ละค่ากับค่าปัจจุบันของโดเมนเวลาตามฟังก์ชันการตอบสนองใดๆ</li>
-			<li>\(x_{t-k}\): เป็นพจน์ที่แสดงถึง ค่าที่ผ่านมาของโดเมนเวลาจะขึ้นอยู่กับ \(lag k\) โดยที่ \(k\) มีค่าตั้งแต่ \(-\infty\) ไปจนถึง \(-\infty\)</li>
+			<li>\(C_i\): ฟังก์ชันการตอบสนอง(response function)หรือค่าสัมประสิทธิ์ตัวกรอง โดยพิจารณาการมีส่วนร่วมของค่าในอดีตแต่ละค่ากับค่าปัจจุบันของโดเมนเวลาตามฟังก์ชันการตอบสนองใดๆ</li>
+			<li>\(x_{t-i}\): เป็นพจน์ที่แสดงถึง ค่าที่ผ่านมาของโดเมนเวลาจะขึ้นอยู่กับ \(lag k\) โดยที่ \(k\) มีค่าตั้งแต่ \(-\infty\) ไปจนถึง \(-\infty\)</li>
 		  </ul>
-
-		  <p>
-			โดยตัวอย่างของโค้ด MA โมเดลที่ใช้ในการการสร้าง light curves จะเป็นดังนี้ 
-		  </p>
+		  โดยตัวอย่างของโค้ด MA โมเดลที่ใช้ในการการสร้าง light curves จะเป็นดังนี้ 
 		  <pre>
-			<code class="language-python">
+			  <code class="language-python">
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -236,8 +233,9 @@ def generate_ma_time_series(response_function, noise_level, num_points):
     time_series = np.convolve(white_noise, response_values, mode='full')
 
     return time_series,  response_values 
-			</code>    
+			  </code>    
 		  </pre>
+
 
 
 		  <section class="chapter-button">
