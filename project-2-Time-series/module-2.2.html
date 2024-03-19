@@ -195,46 +195,119 @@
 		  </p>
 		  <span class="math-equation">
 			$$
-			x_t = \sum_{i=-\infty}^{\infty} C_i x_{t-i}
+			x_t = \sum_{k=-\infty}^{\infty} C_k x_{t-k}
 			$$
 		  </span>
 		  <p>เมื่อ :</p>
 		  <ul>
 			<li>\(x_t\): เส้นโค้งแสง ณ เวลา t ใดๆ</li>
-			<li>\(C_i\): ฟังก์ชันการตอบสนอง(response function)หรือค่าสัมประสิทธิ์ตัวกรอง โดยพิจารณาการมีส่วนร่วมของค่าในอดีตแต่ละค่ากับค่าปัจจุบันของโดเมนเวลาตามฟังก์ชันการตอบสนองใดๆ</li>
-			<li>\(x_{t-i}\): เป็นพจน์ที่แสดงถึง ค่าที่ผ่านมาของโดเมนเวลาจะขึ้นอยู่กับ \(lag k\) โดยที่ \(k\) มีค่าตั้งแต่ \(-\infty\) ไปจนถึง \(-\infty\)</li>
+			<li>\(C_k\): ฟังก์ชันการตอบสนอง(response function)หรือค่าสัมประสิทธิ์ตัวกรอง โดยพิจารณาการมีส่วนร่วมของค่าในอดีตแต่ละค่ากับค่าปัจจุบันของโดเมนเวลาตามฟังก์ชันการตอบสนองใดๆ</li>
+			<li>\(x_{t-k}\): เป็นพจน์ที่แสดงถึง ค่าที่ผ่านมาของโดเมนเวลาจะขึ้นอยู่กับ \(lag k\) โดยที่ \(k\) มีค่าตั้งแต่ \(-\infty\) ไปจนถึง \(-\infty\)</li>
 		  </ul>
-		  โดยตัวอย่างของโค้ด MA โมเดลที่ใช้ในการการสร้าง light curves จะเป็นดังนี้ 
+      <p>
+        ตัวอย่างของฟังก์ชันโค้ดโมเดล MA ที่ใช้ในการการสร้างกราฟแสงจะเป็นดังนี้ 
+      </p>
+
 		  <pre>
 			  <code class="language-python">
 import numpy as np
-import matplotlib.pyplot as plt
-
-def generate_ma_time_series(response_function, noise_level, num_points):
+def generate_ma_time_series(response_function, n_obs):
     """
-    Generate a time series using a Moving Average (MA) model with a response function.
+    สร้างกราฟแสงจากโมเดล MA ด้วยฟังก์ชันการตอบสนอง (response function).
 
     Parameters:
-    - response_function: Response function (transfer function) of the MA model.
-    - noise_level: Level of white noise to add.
-    - num_points: Number of points in the time series.
+    - response_function: ฟังก์ชันการตอบสนอง (response function) ของโมเดล MA.
+    - n_obs: จำนวนจุดข้อมูลของกราฟแสงที่ต้องการสร้าง
 
-    Returns:
-    - time_series: Generated time series.
+    ผลลัพธ์:
+    - time_series: time series ของกราฟแสง
     """
 
-    # Generate white noise
-    white_noise = np.random.normal(scale=noise_level, size=num_points)
+    # สร้าง white noise
+    white_noise = np.random.normal(size=n_obs)
 
-    # Compute response function for past values
-    response_values = response_function(np.arange(len(white_noise)))
+    # คำนวนฟังก์ชันการตอบสนอง
+    response_values = response_function(np.arange(n_obs))
 
-    # Convolve past values with the response function to get present values
-    time_series = np.convolve(white_noise, response_values, mode='full')
+    # จัดการ array 'white noise'  สำหรับการ  convolve  เพื่อให้ กราฟแสงที่ได้ออกมามีความยาวเท่ากับ n_obs ด้วยการใส่ "0" ใน array ก่อนการ  convolve
+    white_noise_padded = np.concatenate((white_noise, np.zeros(n_obs - 1)))
 
-    return time_series,  response_values 
+    #สร้างกราฟแสงด้วยการ convolve 'white noise' กับ ฟังก์ชันการตอบสนอง ตามสมการโมเดล MA
+    time_series = np.convolve(white_noise_padded, response_values, mode='valid')
+
+    return time_series[:n_obs]  # ตัดทอน array 'time_series' ตามความยาว 'n_obs'
 			  </code>    
 		  </pre>
+
+      <p>
+        จากฟังก์ชันด้านบนเราจะแสดงตัวอย่างการใช้งานโดยฟังก์ชันการตอบสนองเป็นสมการ exponential \(t^2\) และให้จำวนวนจุดข้อมูลเท่ากับ 1000 โดยตัวอย่างโค้ดและผลลัพธ์จะเป็นดังนี้
+      </p>
+
+      <pre>
+			  <code class="language-python">
+# ตัวอย่างการใช้งานฟังก์ชันเพื่อสร้างกราฟแสงด้วยโมเดล MA
+
+# กำหนดตัวอย่างฟังก์ชันการตอบสนองอย่างง่าย (เช่น สมการ exponential)
+def response_function(t):
+    return (t^1)
+
+n_obs = 1000  # กำหนดจำนวนจุดข้อมูลของกราฟแสง
+# ใช้ฟังก์ชันในการสร้างกราฟแสง
+
+light_curve = generate_ma_time_series(response_function, n_obs)
+
+# สร้างกราฟของกราฟแสง
+plt.plot(light_curve)
+plt.title('Time Series Generated with Moving Average (MA) Model')
+plt.xlabel('Time')
+plt.ylabel('Amplitude')
+plt.show()
+			  </code>    
+		  </pre>
+
+      <p>
+        โดยผลลัพธ์จะเป็นดังนี้
+      </p>
+
+
+      <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+        <img src="project-Time-series-img/out put-5.png" 
+        style="max-width: 100%; height: auto;">
+      </figure>
+
+      <p>
+        ถัดมาจะเป็นตัวอย่างการการแปลง fourier จากกราฟแสงเป็น PSD
+      </p>
+
+      <pre>
+			  <code class="language-python">
+#สร้าง array แกน X(แกน X แสดงถึง เวลาใดๆ ที่ทำให้เกิดจุดข้อมูลกราฟแสงนั้นๆ) เพื่อใช้ในการคำนวน PSD
+tt=np.arange(len(light_curve))
+
+#ใช้ฟังก์ชัน 'time_series_to_psd' ในการคำนวน PSD
+f, PSD =  time_series_to_psd(tt, light_curve)
+#แสดงกราฟ PSD
+plt.plot(f[:-1],PSD[:-1]) #แสดงถึงจุดข้อมูลรองสุดท้ายใน array 'f' และ 'PSD' เนื่องจากข้อมูลตัวสุดท้ายเป็นค่าที่ไม่ได้สะท้อนค่าที่แท้จริงอันเนื่องมาจากข้อจำกัดของกระบวนการแปลง fourier
+plt.title('Power Spectrum Density of Light Cuve')
+plt.xlabel('frequency')
+plt.ylabel('PSD')
+plt.xscale('log')
+plt.yscale('log')
+			  </code>    
+		  </pre>
+
+      <p>
+        โดยผลลัพธ์จะเป็นดังนี้
+      </p>
+      <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+        <img src="project-Time-series-img/out put-6.png" 
+        style="max-width: 100%; height: auto;">
+      </figure>
+
+
+
+
+
 
 
 

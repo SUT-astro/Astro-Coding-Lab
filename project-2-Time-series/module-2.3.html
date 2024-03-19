@@ -199,20 +199,20 @@
 			</li>
 			<li>สัญญาณรบกวนทางดาราศาสตร์ฟิสิกส์: กระบวนการภายในวัตถุทางดาราศาสตร์เอง เช่น การแปรผันแบบสุ่มในกิจกรรมของดาวฤกษ์เอง หรือการส่องแสงระยิบระยับระหว่างดวงดาว อาจทำให้เกิดสัญญาณรบกวนจากภายในไดเช่นกัน
 			</li>
-		   </ul>
-		   <p>
+		  </ul>
+		  <p>
 			โดยลักษณะของสัญญาณรบสามารถ แบ่งได้ประเภทเช่น white noise, blue noise, pink noise, red noise ฯลฯ
-		   </p>
-		   <p>
+		  </p>
+		  <p>
 			แต่ในแบบฝึกหัดเราจะมาทำความรู้จัก สัญญาณรบกวณ 2 แบบคือ white noise และ red noise
-		   </p>
+		  </p>
 
-		   <b>		  
+
+		  <b>		  
 			<p>
 			white noise
 		  	</p>
 		  </b> 
-
 		  <p>
 			ในอนุกรมเวลา white noise จะปรากฏเป็นความผันผวนอย่างรวดเร็วและคาดเดาไม่ได้รอบๆ ค่าเฉลี่ยที่คงที่ ความผันผวนเหล่านี้เกิดขึ้นอย่างต่อเนื่องเมื่อเวลาผ่านไป 
 			และไม่มีรูปแบบหรือความสม่ำเสมอที่ชัดเจน โดยค่าwhite noise ในเวลาใดๆก็ตามจะไม่ขึ้นอยู่กับค่าของมันในเวลาอื่นๆ ซึ่งหมายความว่าไม่มีความสัมพันธ์ใดๆระหว่างค่าของในอตีด ต่อ ปัจจุบัน หรือ ในอนาคต 
@@ -228,6 +228,97 @@
 			(credit:.....)
 			</figcaption>
 		  </figure>
+		  <p>
+			ตัวอย่างของฟังก์ชันโค้ดที่ใช้ในการสร้าง white noise จะเป็นดังนี้ 
+		  </p>
+		  <pre>
+			<code class="language-python">
+import numpy as np
+
+def generate_white_noise(length, mean, std):
+  """
+  ฟังก์ชันเพื่อสร้าง white noise
+
+  Parameters:
+      length: ความยาว array ของ white noise ที่ต้องการ
+      mean: ค่าเฉลี่ยของ white noise
+      std: ค่าเบี่ยงเบนมาตรฐาน (Standard deviation)  แสดงถึงค่าความกว้างของการกวัดแกว่งรอบค่าเฉลี่ยของ white noise
+
+  ผลลัพธ์:
+      noise: array ของ 'white noise' ที่เราต้องการ
+  """
+
+  # สร้าง white noise ด้วย Gaussian distribution จากคำสั่ง np.random.normal ใน library numpy
+  noise = np.random.normal(loc=mean, scale=std, size=length)
+
+  return noise
+			</code>    
+		  </pre>
+
+		  <p>
+			จากฟังก์ชันด้านบนเราจะแสดงตัวอย่างการใช้งานโค้ดและผลลัพธ์ของโค้ดจะเป็นดังนี้
+		  </p>
+
+		  <pre>
+			<code class="language-python">
+# ตัวอย่างการใช้งานฟังก์ชันเพื่อสร้าง white noise
+
+noise_length = 2048 # กำหนดจำนวนจุดข้อมูลของ noise
+mean = 0 # กำหนดค่าเฉลี่ยของ noise
+std = 1 # กำหนดค่าเบี่ยงเบนมาตรฐานของ noise
+
+# สร้าง white noise
+white_noise = generate_white_noise(noise_length, mean, std)
+
+# สร้างกราฟของwhite noise
+plt.plot(white_noise)
+plt.title("White noise")
+plt.xlabel("Time")
+plt.ylabel("Amplitude")
+plt.show()
+			</code>    
+		  </pre>
+
+		  <p>
+			โดยผลลัพธ์จะเป็นดังนี้
+		  </p>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-Time-series-img/out put-7.png" 
+			style="max-width: 100%; height: auto;">
+		  </figure>
+
+		  <p>
+			ถัดมาจะเป็นตัวอย่างการการแปลง fourier จากโดเมนเวลาเป็น PSD
+		  </p>
+		  <pre>
+			<code class="language-python">
+#คำนวน PSD
+#ใช้ฟังก์ชัน 'time_series_to_psd' ในการคำนวน PSD
+f, PSD = time_series_to_psd(np.arange(len(white_noise)), white_noise)
+
+#เราต้องข้อมูลถึงจุดข้อมูลรองสุดท้ายใน array 'f' และ 'PSD' เนื่องจากข้อมูลตัวสุดท้ายเป็นค่าที่ไม่ได้สะท้อนค่าที่แท้จริงอันเนื่องมาจากข้อจำกัดของกระบวนการแปลง fourier
+PSD_w = PSD[:-1]
+f_w = f[:-1]
+
+#แสดงกราฟ PSD
+plt.plot(f_w, PSD_w)
+plt.title('Power Spectrum Density(white noise)')
+plt.xlabel('frequency')
+plt.ylabel('PSD')
+plt.xscale('log')
+plt.yscale('log')
+			</code>    
+		  </pre>
+		  <p>
+			โดยผลลัพธ์จะเป็นดังนี้
+		  </p>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-Time-series-img/out put-8.png" 
+			style="max-width: 100%; height: auto;">
+		  </figure>
+
+	
+
 		  <b>		  
 			<p>
 			Red noise 
@@ -249,6 +340,97 @@
 			(credit:.....)
 			</figcaption>
 		  </figure>
+		  <p>
+			ตัวอย่างของฟังก์ชันโค้ดที่ใช้ในการสร้าง red noise จะเป็นดังนี้ 
+		  </p>
+		  <pre>
+			<code class="language-python">
+import numpy as np
+
+def generate_red_noise(length, alpha=1):
+    """
+    ฟังก์ชันสร้าง red noise จากกระบวนการเดินแบบสุ่ม (random walk process)
+
+    Parameters:
+    - length: ความยาวของ red noise ที่ต้องการ
+    - alpha: ค่าชี้กำลัง Power law ของ noise โดยจะให้เท่ากับ 1 ซึ่งเป็นค่ามาตราฐานของ red noise
+
+    ผลลัพธ์:
+    - red_noise: array ของ 'red noise' ที่เราต้องการ
+    """
+    # สร้าง white noise
+    white_noise = np.random.normal(size=length)
+
+    # คำนวนผลรวมสะสม (cumulative sum) ซึ่งเป็นส่วนของกระบวนการเดินแบบสุ่ม
+    cumsum = np.cumsum(white_noise)
+
+    
+    scale = (1 / np.arange(1, length + 1)) ** (alpha / 2)
+
+    # สร้าง red noise
+    red_noise = cumsum * scale
+
+    return red_noise
+			</code>    
+		  </pre>
+
+		  <p>
+			จากฟังก์ชันด้านบนเราจะแสดงตัวอย่างการใช้งานโค้ดและผลลัพธ์ของโค้ดจะเป็นดังนี้
+		  </p>
+
+		  <pre>
+			<code class="language-python">
+# ตัวอย่างการใช้งานฟังก์ชันเพื่อสร้าง red noise
+length = 2048
+red_noise = generate_red_noise(length)
+
+# สร้างกราฟของwhite noise
+plt.plot(red_noise)
+plt.title("Red Noise (Random Walk)")
+plt.xlabel("Time")
+plt.ylabel("Amplitude")
+plt.show()
+			</code>    
+		  </pre>
+
+		  <p>
+			โดยผลลัพธ์จะเป็นดังนี้
+		  </p>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-Time-series-img/out put-9.png" 
+			style="max-width: 100%; height: auto;">
+		  </figure>
+
+		  <p>
+			ถัดมาจะเป็นตัวอย่างการการแปลง fourier จากโดเมนเวลาเป็น PSD
+		  </p>
+		  <pre>
+			<code class="language-python">
+#คำนวน PSD ของ red noise
+#ใช้ฟังก์ชัน 'time_series_to_psd' ในการคำนวน PSD
+f, PSD = time_series_to_psd(np.arange(len(red_noise)), red_noise)
+
+#เราต้องข้อมูลถึงจุดข้อมูลรองสุดท้ายใน array 'f' และ 'PSD' เนื่องจากข้อมูลตัวสุดท้ายเป็นค่าที่ไม่ได้สะท้อนค่าที่แท้จริงอันเนื่องมาจากข้อจำกัดของกระบวนการแปลง fourier
+PSD_r = PSD[:-1]
+f_r = f[:-1]
+
+
+#แสดงกราฟ PSD
+plt.plot(f_r, PSD_r)
+plt.title('Power Spectrum Density(red noise)')
+plt.xlabel('frequency')
+plt.ylabel('PSD')
+plt.xscale('log')
+plt.yscale('log')
+			</code>    
+		  </pre>
+		  <p>
+			โดยผลลัพธ์จะเป็นดังนี้
+		  </p>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-Time-series-img/out put-10.png" 
+			style="max-width: 100%; height: auto;">
+		  </figure>
 
 		  <b>		  
 			<p>
@@ -256,8 +438,33 @@
 		  	</p>
 		  </b> 
 		  <p>
-			.........
+			ในsection นี้เราจะแสดงผลัพธ์ของการรวมกันของ Power Spectrum Density ของ white noise และ Red noise จะผลลัพธ์ของการฟังก์ชันใน section ก่อนหน้านี้ทั้ง 2 ฟังก์ชัน
 		  </p>
+		  <p>
+			โดยตัวอย่างโค้ดและการผลลัพธ์จะเป็นดังนี้
+		  </p>
+		  <pre>
+			<code class="language-python">
+#การแสดงผลลัพธ์เมื่อนำ PSD ของ 'white noise' + 'red noise'
+#PSD 'white noise'+ 'red noise'
+PSD_tt = PSD_w + PSD_r
+
+#แสดงกราฟ PSD
+plt.plot(f_r, PSD_tt) # เราสามารถพล็อต 'PSD_tt' คู่กับ 'f_r' หรือ 'f_w' ก็ได้เนื่องจาก length ของ white noise และ red noise เท่ากันจึงทำให้ 'f_r' และ 'f_w' เท่ากันด้วย
+plt.title('Power Spectrum Density(whitenoise + red noise)')
+plt.xlabel('frequency')
+plt.ylabel('PSD')
+plt.xscale('log')
+plt.yscale('log')
+			</code>    
+		  </pre>
+		  <p>
+			โดยผลลัพธ์จะเป็นดังนี้
+		  </p>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-Time-series-img/out put-11.png" 
+			style="max-width: 100%; height: auto;">
+		  </figure>
 
 		  
 		  
