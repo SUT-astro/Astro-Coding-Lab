@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title><!-- controlled by: module-chapter.js --></title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  
+  <!-- Template Main CSS File -->
+  <link href="../assets/css/main.css" rel="stylesheet">
+  <link href="../assets/css/project.css" rel="stylesheet">
+  <link href="../assets/css/default.highlight.style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: UpConstruction
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="../index.html" class="logo logo-project d-flex align-items-center">
+        <h1>AstroCode101<span>.</span></h1>
+      </a>
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+      <nav id="navbar" class="navbar navbar-project">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li class="dropdown"><a href="../index.html#projects" class="active">Projects</a>
+		    <ul>
+              <li><a href="objective.html">Project Brown Dwarf</a></li>
+			</ul>
+		  </li>
+        </ul>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs b-head d-flex">
+      <div class="container position-relative d-flex flex-column aos-init aos-animate" data-aos="fade">
+        <h1><!-- controlled by: module-chapter.js --></h1>
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Projet Details Section ======= -->
+    <section class="project-details">
+      <div class="project-content">
+		  
+        <div class="project-content-inner">
+      
+        <h1>
+          ข้อมูลสังเกตการณ์
+        </h1>
+        
+        <h2>
+          Orthogonal distance regression (ODR) คืออะไร
+        </h2>
+        
+        <p>
+          ODR คือการวิเคราะห์หาค่าตัวแปรของสมการที่ดีที่สุด 
+          ด้วยการคำนวณหาตัวแปรของสมการที่ทำให้ระยะที่ลากตั้งฉากจากสมการไปยังจุดข้อมูลเฉลี่ยที่สั้นที่สุด 
+          ซึ่งจะแตกต่างกับ least square regression (LSR) ในจุดที่ 
+          LSR ใช้การพิจารณาระยะในแนวตั้ง หรือระยะตามแนวแกน y จากจุดข้อมูลไปยังสมการ 
+          ตามที่เห็นใน Figure… ซึ่งแสดงการพิจารณาหาตัวแปรของสมการที่ดีที่สุดในทั้ง 2 algorithm
+        </p>
+        <p>
+          ข้อดีของการทำ ODR คือ 
+          เราสามารถพิจารณาค่า error ของข้อมูลทั้งแกน x และแกน y ได้พร้อมกันในขณะ fit กราฟ 
+          ต่างจาก LSR ที่พิจารณาเพียงค่า error ของข้อมูลในแกน y เท่านั้น
+        </p>
+        <p>
+          โดยในแบบฝึกหัดนี้ เราจะใช้ฟังชั่น <a href="https://docs.scipy.org/doc/scipy/reference/odr.html"><code>scipy.odr</code></a> จาก <em>scipy</em>
+          ในการทำ ODR ซึ่งมีตัวอย่างการใช้งานดังนี้
+          <ol>
+            <li><code>import</code> module ที่เราจะใช้</li>
+            <pre>
+              <code class="language-python">
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from scipy.odr import ODR, Model, RealData
+              </code>
+            </pre>
+            <li>สร้าง <code>array</code> เก็บข้อมูลที่จะทำการ fit กราฟ</li>
+            <pre>
+              <code class="language-python">
+# Data, t (time) on x-axis and v (velocity) on y-axis
+t = np.arange(0, 1, 0.1)
+t_err = np.zeros(len(t)) + 0.02
+
+v = np.array([0.5, 1.3, 2.7, 3.4, 4.3, 5.2, 6.3, 7.1, 8.6, 9.4])
+v_err = np.array([0.05, 0.1, 0.4, 0.1, 0.2, 0.2, 0.1, 0.4, 0.3, 0.4])
+
+# Create a dataframe
+table_column = {'t (s)': t, 't_error (s)': t_err, 'v (cm/s)': v, 'v_error (cm/s)': v_err}
+df = pd.DataFrame(data = table_column)
+df.head(3)
+              </code>
+            </pre>            
+            <li>สร้างฟังชั่นของสมการที่เราจะใช้ในการ fit กับข้อมูล ซึ่งในที่นี้เป็น <code>function_linear()</code></li>
+            <pre>
+              <code class="language-python">
+def function_linear(B, x):
+    '''Linear eqution: y = b + m*x'''
+    # B is a vector of the parameters, which are B[0] for b or intercept in the equation, and B[1] for m or slope in the equation.
+    # x is an array of the current x values.
+    # x is in the same format as the x passed to Data or RealData.
+
+    # Return an array in the same format as y passed to Data or RealData.
+    return B[0] + (B[1] * x)
+              </code>
+            </pre>            
+            <li>นิยามโมเดลของสมการที่เราจะใช้ด้วย <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.odr.Model.html#scipy.odr.Model"><code>Model()</code></a> และนิยามข้อมูลที่เราจะใช้ด้วย <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.odr.RealData.html#scipy.odr.RealData"><code>RealData()</code></a></li>
+            <pre>
+              <code class="language-python">
+# Define Model and Data
+linear_model = Model(function_linear)
+data = RealData(x = t, y = v , sx = t_err, sy = v_err)
+              </code>
+            </pre>            
+            <li>ตั้งค่า algorithm ของการ fit กราฟด้วย <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.odr.ODR.html#scipy.odr.ODR"><code>ODR()</code></a></li>
+            <pre>
+              <code class="language-python">
+# Configure the Orthogonal Distance Regression
+odr = ODR(data, linear_model, [1, 1])
+odr.set_job(fit_type = 0)       # 0: explicit ODR, 2: least square method (use for verification)
+              </code>
+            </pre>            
+            <li>ทำการ fit กราฟ</li>
+            <pre>
+              <code class="language-python">
+# Perform ODR fitting
+output = odr.run()
+              </code>
+            </pre>    
+            <li>แสดงผลลัพธ์จากการ fit กราฟ</li>
+            <pre>
+              <code class="language-python">
+# The prediction result of parameters in linear equation
+constant, slope = output.beta
+constant_err, slope_err = output.sd_beta    # The error (or variance) of predicted parameters
+print('Intercept is ', constant, ', error = ', constant_err)
+print('Slope is ', slope, ', error = ', slope_err)
+              </code>              
+            </pre>   
+            <li>นำผลลัพธ์ที่ได้มา plot กราฟเส้นตรง</li>
+            <pre>
+              <code class="language-python">
+# Find a linear equation from predicted result
+x_predict = np.linspace(0, t[-1], 1000)
+y_predict = function_linear(output.beta, x_predict)
+y_min = function_linear(B = [constant + constant_err, slope - slope_err], x = x_predict)
+y_max = function_linear(B = [constant - constant_err, slope + slope_err], x = x_predict)
+
+# Graph plotting
+plt.rcParams.update({'font.size': 14})
+fig = plt.figure(figsize = (5, 8))
+ax = fig.add_subplot(111)
+
+ax.plot(t, v, 'ok', markersize = 8, label = 'Data')
+ax.errorbar(t, v, xerr = t_err, yerr = v_err, fmt = 'none', ecolor = 'orange', capsize = 3.0, label = 'Error of Data')
+
+ax.plot(x_predict, y_predict, '-b', label = 'Prediction by ODR')
+ax.plot(x_predict, y_min, '--g')
+ax.plot(x_predict, y_max, '--r')
+
+ax.set_title('Figure of velocity at different time')
+ax.set_xlabel('t (s)')
+ax.set_ylabel('v (cm/s)')
+ax.text(0.35, 0.2, r'Slope = {0:.1f} $\pm$ {1:.1f} cm/s$^2$'.format(slope, slope_err), transform=ax.transAxes)
+ax.text(0.2, 0.1, r'Intercept = {0:.2f} $\pm$ {1:.2f} cm/s'.format(constant, constant_err), transform=ax.transAxes)
+ax.legend(loc = 'best')
+ax.grid()
+plt.show()
+              </code>
+            </pre>               
+            
+          </ol>
+        </p>        
+
+        <section class="chapter-button">
+        
+        <a href="module-2.2.html">
+          <button>
+            &lt; &lt; <br>
+            Previous
+          </button>
+        </a>
+        
+        <a href="objective.html">
+          <button>
+            สารบัญ
+          </button>
+        </a>
+          
+        <a href="module-3.1.html">
+          <button>
+            &gt; &gt; <br>
+            Next
+          </button>
+        </a>
+        
+        </section>
+        
+        </div>
+      </div>
+    </section><!-- End Projet Details Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="footer-content position-relative">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-info">
+              <h3>กลุ่มวิจัยดาราศาสตร์</h3>
+              <p>
+                สาขาวิชาฟิสิกส์  สำนักวิชาวิทยาศาสตร์ <br>
+                มหาวิทยาลัยเทคโนโลยีสุรนารี <br>
+                111  ถนนมหาวิทยาลัย <br>
+                ต. สุรนารี  อ. เมือง  จ. นครราชสีมา<br>
+                30000<br>
+                <strong>Phone:</strong> 044-223-000<br>
+                <strong>Fax:</strong> 044-224-070<br>
+              </p>
+              <div class="social-links d-flex mt-3">
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div><!-- End footer info column-->
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Terms of service</a></li>
+              <li><a href="#">Privacy policy</a></li>
+            </ul>
+          </div><!-- End footer links column-->
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><a href="#">Web Design</a></li>
+              <li><a href="#">Web Development</a></li>
+              <li><a href="#">Product Management</a></li>
+              <li><a href="#">Marketing</a></li>
+              <li><a href="#">Graphic Design</a></li>
+            </ul>
+          </div><!-- End footer links column-->
+
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-legal text-center position-relative">
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>UpConstruction</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/ -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+  <!-- End Footer -->
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/change-content.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <script src="module-list.js"></script>
+  <script src="module-chapter.js"></script>
+
+</body>
+
+</html>
