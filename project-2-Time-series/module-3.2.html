@@ -204,6 +204,49 @@
       <p>
         โดยสรุปแล้วPSD นั้นเป็นเครื่องมือในการวิเคราะห์สัญญาณ ด้วยการทำความเข้าใจการกระจายพลังงานในช่วงความถี่ต่างๆ นักวิทยาศาสตร์สามารถได้รับข้อมูลเชิงลึกอันมีค่าเกี่ยวกับกระบวนการพื้นฐานที่สร้างสัญญาณได้
       </p>
+
+
+      <pre>
+			  <code class="language-python">
+import numpy as np
+
+
+def time_series_to_psd(t, h):
+  """
+  This function calculates the power spectral density (PSD) of a time series signal.
+
+  Args:
+      t: The time array corresponding to the signal (numpy array).
+      h: The time series signal as a numpy array.
+
+  Returns:
+      f: The frequencies corresponding to the PSD values (Hz).
+      psd: The power spectral density values calculated at each frequency.
+  """
+  N = len(h)  # Number of samples in the time series
+  dt = np.diff(t)  # Calculate variable sampling time between consecutive samples
+
+  # Check if sampling time is constant
+  if np.allclose(dt, dt[0], atol=1e-10):  # Tolerance for floating-point precision
+      fs = 1 / dt[0]  # Calculate constant sampling frequency
+  else:
+      raise ValueError("Unequal sampling times are not supported.")
+
+  # Create frequency domain vector
+  f = np.fft.fftfreq(N, d=t[1] - t[0])[:int(N / 2 + 1)]  # Adjust for variable dt
+
+  # Calculate the Fourier transform (single-sided)
+  H = np.fft.fft(h)[:int(N / 2 + 1)]
+
+  # Calculate the magnitude squared
+  psd = 2 * np.abs(H) ** 2
+  # # Calculate the magnitude squared and normalize
+  # psd = 2 * np.abs(H) ** 2 / (N * np.sum(dt))
+
+  return f, psd
+			  </code>    
+		  </pre>
+
 		    
 		  <section class="chapter-button">
 		    
