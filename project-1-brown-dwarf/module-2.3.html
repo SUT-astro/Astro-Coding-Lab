@@ -185,8 +185,8 @@
 			การเติมข้อมูล (Augmentation) ด้วย Gaussian-distributed noise
 		  </h2>
 		  <p>
-			จากข้อมูลที่เรามีจะเห็นได้ว่าข้อมูลของดาวฤกษ์และวัตถุอื่นที่เราไม่สนใจ (ซึ่งเรา label เป็น negative class) 
-			นั้นมีจำนวนที่มากกว่าดาวแคระน้ำตาล (label เป็น positive class) อยู่ 2.5 เท่า 
+			จากข้อมูลที่เรามีจะเห็นได้ว่าข้อมูลของดาวฤกษ์และวัตถุอื่นที่เราไม่สนใจ (ซึ่งเรา label เป็น Negative class) 
+			นั้นมีจำนวนที่มากกว่าดาวแคระน้ำตาล (label เป็น Positive class) อยู่ประมาณ 2.5 เท่า 
 			ดังนั้นเราจึงจำเป็นต้องทำให้จำนวนข้อมูลดาวแคระน้ำตาลและดาวฤกษ์ในกลุ่มตัวอย่างของเรามีความสมดุลกัน
 			ด้วยการทำให้ข้อมูลทั้งสองชุดนี้มีจำนวนที่ใกล้เคียงกัน โดยเราจะใช้การเพิ่มสัญญาณรบกวนในข้อมูล (noise) 
 			ตามการกระจายตัวแบบ Gaussian-distributed noise 
@@ -194,8 +194,8 @@
 		  </p>
 		  
 		  <p>
-			Gaussian-distributed noise จะถูกเขียนในรูป probability density function 
-			ที่มีการกระจายตัวแบบ Gaussian (หรือ normal distribution) ตามสมการ
+			Gaussian-distributed noise จะถูกเขียนในรูป Probability Density Function 
+			ที่มีการกระจายตัวแบบ Gaussian (หรือการแจกแจงปรกติ: Normal Distribution) ตามสมการ
 		  </p>
 		  <span class="math-equation">
 		  	$$
@@ -203,10 +203,10 @@
 			$$
 		  </span>
 		  <p>
-			โดย \(x\) คือ ขนาดของสัญญาณรบกวน, \(\sigma\) คือส่วนเบี่ยงเบนมาตรฐาน (standard deviation) 
-			ซึ่งจะกำหนดความกว้างของ probability density function และ 
-			\(\mu\) คือค่าเฉลี่ยของข้อมูล (mean) ซึ่งจะเป็นตัวกำหนดจุดกึ่งกลางของ probability density function 
-			ดังที่แสดงใน Figure 2.
+			โดย \(x\) คือ ขนาดของสัญญาณรบกวน, \(\sigma\) คือ ส่วนเบี่ยงเบนมาตรฐาน (standard deviation) 
+			ซึ่งจะกำหนดความกว้างของ Probability Density Function และ 
+			\(\mu\) คือ ค่าเฉลี่ยของข้อมูล (mean) ซึ่งจะเป็นตัวกำหนดจุดกึ่งกลางของ Probability Density Function 
+			ดังที่แสดงใน รูป 2
 		  </p>
 		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
 			<iframe src="https://www.desmos.com/calculator/kazwqbnnkf?embed" 
@@ -224,12 +224,12 @@
 			<a href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.normal.html">
 			  numpy random.normal
 			</a> 
-			ใน library numpy โดยคำสั่งนั้นจะรับค่า parameter 3 ตัว คือ loc , scale และ size โดยที่ 
+			ใน Library Numpy โดยคำสั่งนั้นจะรับค่า parameter 3 ตัว คือ loc , scale และ size โดยที่ 
 			loc คือ ค่าเฉลี่ย (mean) หรือ ก็คือจุดกึ่งกลางของการกระจายตัวของ noise ตาม Gaussian distribution
 			scale คือ ส่วนเบี่ยงเบนมาตรฐาน (\(\sigma\)) หรือก็คือความกว้างของการกระจายตัวของ noise
 			size คือ ขนาดและรูปแบบของ array ที่ output ออกมา 
 			เมื่อเราได้ noise distribution มาแล้วก็ทำการใส่ 'noise' ลงไปในข้อมูลจริงๆ 
-			ซึ่งเราอาจจะเขียนเป็น function ในภาษา python ได้ดังนี้ 
+			ซึ่งเราอาจจะเขียนเป็น function ในภาษา Python ได้ดังนี้ 
 		  </p>
 		  <pre>
 			<code class="language-python">
@@ -283,7 +283,7 @@ def add_gaussian_noise(data, mean, std):
 			</a> -->
 		  </p>
 	      <p>
-			โดยตัวอย่างการเติมข้อมูล possitive class ด้วย Gaussian-distributed noise จะเป็นดังนี้
+			โดยตัวอย่างการเติมข้อมูล Possitive class ด้วย Gaussian-distributed noise จะเป็นดังนี้
 		  </p>
 		  <pre>
 			<code class="language-python">
@@ -313,7 +313,7 @@ display(aug_pos)
 			style="max-width: 100%; height: auto;">
 		  </figure>
 
-		  <p>ขั้นตอนถัดไปจะเป็นการรวม data frame ของ Positve class ที่ถูกใส่ noise และ ข้อมูลดังเดิมเข้าด้วยกัน </p>
+		  <p>ขั้นตอนถัดไปจะเป็นการรวม Data Frame ของ Positve class ที่ถูกใส่ noise และ ข้อมูลดังเดิมเข้าด้วยกัน </p>
 		  <p>
 			โดยตัวอย่างโค้ดจะเป็นดังนี้
 		  </p>
@@ -338,12 +338,13 @@ display(all_neg)
 			style="max-width: 100%; height: auto;">
 		  </figure>
 		  <p>
-			จากตาราง data-frame ด้านบน จะเห็นได้ว่าชุดข้อมูลของ possitive class 3196 (1598 จากข้อมูลดังเดิม + 1598 จากข้อมูลที่ถูกใส่ noise) ตัว นั้นมีจำนวนใกล้เคียงกับ negative class 3657 ตัว แล้ว
+			จากตาราง Data frame ด้านบน จะเห็นได้ว่าชุดข้อมูลของ Possitive class 3196 (1598 จากข้อมูลดังเดิม + 1598 จากข้อมูลที่ถูกใส่ noise) ตัว นั้นมีจำนวนใกล้เคียงกับ negative class 3657 ตัว แล้ว
 		  </p>
-		  <p>ขั้นตอนถัดไปจะเป็นสร้าง color indices เพื่อใช้ในการจำแนกดาวเคระน้ำตาลจาก</p>
+		  <p>ขั้นตอนถัดไปจะเป็นสร้างค่าดัชนีสี เพื่อใช้ในการจำแนกดาวเคระน้ำตาลจาก</p>
 		  <p> 
-			โดยการสร้างนั้น color indices ทำได้ด้วยการจากนำของMagnitude ของ 2 fillter มาลบกัน โดยตัวอย่างจะเป็นดังนี้
+			โดยการสร้างนั้นค่าดัชนีสี ทำได้ด้วยการจากนำของ Absolute Magnitude ของ 2 fillter มาลบกัน โดยตัวอย่างจะเป็นดังนี้
 		  </p>
+		  
 		  <pre>
 			<code class="language-python">
 # สร้าง color index 3 ตัว คือ "f1-f2", "f1-f3", "f2-f3" ลงใน data frame ของเรา
@@ -362,7 +363,7 @@ all_df['f2-f3'] = all_df['feature_2']-all_df['feature_3']
 			'i-z'', 'i-y', 'z-y', 'z-J', 'y-J', J-H','H-K','K-W1', W1-W2'
 		  </p>
 		  <p>
-			จากตาราง data-frame ด้านบน จะเห็นได้ว่า ชุดข้อมูลของเรามีจำนวน missing values('NaN) อยู่จำนวนมาก
+			จากตาราง Data frame ด้านบน จะเห็นได้ว่า ชุดข้อมูลของเรามีจำนวน missing values('NaN) อยู่จำนวนมาก
 			โดยวิธีการจัดการนั้นกับข้อมูลเหล่านั้นเหล่านั้นเราจะทำกันใน section ถัดไป
 		  </p>
 		  

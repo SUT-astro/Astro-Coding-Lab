@@ -182,15 +182,15 @@
 		  </h1>
 		    
 		  <h2 id="using-pandas">
-			การอ่านไฟล์ข้อมูลจาก Directory ด้วย pandas และ extract ข้อมูลที่จำเป็น
+			การอ่านไฟล์ข้อมูลจาก Directory ด้วย Pandas และการคัดเลือกข้อมูลที่จำเป็น
 		  </h2>
 		  <p>
-			pandas เป็น libraly ของ python ที่เหมาะกับการใช้ในการจัดการและวิเคราะห์ข้อมูลที่อยู่ในรูปแบบของตาราง
+			Pandas เป็น Library ของ Python ที่เหมาะกับการใช้ในการจัดการและวิเคราะห์ข้อมูลที่อยู่ในรูปแบบของตาราง
 			โดยจะจัดเก็บข้อมูลด้วย Data frame ซึ่งมีการแบ่งข้อมูลเป็น Row กับ Column
 			เราสามารถโหลดข้อมูลจากไฟล์สกุลต่าง ๆ ได้ เช่น .xlsx (ไฟล์ Excel), .csv, และสกุลอื่น ๆ
 		  </p>
 		  <p>
-			ในแบบฝึกหัดนี้ เราจะทำการดึงไฟล์ข้อมูลของเราจาก google drive โดยใช้คำสั่ง pd.read_csv โดยตัวอย่างของโค้ดจะเป็นดังนี้
+			ในแบบฝึกหัดนี้ เราจะทำการดึงไฟล์ข้อมูลของเราจาก Google drive โดยใช้คำสั่ง pd.read_csv โดยตัวอย่างของโค้ดจะเป็นดังนี้
 		  </p>
 		  <pre>
 			<code class="language-python">
@@ -227,14 +227,14 @@ df = data[['feature_1', 'e_feature_1', 'feature_2', 'e_feature_2', 'feature_3', 
 			ต่อมาเป็นการตรวจสอบมูลชุดข้อในเบื้องต้น จากข้อมูลตาราง Dataframe ด้านบน เราจะเห็นว่ามี label ของข้อมูลอยู่ 2 ชนิดคือ
 		  </p>
 		  <p>
-			postive class คือดาวแคระน้ำตาล (label เป็น 1)
+			Postive class คือดาวแคระน้ำตาล (label เป็น 1)
 		  </p>
 		  <p>
-			negative class คือไม่เป็นดาวแคระน้ำตาล (label เป็น 0)
+			Negative class คือวัตถุอื่นๆที่ไม่ใช่ดาวแคระน้ำตาล (label เป็น 0)
 		  </p>
 		  <p>
 			โดยเราใช้คำสั้ง df.loc ใช้การ sorting มูลในส่วนที่เราสนใจ เช่น
-			ต้องการ sorting possitive class และ negative class เพื่อดูจำนวนข้อมูลในแต่ class
+			ต้องการ sorting Possitive class และ Negative class เพื่อดูจำนวนข้อมูลในแต่ class
 			ซึ่งตัวอย่างโค้ดจะถูกแสดงด้านล่าง
 		  </p>
 		  <pre>
@@ -263,12 +263,12 @@ display(Neg_class)
 		  </figure>
 
 		  <p>
-			จะเห็นว่า negative class มีมากกว่า possitive class ประมาณ 2.5 เท่า ดังนั้น จึงต้องมีการทำให้ข้อมูลสมดุลกันด้วยการ Augmention(การเติม)ข้อมูล ซึ่งจะแสดงใน section ถัดไป
+			จะเห็นว่า Negative class (3657 rows) มีมากกว่า Possitive class (1598 rows) ประมาณ 2.5 เท่า ดังนั้น จึงต้องมีการทำให้ข้อมูลสมดุลกันด้วยการ Augmention(การเติม)ข้อมูล ซึ่งจะแสดงใน section ถัดไป
 		  </p>
 	
 		  <p>			
 			และในส่วนของแบบฝึกหัดของนักศึกษาจะใช้ file id คือ '1RPTYy1D0Z9mDiYFy_ABHClOcLCZnv-zB' 
-			และต้องการ extract ข้อมูลในส่วนของ 
+			และต้องการคัดเลือกข้อมูลในส่วนของ 
 			column :i, e_i, z, e_z, y, e_y, W1, e_W1, W2, e_W2, J, e_J, H, e_H, K, e_K, label
 		  </p>
 		  <p>			
