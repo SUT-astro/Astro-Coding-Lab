@@ -187,10 +187,10 @@
 		  <p>
 			Pandas เป็น Library ของ Python ที่เหมาะกับการใช้ในการจัดการและวิเคราะห์ข้อมูลที่อยู่ในรูปแบบของตาราง
 			โดยจะจัดเก็บข้อมูลด้วย Data frame ซึ่งมีการแบ่งข้อมูลเป็น Row กับ Column
-			เราสามารถโหลดข้อมูลจากไฟล์สกุลต่าง ๆ ได้ เช่น .xlsx (ไฟล์ Excel), .csv, และสกุลอื่น ๆ
+			เราสามารถโหลดข้อมูลไฟล์สกุลต่างๆ ได้ เช่น .xlsx, .csv, และสกุลอื่นๆ
 		  </p>
 		  <p>
-			ในแบบฝึกหัดนี้ เราจะทำการดึงไฟล์ข้อมูลของเราจาก Google drive โดยใช้คำสั่ง pd.read_csv โดยตัวอย่างของโค้ดจะเป็นดังนี้
+			ในแบบฝึกหัดนี้ เราจะทำการดึงไฟล์ข้อมูลที่เก็บไว้ใน public Google drive โดยใช้คำสั่ง pd.read_csv ตามโค้ดด้านล่าง
 		  </p>
 		  <pre>
 			<code class="language-python">
@@ -199,6 +199,7 @@ import pandas as pd
 file_id = '1hQYrh4zpfxYu-soF4O-rXA8YF_8J-JQc'
 # โหลดไฟล์จาก google drive ด้วย link
 data = pd.read_csv(f'https://drive.google.com/uc?id={file_id}')
+display(data)
 			</code>    
 		  </pre>			
 		  <p>
@@ -209,8 +210,11 @@ data = pd.read_csv(f'https://drive.google.com/uc?id={file_id}')
 			style="max-width: 100%; height: auto;">
 		  </figure>
 		  <p>
-			เมื่อเราได้ข้อมูลมาแล้วแล้ว ต่อมาเป็นขั้นตอนการ Extract เฉพาะข้อมูลที่เราต้องการใช้ โดยการไม่เรียกใช้ข้อมูลที่ไม่จำเป็น เช่น เราไม่ต้องการส่วนของ number_tag และ feature_4 
-			เหลือไว้เพียง แค่ส่วนของ feature_1, e_feature_1, feature_2, e_feature_2, feature_3, e_feature_3,  'label'  ซึ่งตัวอย่างจะถูกแสดงใน code ด้านล่าง
+			เมื่อเราได้ข้อมูลมาแล้ว เราจะคัดเลือก(Extract) เฉพาะข้อมูลที่เราต้องการใช้ โดยการเรียกใช้ข้อมูลที่ต้องการประกอบด้วย 4 (feature feature_1,  feature_2, , feature_3 ,)
+			ค่าความคลาดเคลื่อนของทั้ง 4 feature (e_feature_1, e_feature_2, e_feature_3 )  และป้ายบอกชนิดของวัตถุ (label) โดยเราจะใช้ Random forest ในการแยกประเภท (classify) ตาม label ในหัวข้อถัดไป  
+		  </p>
+		  <p>
+			ซึ่งตัวอย่างสำหรับการดึงข้อมูลเป็นดังนี้
 		  </p>
 		  <pre>
 			<code class="language-python">
@@ -224,30 +228,29 @@ df = data[['feature_1', 'e_feature_1', 'feature_2', 'e_feature_2', 'feature_3', 
 			style="max-width: 100%; height: auto;">
 		  </figure>
 		  <p>
-			ต่อมาเป็นการตรวจสอบมูลชุดข้อในเบื้องต้น จากข้อมูลตาราง Dataframe ด้านบน เราจะเห็นว่ามี label ของข้อมูลอยู่ 2 ชนิดคือ
+			จากข้อมูลตาราง Data frame ด้านบน เราจะสมมติว่ามีข้อมูล 2 ชนิด (label 2 ชนิด) คือ
 		  </p>
 		  <p>
-			Postive class คือดาวแคระน้ำตาล (label เป็น 1)
+			 ดาวแคระน้ำตาล กำหนดให้เป็น Postive class (label เป็น 1)
 		  </p>
 		  <p>
-			Negative class คือวัตถุอื่นๆที่ไม่ใช่ดาวแคระน้ำตาล (label เป็น 0)
+			วัตถุอื่นๆที่ไม่ใช่ดาวแคระน้ำตาล กำหนดให้เป็น Negative class (label เป็น 0)
 		  </p>
 		  <p>
-			โดยเราใช้คำสั้ง df.loc ใช้การ sorting มูลในส่วนที่เราสนใจ เช่น
-			ต้องการ sorting Possitive class และ Negative class เพื่อดูจำนวนข้อมูลในแต่ class
-			ซึ่งตัวอย่างโค้ดจะถูกแสดงด้านล่าง
+			โดยเบื้องต้นเราจะตรวจสอบจำนวนข้อมูลที่อยู่ใน Possitive class และ Negative class โดยใช้คำสั้ง df.loc ในการจัดกลุ่มข้อมูล 
+			ซึ่งตัวอย่างโค้ดเป็นดังนี้
 		  </p>
 		  <pre>
 			<code class="language-python">
 ##เลือกทุกแถวที่มี label = 1 ลงใน Pos_class
 Pos_class=df.loc[df['label'] ==1 ]
-แสดง Dataframe ที่ชื่อ "Pos_class"
+##แสดง Dataframe ที่ชื่อ "Pos_class"
 display(Pos_class)
 
 
 ##เลือกทุกแถวที่มี label = 0 ลงใน Neg_class
 Neg_class=df.loc[df['label'] ==0 ]
-แสดง Dataframe ที่ชื่อ "Neg_class"
+##แสดง Dataframe ที่ชื่อ "Neg_class"
 display(Neg_class)
 			</code>    
 		</pre>
@@ -263,10 +266,10 @@ display(Neg_class)
 		  </figure>
 
 		  <p>
-			จะเห็นว่า Negative class (3657 rows) มีมากกว่า Possitive class (1598 rows) ประมาณ 2.5 เท่า ดังนั้น จึงต้องมีการทำให้ข้อมูลสมดุลกันด้วยการ Augmention(การเติม)ข้อมูล ซึ่งจะแสดงใน section ถัดไป
+			จะเห็นว่า Possitive class (1598 rows) มีน้อยกว่า Negative class (3657 rows) ประมาณ 2.5 เท่า ซึ่งอาจทำวห้ให้เกิด...xxxx.... ดังนั้นจึงต้องมีการทำให้ข้อมูลสมดุลกันด้วยการ Augmentation (การเติมข้อมูล) ซึ่งจะแสดงใน section ถัดไป
 		  </p>
 	
-		  <p>			
+		  <!-- <p>			
 			และในส่วนของแบบฝึกหัดของนักศึกษาจะใช้ file id คือ '1RPTYy1D0Z9mDiYFy_ABHClOcLCZnv-zB' 
 			และต้องการคัดเลือกข้อมูลในส่วนของ 
 			column :i, e_i, z, e_z, y, e_y, W1, e_W1, W2, e_W2, J, e_J, H, e_H, K, e_K, label
@@ -276,7 +279,7 @@ display(Neg_class)
 			<a href="https://colab.research.google.com/drive/1I_rE06i8uGG29HsbAJqu_IFnml4QWoGN?usp=sharing">
 			  Colab
 			</a>
-		  </p>			
+		  </p>			 -->
 
 		  <section class="chapter-button">
 		    
