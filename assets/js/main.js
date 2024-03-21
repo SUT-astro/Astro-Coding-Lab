@@ -5,6 +5,28 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+
+function createFooter() {
+  const footerInfoSelector = document.querySelector("#footer > div.footer-content.position-relative > div > div > div.col-lg-4.col-md-6 > div");
+  const footerInfoTextString = `สาขาวิชาฟิสิกส์  สำนักวิชาวิทยาศาสตร์ <br>
+มหาวิทยาลัยเทคโนโลยีสุรนารี <br>
+111  ถนนมหาวิทยาลัย <br>
+ต. สุรนารี  อ. เมือง  จ. นครราชสีมา<br>
+30000<br>
+<strong>Phone:</strong> 044-223-000<br>
+<strong>Fax:</strong> 044-224-070<br>`;
+
+  const pFooterInfo = document.createElement("p");
+  pFooterInfo.innerHTML = footerInfoTextString;
+  
+  const h3FooterInfo = document.createElement("h3");
+  h3FooterInfo.appendChild(document.createTextNode("กลุ่มวิจัยดาราศาสตร์"));
+  
+  footerInfoSelector.textContent = "";
+  footerInfoSelector.appendChild(h3FooterInfo);
+  footerInfoSelector.appendChild(pFooterInfo);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   "use strict";
 
@@ -209,5 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('load', () => {
     aos_init();
   });
+
+  createFooter();
 
 });
