@@ -222,7 +222,7 @@ df_imp_eva = all_df.dropna()
 #ทำการตัด column ของ label class ออก เนื่องจากไม่มีความจำเป็นขั้นตอนนี้
 df_imp_tr = df_imp_tr.drop('label', axis = 1)
 df_imp_eva = df_imp_eva.drop('label', axis = 1)
-display(df_imp_eve)
+display(df_imp_eva)
 display(df_imp_tr)
 			</code>    
 		  </pre>
@@ -280,6 +280,10 @@ display(df_imp_tr)
 		  </p>
 		  <pre>
 			<code class="language-python">
+from sklearn.experimental import enable_iterative_imputer
+from sklearn.impute import IterativeImputer
+from sklearn.ensemble import ExtraTreesRegressor
+
 #ตั้งค่า Parameter ต่างๆใน IterativeImputer
 imp = IterativeImputer(estimator=ExtraTreesRegressor(n_estimators =150, max_features = 14, max_depth=15,
                                                                            min_samples_split =12), initial_strategy = 'median', max_iter =20)

@@ -347,10 +347,15 @@ display(all_neg)
 		  
 		  <pre>
 			<code class="language-python">
+#รวมข้อมูล negative class และ possitive class เข้าด้วยกัน
+all_df = pd.concat([all_neg, all_pos])
+display(all_df)
+
 # สร้าง color index 3 ตัว คือ "f1-f2", "f1-f3", "f2-f3" ลงใน data frame ของเรา
 all_df['f1-f2'] = all_df['feature_1']-all_df['feature_2']
 all_df['f1-f3'] = all_df['feature_1']-all_df['feature_3']
 all_df['f2-f3'] = all_df['feature_2']-all_df['feature_3']
+display(all_df)
 			</code>    
 		  </pre>
 		  <p>ผลที่ได้จะเป็นดังนี้</p>

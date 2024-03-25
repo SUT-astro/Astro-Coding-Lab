@@ -230,12 +230,13 @@ display(X)
       </p>
       <pre>
         <code class="language-python">
-  ## ตัด column ที่ coloum ที่ '0' '1' และ '2' ออก 
-  X = X.drop([X.columns[0], X.columns[1], X.columns[2]], axis=1)
-  display(X)
+from sklearn.model_selection import train_test_split
+## ตัด column ที่ coloum ที่ '0' '1' และ '2' ออก 
+X = X.drop([X.columns[0], X.columns[1], X.columns[2]], axis=1)
+display(X)
   
-  # แบ่งข้อมูลเป็น 2 ชุด ชุดหนึ่งสำหรับการฝึกฝึน machine learing(80 % จากทั้งหมด) และ อีกชุดหนึงสำหรับทดสอบและประเมิณผลของ machine learning (20% จากทั้งหมด)ด้วยคำสั่ง  'train_test_spli'
-  X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=50)
+# แบ่งข้อมูลเป็น 2 ชุด ชุดหนึ่งสำหรับการฝึกฝึน machine learing(80 % จากทั้งหมด) และ อีกชุดหนึงสำหรับทดสอบและประเมิณผลของ machine learning (20% จากทั้งหมด)ด้วยคำสั่ง  'train_test_spli'
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=50)
         </code>    
       </pre>
       <p>
@@ -266,6 +267,10 @@ display(X)
       </p>
       <pre>
         <code class="language-python">
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import GridSearchCV
+import matplotlib.pyplot as plt
+
 # กำหนดขอบเขตของ max_depth
 md =  np.arange(2, 31, 4, 'int')
 # กำหนดตัวแปร n_estimator
@@ -330,7 +335,10 @@ plt.show()
       </p>
       <pre>
         <code class="language-python">
-#ประเมิณผลขอ model ด้วยชุดทดสอบ
+from sklearn.metrics import r2_score
+from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
+
+#ประเมิณผลของ model ด้วยชุดทดสอบ(test set)
 y_predictions = grid.predict(X_test)
 #คำนวนค่าความแม่นยำด้วยคำสั่ง r2_score
 r2score = r2_score(y_test, y_predictions)
