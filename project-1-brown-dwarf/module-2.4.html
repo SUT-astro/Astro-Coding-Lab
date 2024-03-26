@@ -185,15 +185,15 @@
 			การจัดการกับข้อมูลที่หายไป (Missing value)
 		  </h2>
 		  <p>
-			จากข้อมูลของเราจะเห็นได้ว่า feature (ค่า Magnitue ของแต่ล่ะ Filter) ของดาวแต่ล่ะดวงนั้นมีบางส่วนที่ขาดหายไป (ค่า NaN) ดังรูปที่ 3 
-			ในการจัดการกับค่าที่หายไปนั้น เราจะใช้ 
-			<a href="https://scikit-learn.org/stable/modules/generated/sklearn.impute.IterativeImputer.html">
-			  Iterative Imputer
-			</a> 
-			จาก Scikit-learn ซึ่งใช้การทำนายค่า (Regression) ด้วย Machine learning ในการเติมค่าที่หายไป 
-			โดยใช้การคาดคะเนด้วยการวิเคราะห์จาก function หลายมิติที่ประกอบด้วยความสัมพันธ์ระหว่างข้อมูลของค่าในหลัก (column) อื่น
+			จากข้อมูลของเราจะเห็นได้ว่า feature (ค่า Magnitue ของแต่ล่ะ Filter) ของดาวแต่ล่ะดวงนั้นมีบางส่วนที่ขาดหายไป (ค่า NaN) ดังรูปที่ 1 
+		  </p>
+
+		  <p>
+			และหากพิจารณา Data fame 'all_df' ก่อนหน้านี้เราจะพบว่าค่าดัชนีสีและ feature ต่างๆ มี NaN value อยู่เช่นกัน ดังรูปที่ 2
 		  </p>
 		  <p>
+			ในการจัดการกับค่าที่หายไปนั้น เราจะใช้ <a href="https://scikit-learn.org/stable/modules/generated/sklearn.impute.IterativeImputer.html">Iterative Imputer</a> 
+			จาก Library 'Scikit-learn' ซึ่งใช้การทำนายค่า (Regression) ด้วย Machine learning ในการเติมค่าที่หายไป โดยใช้การคาดคะเนด้วยการวิเคราะห์จาก function หลายมิติที่ประกอบด้วยความสัมพันธ์ระหว่างข้อมูลของค่าในหลัก (column) อื่น
 		  </p>
 		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
 			<img src="project-brown-dwarf-img/brown-dwarf-data-missing.png" 
@@ -201,11 +201,20 @@
 			style="max-width: 100%; height: auto;">
 			<figcaption style="margin-top: 5px;">ข้อมูลของเราที่แสดงให้เห็นว่ามีค่าที่หายไป (NaN) อยู่ค่อนข้างมาก</figcaption>
 		  </figure>
+
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-brown-dwarf-img/All_df.png" 
+			alt="brown-dwarf-data-missing" 
+			style="max-width: 100%; height: auto;">
+			<figcaption style="margin-top: 5px;">ข้อมูล Data frame 'all_df'</figcaption>
+		  </figure>
+
+		  
 		  <p>
 			โดยตัวอย่างขั้นการ Imputation จะเป็นดังนี้
 		  </p>
 		  <p>
-			ขั้นแรก เราจะสร้างdata-frame 2 ตัวคือ
+			ขั้นแรก เราจะสร้าง Data frame 2 ตัวคือ
 			df_imp_tr สำหรับนำไปฝึกฝน(train) Imputing machince learning
 			df_imp_eva สำหรับนำไปประเมิณผล(evaluate)ของ Imputing machince learning
 			โดยการตัดข้อมูลในแถว(row) ที่มี'NaN' value
@@ -242,7 +251,7 @@ display(df_imp_tr)
 		  </p>
 		  <p>
 			เหตุผลคือ 'NaN' value ใน all_df ของเรานั้นเราไม่รู้ค่าแท้จริงของมัน ถ้าหากเราใช้มันในการฝึกฝน Iterative Imputer เราไม่อาจรู้ได้เลยว่า Iterative Imputer ที่ได้ออกมานั้นมีประสิทธิภาพเป็นอย่างไร
-			แต่ถ้าใช้ df_imp_tr ที่ถูกสุ่มให้ข้อมูลบางส่วนเป็น 'NaN' value ก่อนนำไปฝึกฝนนั้นและเมื่อผ่านการImputation(การทำนายค่า 'NaN' value เป็นค่าจริงๆ) แล้ว เราสามารถใช้ df_imp_eva ซึ่งเหมือนกัยทุกประการกับ df_imp_tr ก่อนที่ถูกสุ่มค่า ในการประเมิณผลได้ค่าที่ผ่านการทำนายได้
+			แต่ถ้าใช้ df_imp_tr ที่ถูกสุ่มให้ข้อมูลบางส่วนเป็น 'NaN' value ก่อนนำไปฝึกฝนนั้นและเมื่อผ่านการ Imputation (การทำนายค่า 'NaN' value เป็นค่าจริงๆ) แล้ว เราสามารถใช้ df_imp_eva ซึ่งเหมือนกัยทุกประการกับ df_imp_tr ก่อนที่ถูกสุ่มค่า ในการประเมิณผลได้ค่าที่ผ่านการทำนายได้
 		  </p>
 		  <p>
 			โดยตัวอย่างโค้ดจะเป็นดังนี้
@@ -276,6 +285,10 @@ display(df_imp_tr)
 			  </a>
 		  </p>
 		  <p>
+			และในขั้นตอนการประเมิณผลของ IterativeImputer ของเราจะใช้คำสั้ง <a href="https://numpy.org/doc/stable/reference/generated/numpy.isclose.html">'.isclose'</a>  ใน Library numpy 
+			โดยเป็นการเปรียบเทียบค่าที่ถูก Imputation กับค่าแท้จริงนั้นใกล้เคียงกันหรือไม่ จากนั้นใช้คำสั้ง <a href="https://numpy.org/doc/stable/reference/generated/numpy.mean.html">'.mean'</a> คำนวนความแม่นยำ
+		  </p>
+		  <p>
 			โดยตัวอย่างโค้ดจะเป็นดังนี้
 		  </p>
 		  <pre>
@@ -295,7 +308,6 @@ Im_data = pd.DataFrame(imp.transform(df_imp_tr))
 
 
 # คำนวนความแม่นยำของIterativeImputerของเรา
-#โดยเราจะใช้คำสั่ง np.isclose ในการเปรียบค่าที่ถูก Imputation กับค่าแท้จริงนั้นใกล้เคียงกันหรือหรือไม่ จากนั้น ใช้คำสั้ง mean คำนวนความแม่นยำ
 accuracy = np.mean(np.isclose(df_imp_tr[missing_mask], Im_data[missing_mask], equal_nan=True))
 print("ค่าความแม่ยำของการ Imputation :", accuracy*100)
 display(Im_data)
@@ -309,7 +321,7 @@ display(Im_data)
 			style="max-width: 100%; height: auto;">
 		  </figure>
 		  <p>
-			ซึ่งเราจะเห็นว่าค่าความแม่นยำในการ Imputation อยูที่ ~78% และค่า 'NaN' value ใน Data frame นั้นถูกทำให้เป็นค่าตัวเลขจริงๆทั้งหมดแล้วหากเปรียบเทียบกับ data frame ในขั้นตอนก่อนหน้า 
+			ซึ่งเราจะเห็นว่าค่าความแม่นยำในการ Imputation อยูที่ ~78% และค่า 'NaN' value ใน Data frame นั้นถูกทำให้เป็นค่าตัวเลขจริงๆทั้งหมดแล้วหากเปรียบเทียบกับ Data frame ในขั้นตอนก่อนหน้า 
 		  </p>
 		  <p>section ถัดไป จะเป็นการจำแนกดาวเคระน้ะตาล ด้วย Random forest regression</p>
 		  <!-- <p>
