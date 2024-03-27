@@ -102,7 +102,7 @@
 		  
 		  <p>
 			Gaussian-distributed noise สามารถเขียนในรูปฟังก์ชันการแจกแจงความน่าจะเป็น (Probability Density Function, PDF) 
-			ที่มีการกระจายตัวแบบ Gaussian (หรือการแจกแจงปรกติ: Normal Distribution) ตามสมการ
+			ที่มีการกระจายตัวแบบ Gaussian (หรือการแจกแจงปรกติ: Normal distribution) ตามสมการ
 		  </p>
 		  <span class="math-equation">
 		  	$$
@@ -127,16 +127,16 @@
 			</figcaption>
 		  </figure>
 		  <p>
-			การสร้าง Gaussian-distributed noise นั้นสามารถใช้คำสั่ง [random.normal (loc=0.0, scale=1.0, size=None)]
+			การสร้างหรือจำลอง Gaussian-distributed noise นั้นสามารถใช้คำสั่ง [random.normal (loc=0.0, scale=1.0, size=None)]
 			<a href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.normal.html">
 			  numpy random.normal
 			</a> 
-			ใน Library Numpy โดยคำสั่งนั้นจะรับค่า parameter 3 ตัว คือ loc , scale และ size โดยที่ 
-			loc คือ ค่าเฉลี่ย (mean) หรือ ก็คือจุดกึ่งกลางของการกระจายตัวของ noise ตาม Gaussian distribution
-			scale คือ ส่วนเบี่ยงเบนมาตรฐาน (\(\sigma\)) หรือก็คือความกว้างของการกระจายตัวของ noise
-			size คือ ขนาดและรูปแบบของ array ที่ output ออกมา 
-			เมื่อเราได้ noise distribution มาแล้วก็ทำการใส่ 'noise' ลงไปในข้อมูลจริงๆ 
-			ซึ่งเราอาจจะเขียนเป็น function ในภาษา Python ได้ดังนี้ 
+			ใน Numpy Library คำสั่งนี้จะรับค่าตัวแปร (parameter) 3 ตัว คือ loc, scale และ size โดยที่ 
+			loc คือ ค่าเฉลี่ย (mean) หรือจุดกึ่งกลางของการกระจายตัวของ noise ตาม Gaussian distribution
+			และ scale คือ ส่วนเบี่ยงเบนมาตรฐาน (\(\sigma\)) ซึ่งสัมพันธ์กับความกว้างของการกระจายตัวของ noise
+			ส่วนตัวแปร size คือ ขนาดและรูปแบบของ array ที่ output ออกมา 
+<!-- 			เมื่อทำการจำลอง noise มาแล้ว ก็สามารถทำการใส่ 'noise' ลงไปในข้อมูล ดังแสดงในโค้ด:
+			
 		  </p>
 		  <pre>
 			<code class="language-python">
