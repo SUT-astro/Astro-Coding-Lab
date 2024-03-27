@@ -182,9 +182,9 @@ def add_gaussian_noise(data, mean, std):
 			</code>    
 		  </pre>
 		  <p>
-		         ในการจำลอง Gaussian-distributed noise สำหรับแต่ละ feature ของข้อมูลแต่ละตัวนั้น 
-			  เราจะเริ่มด้วยการกำหนดค่าตัวแปร โดยใช้ค่าเฉลี่ย (mean) ของ error ของแต่ล่ะ feature เป็นค่า \(\mu\) 
-			และใช้ส่วนเบี่ยงเบนมาตราฐานของค่า error ของแต่ล่ะ feature เป็นค่า \(\sigma\) เพื่อจำลอง Gaussian-distributed noise ของแต่ละ feature 
+		         ในการจำลอง Gaussian-distributed noise สำหรับแต่ละ feature นั้น 
+			มักจะกำหนดค่าตัวแปรโดยใช้ค่าเฉลี่ย (mean) ของ error ของแต่ล่ะ feature เป็นค่า \(\mu\) 
+			และใช้ส่วนเบี่ยงเบนมาตราฐานของค่า error ของแต่ล่ะ feature เป็นค่า \(\sigma\) ของ Gaussian function
 			  
 	
 			
@@ -195,7 +195,9 @@ def add_gaussian_noise(data, mean, std):
 			</a> -->
 		  </p>
 	      <p>
-			ตัวอย่างการเติมข้อมูล Possitive class ด้วย Gaussian-distributed noise จะเป็นดังนี้
+			
+		      เราจะเริ่มทำการแยกเก็บ features ไว้ใน data frame ที่ชื่อ aug_pos และแยกเก็บค่าความคลาดเคลื่อนไว้ใน data frame ที่ชื่อ pos_er 
+		      จากนั้นคำนวณ \mu\ และ \sigma\ เพื่อใช้จำลอง Gaussian-distributed noise สำหรับแต่ละ feature และทำการเติมข้อมูล Possitive class ด้วย noise ที่ได้ ดังแสดงในตัวอย่างโค้ด:
 		  </p>
 		  <pre>
 			<code class="language-python">
@@ -225,9 +227,9 @@ display(aug_pos)
 			style="max-width: 100%; height: auto;">
 		  </figure>
 
-		  <p>ขั้นตอนถัดไปจะเป็นการรวม Data frame ของ Positve class ที่ถูกใส่ noise และ ข้อมูลดังเดิมเข้าด้วยกัน </p>
 		  <p>
-			โดยตัวอย่างโค้ดจะเป็นดังนี้
+ 			  ข้อมูลในตารางด้านบนจำนวน 1598 ข้อมูล ซึ่งเกิดจากการเอาข้อมูลเดิมมาใส่ Gaussian-distributed noise จะเปรียบเสมือนข้อมูล Positve class ชุดใหม่
+			  ซึ่งเราสามารถทำการรวมข้อมูลชุดนี้เข้ากับข้อมูล Positve class เดิม ดังแสดงในโค้ด:
 		  </p>
 		  <pre>
 			<code class="language-python">
