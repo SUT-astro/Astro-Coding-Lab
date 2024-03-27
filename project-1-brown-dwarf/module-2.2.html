@@ -122,11 +122,16 @@ display(data)
 			style="max-width: 100%; height: auto;">
 		  </figure>
 		  <p>
-			เมื่อเราได้ข้อมูลมาแล้ว เราจะคัดเลือก (Extract) เฉพาะข้อมูลที่เราต้องการใช้ โดยการเรียกใช้ข้อมูลที่ต้องการประกอบด้วย 4 (feature feature_1,  feature_2, , feature_3 ,)
-			ค่าความคลาดเคลื่อนของทั้ง 4 feature (e_feature_1, e_feature_2, e_feature_3 )  และป้ายบอกชนิดของวัตถุ (label) โดยเราจะใช้ Random forest ในการแยกประเภท (classify) ตาม label ในหัวข้อถัดไป  
+			จะเห็นได้ว่าข้อมูลดังกล่าวมี 4 features (feature_1,  feature_2, feature_3, feature_4) 	
+			  มีค่าความคลาดเคลื่อนของทั้ง 4 features (e_feature_1, e_feature_2, e_feature_3, e_feature_4) 
+			  และป้ายบอกชนิดของวัตถุ (label) ซึ่งระบุไว้ในคอลัมบ์สุดท้าย โดยเราจะลองใช้ Random forest แยกประเภท (classify) ของข้อมูลตาม label ในหัวข้อถัดไป 
+			  
+		
 		  </p>
 		  <p>
-			ซึ่งตัวอย่างสำหรับการดึงข้อมูลเป็นดังนี้
+				  อย่างไรก็ตามเราอาจไม่จำเป็นต้องใช้ทุก features ในการจำแนกชนิดหรือประเภทของข้อมูล
+		  สมมติให้เราต้องการใช้เฉพาะ feature_1, feature_2, และ feature_3 รวมถึงค่าความคลาดเคลื่อนของแต่ละ feature 
+			  เราสามารถคัดเลือก (Extract) เฉพาะข้อมูลที่ต้องการใช้ ดังตัวอย่างโค้ดด้านล่าง
 		  </p>
 		  <pre>
 			<code class="language-python">
