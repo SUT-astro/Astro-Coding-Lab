@@ -182,15 +182,20 @@ def add_gaussian_noise(data, mean, std):
 			</code>    
 		  </pre>
 		  <p>
-			โดยขั้นตอนการใส่ Gaussian-distributed noise ลงนแต่ละ feature นั้นจะใช้ค่าเฉลี่ย (mean) ของ error แต่ล่ะ feature เป็นค่า \(\mu\) 
-			และใช้ส่วนเบี่ยงเบนมาตราฐานของค่า error แต่ล่ะ feature เป็นค่า \(\sigma\) ใน Gaussian distribution 
-			ตัวอย่างโด้ดที่แสดงรายละเอียดขั้นตอนการเติมข้อมูล (Augmentation) นั้นสามารถดูได้ที่นี่: 
-			<!-- <a href="https://colab.research.google.com/drive/1Q9OxwK3cMtHcSgPRLzuMExS4RffxWXpL?usp=drive_link">
+		         ในการจำลอง Gaussian-distributed noise สำหรับแต่ละ feature ของข้อมูลแต่ละตัวนั้น 
+			  เราจะเริ่มด้วยการกำหนดค่าตัวแปร โดยใช้ค่าเฉลี่ย (mean) ของ error ของแต่ล่ะ feature เป็นค่า \(\mu\) 
+			และใช้ส่วนเบี่ยงเบนมาตราฐานของค่า error ของแต่ล่ะ feature เป็นค่า \(\sigma\) เพื่อจำลอง Gaussian-distributed noise ของแต่ละ feature 
+			  
+	
+			
+			  <!--
+			  ตัวอย่างโด้ดที่แสดงรายละเอียดขั้นตอนการเติมข้อมูล (Augmentation) นั้นสามารถดูได้ที่นี่: 
+			 <a href="https://colab.research.google.com/drive/1Q9OxwK3cMtHcSgPRLzuMExS4RffxWXpL?usp=drive_link">
 			  Colab
 			</a> -->
 		  </p>
 	      <p>
-			โดยตัวอย่างการเติมข้อมูล Possitive class ด้วย Gaussian-distributed noise จะเป็นดังนี้
+			ตัวอย่างการเติมข้อมูล Possitive class ด้วย Gaussian-distributed noise จะเป็นดังนี้
 		  </p>
 		  <pre>
 			<code class="language-python">
