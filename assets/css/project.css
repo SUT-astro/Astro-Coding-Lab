@@ -142,14 +142,14 @@
 
   & figure figcaption::before {
 	counter-increment: fig-count; /* Increment the value of section counter by 1 */
-	content: " รูป " counter(fig-count) ": "; /* Display the word 'Figure: ', the value of
+	content: "Figure " counter(fig-count) ": "; /* Display the word 'Figure: ', the value of
 												section counter, and a space before the content
 												of each figcaption */
   }
 
   & table caption::before {
 	counter-increment: table-count;
-	content: " ตาราง " counter(table-count) ": ";
+	content: "Table " counter(table-count) ": ";
   }
 
 }
@@ -211,7 +211,7 @@
   
   & a {
 	font-size: 1.7rem;
-	letter-spacing: 2rem;
+	margin: 1rem;
 	}
 
   & button {
