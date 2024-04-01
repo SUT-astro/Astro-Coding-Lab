@@ -67,7 +67,6 @@ function chapterSectionButton() {
     if (i === 1) {
       linkButton.setAttribute("href", "objective.html");
     } else if (i === 0) {
-      console.log(indexModule);
       if (indexModule === 0) {
         linkButton.setAttribute("href", "");
       } else {
