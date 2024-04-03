@@ -115,22 +115,17 @@
 			จาก Library 'Scikit-learn' ในการเติมค่าที่หายไป วิธีการนี้อาศัยการทำนายค่าด้วยการวิเคราะห์แบบถดถอย (Regression) ด้วย Machine learning 
 			   โดยวิเคราะห์จาก function หลายมิติที่ประกอบด้วยความสัมพันธ์ระหว่างข้อมูลของค่าในหลัก (column) อื่นๆประกอบการทำนาย
 		  </p>
+	
 		  <p>
-			ตัวอย่างขั้นการ Imputation จะเป็นดังนี้
+			ขั้นแรกของการทำ Iterative Imputer จะเริ่มจากการสร้าง Data frame 2 ตัว คือ
+			df_imp_tr และ df_imp_eva สำหรับนำไปฝึกฝน (train) และประเมินผล (evaluate) แบบจำลองการเรียนรู้ของเครื่อง โดยอิงจากข้อมูล all_df เดิม
+			และตัดข้อมูลแถว (row) ที่เป็น 'NaN' ออก
+			
 		  </p>
-		  <p>
-			ขั้นแรก เราจะสร้าง Data frame 2 ตัวคือ
-			df_imp_tr สำหรับนำไปฝึกฝน(train) Imputing machince learning
-			df_imp_eva สำหรับนำไปประเมิณผล(evaluate)ของ Imputing machince learning
-			โดยการตัดข้อมูลในแถว(row) ที่มี'NaN' value
-			ดังนั้นเราจะมี data-frame df_imp_tr และ df_imp_eva ที่เหมือนกันทุกประการ
-		  </p>
-		  <p>
-			โดยตัวอย่างโค้ดจะเป็นดังนี้
-		  </p>
+	
 		  <pre>
 			<code class="language-python">
-#ทำการกำจัด ข้อมุลในแถว(row)ที่มี "NaN" ออกไปทั้งหมด ด้วยคำสั่ง '.dropna()'
+#ทำการกำจัด ข้อมูลในแถว(row)ที่มี "NaN" ออกไปทั้งหมด ด้วยคำสั่ง '.dropna()'
 df_imp_tr = all_df.dropna()
 df_imp_eva = all_df.dropna()
 #ทำการตัด column ของ label class ออก เนื่องจากไม่มีความจำเป็นขั้นตอนนี้
@@ -141,7 +136,7 @@ display(df_imp_tr)
 			</code>    
 		  </pre>
 		  <p>
-			ผลลัพธ์จะเป็นดังนี้
+			เมื่อให้แสดงผลข้อมูล ทั้ง df_imp_tr และ df_imp_eva ยังคงมีข้อมูลที่เหมือนกันทุกประการ ดังนี้
 		  </p>
 		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
 			<img src="project-brown-dwarf-img/out put-9.png" 
