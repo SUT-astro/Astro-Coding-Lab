@@ -91,16 +91,11 @@
 			การจัดการกับข้อมูลที่หายไป (Missing value)
 		  </h2>
 		  <p>
-			จากข้อมูลของเราจะเห็นได้ว่า feature (ค่า Magnitue ของแต่ล่ะ Filter) ของดาวแต่ล่ะดวงนั้นมีบางส่วนที่ขาดหายไป (ค่า NaN) ดังรูปที่ 1 
+			จากข้อมูลจะเห็นได้ว่าค่า Magnitue ของแต่ล่ะ Filter ของดาวบางส่วนขาดหายไป (ค่า NaN) ดังรูปที่ 1 
+			  และหากพิจารณา Data fame 'all_df' ก่อนหน้านี้ จะพบว่าค่าดัชนีสีมีค่าเป็น NaN อยู่เช่นกัน ดังรูปที่ 2
+		
 		  </p>
-
-		  <p>
-			และหากพิจารณา Data fame 'all_df' ก่อนหน้านี้เราจะพบว่าค่าดัชนีสีและ feature ต่างๆ มี NaN value อยู่เช่นกัน ดังรูปที่ 2
-		  </p>
-		  <p>
-			ในการจัดการกับค่าที่หายไปนั้น เราจะใช้ <a href="https://scikit-learn.org/stable/modules/generated/sklearn.impute.IterativeImputer.html">Iterative Imputer</a> 
-			จาก Library 'Scikit-learn' ซึ่งใช้การทำนายค่า (Regression) ด้วย Machine learning ในการเติมค่าที่หายไป โดยใช้การคาดคะเนด้วยการวิเคราะห์จาก function หลายมิติที่ประกอบด้วยความสัมพันธ์ระหว่างข้อมูลของค่าในหลัก (column) อื่น
-		  </p>
+		 
 		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
 			<img src="project-brown-dwarf-img/brown-dwarf-data-missing.png" 
 			alt="brown-dwarf-data-missing" 
@@ -115,9 +110,13 @@
 			<figcaption style="margin-top: 5px;">ข้อมูล Data frame 'all_df'</figcaption>
 		  </figure>
 
-		  
+		   <p>
+			ในการจัดการกับค่าที่หายไป เราจะใช้ <a href="https://scikit-learn.org/stable/modules/generated/sklearn.impute.IterativeImputer.html">Iterative Imputer</a> 
+			จาก Library 'Scikit-learn' ในการเติมค่าที่หายไป วิธีการนี้อาศัยการทำนายค่าด้วยการวิเคราะห์แบบถดถอย (Regression) ด้วย Machine learning 
+			   โดยวิเคราะห์จาก function หลายมิติที่ประกอบด้วยความสัมพันธ์ระหว่างข้อมูลของค่าในหลัก (column) อื่นๆประกอบการทำนาย
+		  </p>
 		  <p>
-			โดยตัวอย่างขั้นการ Imputation จะเป็นดังนี้
+			ตัวอย่างขั้นการ Imputation จะเป็นดังนี้
 		  </p>
 		  <p>
 			ขั้นแรก เราจะสร้าง Data frame 2 ตัวคือ
