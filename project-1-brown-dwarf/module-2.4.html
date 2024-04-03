@@ -175,20 +175,21 @@ display(df_imp_tr)
 			style="max-width: 100%; height: auto;">
 		  </figure>
 		  <p>
-			ต่อไปเป็นขั้นตอนการฝึกฝน IterativeImputer โดย เราจะกำหนดให้ IterativeImputer ของเรานั้น ใช้ Extra Trees Regressor 
-			ด้วย hyperparameter คือ n_estimators = 150, max_features = 14, max_depth=15, 
+			ต่อไปเป็นขั้นตอนการฝึกฝนและสร้างแบบจำลอง Iterative Imputer โดยเราจะใช้ Extra Trees Regressor เป็น estimator หรือตัวทำนายผลของเรา
+			และกำหนดค่าตัวแปร (parameter) ที่สำคัญใน Extra Trees Regressor เป็น n_estimators = 150, max_features = 14, max_depth=15, 
 			min_samples_split =12, initial_strategy = 'median'
-			และมีการวนซ้ำใน IterativeImputer มากที่สุด 20 ครั้ง (max_iter = 20) ในการใช้งานงานในจริงๆ parameter เหล่านี้ควรจะต้องมีการ fine-ture เพื่อให้ได้ IterativeImputer ที่ดีที่สุด แต่เนื่องจากเราทำแบบฝึกหัดตามขั้นตอนใน <a href="https://doi.org/10.48550/arXiv.2308.03045"> Avdeeva 2023 </a> ดังนั้นเราจะใช้ parameter ต่างๆ ตามบทความนี้ไปเลย
-			โดยความหมายของ parameter ต่างๆ สามารถอ่านเพิ่มเติมได้ใน 			
+			และให้มีการวนซ้ำใน Iterative Imputer มากที่สุด 20 ครั้ง (max_iter = 20) ในการใช้งานจริงตัวแปรเหล่านี้ควรจะต้องมีการ fine-tune เพื่อให้ได้แบบจำลองที่ดีที่สุด 
+			  แต่เนื่องจากเราจะทำแบบฝึกหัดต่อไปตาม <a href="https://doi.org/10.48550/arXiv.2308.03045"> Avdeeva 2023 </a> เราจะเลือกใช้ตัวแปรต่างๆ ตามบทความนี้ไปเลย (ตามค่าด้านบน)
+			ความหมายของ parameter ต่างๆ สามารถอ่านเพิ่มเติมได้ใน 			
 			<a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesRegressor.html">
 			  Extra Trees Regressor
-			</a> และตัวอย่างการ fine-ture hyperparameter สามารถอ่านเพิ่มเติมได้ใน <a href="https://machinelearningmastery.com/iterative-imputation-for-missing-values-in-machine-learning/">
+			</a> และตัวอย่างการ fine-ture ตัวแปรสามารถอ่านเพิ่มเติมได้ใน <a href="https://machinelearningmastery.com/iterative-imputation-for-missing-values-in-machine-learning/">
 				Iterative Imputation
 			  </a>
 		  </p>
 		  <p>
-			และในขั้นตอนการประเมิณผลของ IterativeImputer ของเราจะใช้คำสั้ง <a href="https://numpy.org/doc/stable/reference/generated/numpy.isclose.html">'.isclose'</a>  ใน Library numpy 
-			โดยเป็นการเปรียบเทียบค่าที่ถูก Imputation กับค่าแท้จริงนั้นใกล้เคียงกันหรือไม่ จากนั้นใช้คำสั้ง <a href="https://numpy.org/doc/stable/reference/generated/numpy.mean.html">'.mean'</a> คำนวนความแม่นยำ
+			ในขั้นตอนการประเมิณผลแบบจำลอง Iterative Imputer เราจะใช้คำสั้ง <a href="https://numpy.org/doc/stable/reference/generated/numpy.isclose.html">'.isclose'</a>  ใน Library numpy 
+			โดยเป็นการเปรียบเทียบค่าที่ถูก Imputation ใน df_imp_tr กับค่าแท้จริงใน df_imp_eva ว่าใกล้เคียงกันมากน้อยแค่ไหน จากนั้นใช้คำสั้ง <a href="https://numpy.org/doc/stable/reference/generated/numpy.mean.html">'.mean'</a> คำนวนความแม่นยำเฉลี่ย
 		  </p>
 		  <p>
 			โดยตัวอย่างโค้ดจะเป็นดังนี้
@@ -216,16 +217,17 @@ display(Im_data)
 			</code>    
 		  </pre>
 		  <p>
-			ผลลัพธ์จะเป็นดังนี้
+			ผลลัพธ์ที่ได้เป็นดังนี้
 		  </p>
 		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
 			<img src="project-brown-dwarf-img/out put-11.png" 
 			style="max-width: 100%; height: auto;">
 		  </figure>
 		  <p>
-			ซึ่งเราจะเห็นว่าค่าความแม่นยำในการ Imputation อยูที่ ~78% และค่า 'NaN' value ใน Data frame นั้นถูกทำให้เป็นค่าตัวเลขจริงๆทั้งหมดแล้วหากเปรียบเทียบกับ Data frame ในขั้นตอนก่อนหน้า 
+			จะเห็นว่าค่าความแม่นยำในการ Imputation (เปลี่ยนค่า 'NaN' เป็นตัวเลขจริง) อยูที่ ~78% และค่า 'NaN' ใน Data frame นั้นถูกทำให้เป็นค่าตัวเลขจริงทั้งหมดแล้ว 
+			  โดยเราเรียก Data frame ใหม่หลังทำ Imputation ซึ่งข้อมูลไม่มีค่า 'NaN' แล้วว่า Im_data
 		  </p>
-		  <p>section ถัดไป จะเป็นการจำแนกดาวเคระน้ะตาล ด้วย Random forest regression</p>
+		  
 		  <!-- <p>
 			ซึ่งตัวอย่างกระบวนการ Iterative imputation นั้นอยู่ในส่วนล่างของตัวอย่างที่แสดงใน:
 			<a href="https://colab.research.google.com/drive/1b_47HgI_5CCKrNUrS8iSOtda_jBwSzX8?usp=sharing">
