@@ -75,11 +75,17 @@ class project_html_scraper(object):
         file_open.write('const moduleNameObject = %s;'%(self.module_dict))
         file_open.close()
 
-# choose target project
-project_3_scraper = project_html_scraper(target_project = all_project_folder[2])
+def run_scraper(i = 0):
+    i = int(i)
+    # choose target project
+    project_scraper = project_html_scraper(target_project = all_project_folder[i])
 
-# search all <h1> and <h2> content in .html file
-project_3_header = project_3_scraper.get_all_h_name()
+    # search all <h1> and <h2> content in .html file
+    project_header = project_scraper.get_all_h_name()
 
-# write all <h1> and <h2> content in 'module-list.js' file
-project_3_scraper.write_js_file()
+    # write all <h1> and <h2> content in 'module-list.js' file
+    project_scraper.write_js_file()
+
+print('project 1: Brown dwarf \nproject 2: Time series \nproject 3: ODR')
+select_project = int(input('Select project (1, 2, or 3): '))
+run_scraper(i = select_project - 1)
