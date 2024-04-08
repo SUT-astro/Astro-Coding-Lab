@@ -218,10 +218,10 @@ plt.show()
 
       <p>
         ขั้นตอนต่อไปจะแสดงตัวอย่างการหาค่าเฉลี่ย ค่าความแปรปรวน ค่าAutocovariance และการแปลง fourier จากโดมเมนเวลา(time domain)ไปสู่โดเมนความถี่(freqency domain) ของกราฟแสงที่สร้างด้วยโมเดล AR(2)
-        โดยโดเมนความถี่จะแสดงในรูปแบบของ Power Spectrum Density (PSD) โดยจะใช้ฟังก์ชัน '' ไปก่อน โดยข้อมูลและคณิตศาสตร์ของฟังก์ชันจะถูกอธิบายใน section ที่ 3
+        โดยโดเมนความถี่จะแสดงในรูปแบบของ Power Spectrum Density (PSD) โดยจะใช้ฟังก์ชัน 'time_series_to_psd' ไปก่อน โดยข้อมูลและคณิตศาสตร์ของฟังก์ชันจะถูกอธิบายใน section ที่ 3
       </p>
       <p>
-        ตัวอย่างการหาค่าเฉลี่ย ค่าความแปรปรวน ค่าAutocovariance จะเป็นดังนี้
+        ตัวอย่างการหาค่าเฉลี่ย ค่าความแปรปรวน ค่า Autocovariance จะเป็นดังนี้
       </p>
       <pre>
         <code class="language-python">
@@ -235,8 +235,6 @@ print("Mean is % s " %(mean_of_light_curve))
 variance_of_light_curve = variance(light_curve)
 #แสดงค่าความแปรปรวน 
 print("Variance is % s " %(variance_of_light_curve))
-#Autocovariance....
-......
         </code>
       </pre>
       <p>
@@ -246,9 +244,34 @@ print("Variance is % s " %(variance_of_light_curve))
         <img src="project-Time-series-img/out put-3.png" 
         style="max-width: 100%; height: auto;">
       </figure>
+      
+      <p>
+        สำหรับการหาค่า Autocovariance เราจะใช้ใช้คำสั้ง 'acovf' ใน library 'statsmodels' ในการคำนวน
+      </p>
+
+      <pre>
+        <code class="language-python">
+from statsmodels.tsa.stattools import acovf
+#เรียกใช้คำสั้ง 'acovf' ใน library 'statsmodels' เพื่อคำนวนค่า auto_covariances ของอนุกรมเวลา
+auto_covariances=acovf(C_r)
+
+#กราฟ Autocovariances
+plt.plot(auto_covariances)
+plt.title('Autocovariances of AR(2) Model')
+plt.xlabel('lag')
+plt.ylabel('Autocovariance')
+        </code>
+      </pre>
+      <p>
+        โดยผลลัพธ์จะเป็นดังนี้
+      </p>
+      <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+        <img src="project-Time-series-img/out put-3.2.png" 
+        style="max-width: 100%; height: auto;">
+      </figure>
 
       <p>
-        ตัวอย่างการการแปลง fourier จากกราฟแสงเป็น PSD
+        ต่อไปเป็นการแสดงตัวอย่างการการแปลง fourier จากกราฟแสงเป็น PSD
       </p>
       <pre>
         <code class="language-python">

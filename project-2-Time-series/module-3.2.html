@@ -116,35 +116,34 @@
 			  <code class="language-python">
 import numpy as np
 
-
 def time_series_to_psd(t, h):
   """
-  This function calculates the power spectral density (PSD) of a time series signal.
+  ฟังก์ชันการคำนวน the power spectral density (PSD) ของอนุกรมเวลา
 
-  Args:
-      t: The time array corresponding to the signal (numpy array).
-      h: The time series signal as a numpy array.
+  Parameters:
+      t: เวลาใดๆ ของอนุกรมเวลา (numpy array)
+      h: อนุกรมเวลาที่ต้องการคำนวน the power spectral density  (numpy array)
 
-  Returns:
-      f: The frequencies corresponding to the PSD values (Hz).
-      psd: The power spectral density values calculated at each frequency.
+  ผลลัพธ์:
+      f: ความถี่ที่สอดคล้องกับ PSD 
+      psd: PSD ณ ที่ความถี่ใดๆ
   """
-  N = len(h)  # Number of samples in the time series
-  dt = np.diff(t)  # Calculate variable sampling time between consecutive samples
+  N = len(h)  # ความยาวของอนุกรมเวลา
+  dt = np.diff(t)  # คำนวณค่าความต่างของเวลาในอนุกรมเวลา
 
-  # Check if sampling time is constant
-  if np.allclose(dt, dt[0], atol=1e-10):  # Tolerance for floating-point precision
-      fs = 1 / dt[0]  # Calculate constant sampling frequency
+  # ตรวจสอบว่าค่าความต่างของเวลาในอนุกรมเวลาเท่ากันทุกจัดหรือไม่
+  if np.allclose(dt, dt[0], atol=1e-10):  # ตรวจสอบว่าค่าความต่างของเวลา หากค่าความต่างระหว่าง เวลา ณ จุดเวลาใดๆ กับ 'dt' มากกว่า 10^-10 จะไม่สามารถใช้งานฟังก์ชันนี้ได้
+      fs = 1 / dt[0]  # ช่วงความถี่
   else:
       raise ValueError("Unequal sampling times are not supported.")
 
-  # Create frequency domain vector
-  f = np.fft.fftfreq(N, d=t[1] - t[0])[:int(N / 2 + 1)]  # Adjust for variable dt
+  # สร้างเวกเตอร์โดเมนความถี่
+  f = np.fft.fftfreq(N, d=t[1] - t[0])[:int(N / 2 + 1)]  # ปรับสำหรับตัวแปร dt ใหม่
 
-  # Calculate the Fourier transform (single-sided)
+  # การแปลง Fourier
   H = np.fft.fft(h)[:int(N / 2 + 1)]
 
-  # Calculate the magnitude squared
+  # คำนวนกำลัง(power) ของโดเมนความถี่
   psd = 2 * np.abs(H) ** 2
   # # Calculate the magnitude squared and normalize
   # psd = 2 * np.abs(H) ** 2 / (N * np.sum(dt))
