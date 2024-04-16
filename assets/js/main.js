@@ -233,5 +233,73 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   createFooter();
+  
+  function createLink(linkText, linkDestination) {
+    const link = document.createElement("a");
+    link.setAttribute("href", linkDestination);
+    link.appendChild(document.createTextNode(linkText));
+    return link;
+  }
+
+  function createHeader() {
+    const navbarSelector = document.querySelector("#navbar");
+    navbarSelector.textContent = "";
+    
+    const projectList = [
+    "project-1-brown-dwarf", 
+    "project-2-Time-series", 
+    "project-3-AGN-ODR"];
+    
+    const capitalProjects = projectList.map((i) => {
+      // Split the string by hyphens
+      const words = i.split('-');
+      // Capitalize the first letter of each word and join them with spaces
+      const capitalWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+      return capitalWords;
+    });
+    
+    const modulePath = window.location.pathname;
+    const modulePage = modulePath.split("/").pop();
+ 
+    const ulNav = document.createElement("ul");
+
+    const homeDes = modulePage.slice(0, 5) === "index" ? "#" : "../index.html";
+    const projectDes = modulePage.slice(0, 5) === "index" ? "#projects" : "../index.html#projects";
+    
+    const liHome = document.createElement("li");
+    const aHome = createLink("Home", homeDes);
+    liHome.appendChild(aHome);
+    
+    const liProject = document.createElement("li");
+    const aProject = createLink("Projects", projectDes);
+    liProject.appendChild(aProject);
+    liProject.classList.add("dropdown");
+    
+    const aElement = modulePage.slice(0, 5) === "index" ? aHome : aProject;
+    aElement.classList.add("active");
+    
+    const fragment = document.createDocumentFragment();
+    
+    const ulProject = document.createElement("ul");
+ 
+    const baseURL = modulePage.slice(0, 5) === "index" ? "" : "../";
+
+    for (let i = 0; i < projectList.length; i++) {
+      const linkURL = `${baseURL}${projectList[i]}/objective.html`;
+      const liSubProject = document.createElement("li");
+      const aSubProject = createLink(capitalProjects[i], linkURL);
+      liSubProject.appendChild(aSubProject);
+
+      fragment.appendChild(liSubProject);
+    }
+    ulProject.appendChild(fragment);
+    liProject.appendChild(ulProject);
+    
+    ulNav.appendChild(liHome);
+    ulNav.appendChild(liProject);
+    navbarSelector.appendChild(ulNav);
+  }
+
+  createHeader();
 
 });
