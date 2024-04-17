@@ -177,8 +177,6 @@ print('Slope is ', slope, ', error = ', slope_err)
 # Find a linear equation from predicted result
 x_predict = np.linspace(0, t[-1], 1000)
 y_predict = function_linear(output.beta, x_predict)
-y_min = function_linear(B = [constant + constant_err, slope - slope_err], x = x_predict)
-y_max = function_linear(B = [constant - constant_err, slope + slope_err], x = x_predict)
 
 # Graph plotting
 plt.rcParams.update({'font.size': 14})
@@ -189,14 +187,12 @@ ax.plot(t, v, 'ok', markersize = 8, label = 'Data')
 ax.errorbar(t, v, xerr = t_err, yerr = v_err, fmt = 'none', ecolor = 'orange', capsize = 3.0, label = 'Error of Data')
 
 ax.plot(x_predict, y_predict, '-b', label = 'Prediction by ODR')
-ax.plot(x_predict, y_min, '--g')
-ax.plot(x_predict, y_max, '--r')
 
 ax.set_title('Figure of velocity at different time')
 ax.set_xlabel('t (s)')
 ax.set_ylabel('v (cm/s)')
 ax.text(0.35, 0.2, r'Slope = {0:.1f} $\pm$ {1:.1f} cm/s$^2$'.format(slope, slope_err), transform=ax.transAxes)
-ax.text(0.2, 0.1, r'Intercept = {0:.2f} $\pm$ {1:.2f} cm/s'.format(constant, constant_err), transform=ax.transAxes)
+ax.text(0.2, 0.1, r'Constant = {0:.2f} $\pm$ {1:.2f} cm/s'.format(constant, constant_err), transform=ax.transAxes)
 ax.legend(loc = 'best')
 ax.grid()
 plt.show()
@@ -204,7 +200,35 @@ plt.show()
             </pre>               
             
           </ol>
-        </p>        
+        </p>    
+        <p>
+          เราจะเห็นได้ว่า ขั้นตอนที่ 4 ถึงขั้นตอนที่ 7 นั้นสามารถนำมารวมกันเป็นฟังชั่นเดียวกันได้ 
+          เพื่อความสะดวกในการใช้งาน fit ข้อมูลด้วย ODR เราสามารถรวมขั้นตอนเหล่านี้เข้าด้วยกันได้ดังนี้
+          
+        <pre>
+          <code>
+def ODR_linear_fit(x_data, x_error, y_data, y_error):
+# Define Model and Data
+    linear_model = Model(function_linear)
+    data = RealData(x = x_data, y = y_data , sx = x_error, sy = y_error)
+
+# Configure the Orthogonal Distance Regression
+    odr = ODR(data, linear_model, [1, 1])
+    odr.set_job(fit_type = 0)
+
+# Perform ODR fitting
+    output = odr.run()
+
+# The prediction result of parameters in linear equation
+    constant, slope = output.beta
+    constant_err, slope_err = output.sd_beta    # The error (or variance) of predicted parameters
+    print('Constant is ', constant, ', error = ', constant_err)
+    print('Slope is ', slope, ', error = ', slope_err)
+
+    return constant, constant_err, slope, slope_err
+          </code>
+        </pre>
+        </p>
 
         <section class="chapter-button">
         <!-- controlled by: project-generator.js -->
