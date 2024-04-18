@@ -261,8 +261,8 @@ document.addEventListener('DOMContentLoaded', () => {
  
     const ulNav = document.createElement("ul");
 
-    const homeDes = modulePage.slice(0, 5) === "index" ? "#" : "../index.html";
-    const projectDes = modulePage.slice(0, 5) === "index" ? "#projects" : "../index.html#projects";
+    const homeDes = (modulePage.slice(0, 5) === "index" || modulePage.slice(0, 5) === "") ? "#" : "../index.html";
+    const projectDes = (modulePage.slice(0, 5) === "index" || modulePage.slice(0, 5) === "") ? "#projects" : "../index.html#projects";
     
     const liHome = document.createElement("li");
     const aHome = createLink("Home", homeDes);
@@ -273,24 +273,15 @@ document.addEventListener('DOMContentLoaded', () => {
     liProject.appendChild(aProject);
     liProject.classList.add("dropdown");
     
-    const aElement = modulePage.slice(0, 5) === "index" ? aHome : aProject;
+    const aElement = (modulePage.slice(0, 5) === "index" || modulePage.slice(0, 5) === "") ? aHome : aProject;
     aElement.classList.add("active");
     
     const fragment = document.createDocumentFragment();
-    
     const ulProject = document.createElement("ul");
- 
-    let baseURL = "";
-    if (modulePage.slice(0, 5) === "index") {
-      baseURL = "./";
-    } else if (modulePage.slice(0, 5) === "") {   // The home page
-      baseURL = "./";
-    } else {
-      baseURL = "../";
-    }
     
+    const rootURL = (modulePage.slice(0, 5) === "index" || modulePage.slice(0, 5) === "") ? "./" : "../";
     for (let i = 0; i < projectList.length; i++) {
-      const linkURL = `${baseURL}${projectList[i]}/objective.html`;
+      const linkURL = `${rootURL}${projectList[i]}/objective.html`;
       const liSubProject = document.createElement("li");
       const aSubProject = createLink(capitalProjects[i], linkURL);
       liSubProject.appendChild(aSubProject);
