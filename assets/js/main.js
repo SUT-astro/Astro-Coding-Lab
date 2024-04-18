@@ -231,8 +231,6 @@ document.addEventListener('DOMContentLoaded', () => {
     footerInfoSelector.appendChild(h3FooterInfo);
     footerInfoSelector.appendChild(pFooterInfo);
   }
-
-  createFooter();
   
   function createLink(linkText, linkDestination) {
     const link = document.createElement("a");
@@ -299,7 +297,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ulNav.appendChild(liProject);
     navbarSelector.appendChild(ulNav);
   }
-
-  createHeader();
-
+  
+  window.addEventListener('load', () => {
+    createHeader(); // if it works, it works
+    createFooter();
+  });
 });
