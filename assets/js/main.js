@@ -282,6 +282,13 @@ document.addEventListener('DOMContentLoaded', () => {
  
     const baseURL = modulePage.slice(0, 5) === "index" ? "./" : "../";  // need to use ./ as current directory, else strange bug happen
     
+    if (modulePage.slice(0, 5) === "index") {
+      console.log("index");
+    } else if (modulePage.slice(0, 5) === "") {
+      console.log("home");
+    } else {
+      console.log("project");
+    }
     console.log(modulePage);
     
     for (let i = 0; i < projectList.length; i++) {
