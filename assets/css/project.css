@@ -23,42 +23,9 @@
 /*--------------------------------------------------------------
 # project detail
 --------------------------------------------------------------*/
-.project-details {
-  
-}
-
 .project-content {
   display: flex;
   flex-direction: row;
-}
-
-/*--------------------------------------------------------------
-# Sidebar
---------------------------------------------------------------*/
-.project-sidebar {
-  overflow-y: scroll;
-  height: -webkit-fill-available;
-  width: 20rem;
-  position: fixed;
-  
-  & a {
-	color: #fff;
-  }
-
-  & ol {
-	list-style-type: none;
-  padding: 0 0 0 0.5rem;
-  }
-
-  & ul {
-	list-style-type: none;
-  padding: 0 0 0 0.5rem;
-  }
-
-  & li {
-	text-align: left;
-  }
-  
 }
 
 /*--------------------------------------------------------------
@@ -78,14 +45,13 @@
   & p {
     font-size: 1.4rem;
   }
-  & ul {
+  & ul, ol {
     font-size: 1.4rem;
     margin-top: 0;
     margin-bottom: 1rem;
   }
   & b, strong {
     font-weight: bolder;
-
   }
   
 }
@@ -95,36 +61,6 @@
     font-size: 1.4rem;
   }
 	
-}
-/*--------------------------------------------------------------
-# Table of Content
---------------------------------------------------------------*/
-.table-of-content-title {
-  & ol {
-	counter-reset: toc-counter;
-	margin-top: 1rem;
-	margin-bottom: 1rem;
-  }
-
-  & ol ol {
-	margin-top: 1rem;
-	margin-bottom: 1rem;
-  }
-
-  & ol ol li {
-	margin-top: 1rem;
-	margin-bottom: 1rem;
-  }
-
-  & li::before {
-	counter-increment: toc-counter;
-	content: counters(toc-counter, ".");
-  }
-}
-
-.table-of-content-inner {
-  position: fixed;
-  margin-left: 79%;
 }
 
 /*--------------------------------------------------------------
