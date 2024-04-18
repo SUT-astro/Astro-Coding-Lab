@@ -280,16 +280,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const ulProject = document.createElement("ul");
  
-    const baseURL = modulePage.slice(0, 5) === "index" ? "./" : "../";  // need to use ./ as current directory, else strange bug happen
-    
+    let baseURL = "";
     if (modulePage.slice(0, 5) === "index") {
-      console.log("index");
-    } else if (modulePage.slice(0, 5) === "") {
-      console.log("home");
+      baseURL = "./";
+    } else if (modulePage.slice(0, 5) === "") {   // The home page
+      baseURL = "./";
     } else {
-      console.log("project");
+      baseURL = "../";
     }
-    console.log(modulePage);
     
     for (let i = 0; i < projectList.length; i++) {
       const linkURL = `${baseURL}${projectList[i]}/objective.html`;
