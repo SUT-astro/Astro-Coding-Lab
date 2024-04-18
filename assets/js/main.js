@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const ulProject = document.createElement("ul");
  
-    const baseURL = modulePage.slice(0, 5) === "index" ? "" : "../";
+    const baseURL = modulePage.slice(0, 5) === "index" ? "./" : "../";  // need to use ./ as current directory, else strange bug happen
 
     for (let i = 0; i < projectList.length; i++) {
       const linkURL = `${baseURL}${projectList[i]}/objective.html`;
