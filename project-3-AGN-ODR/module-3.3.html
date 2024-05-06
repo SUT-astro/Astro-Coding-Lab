@@ -80,140 +80,41 @@
         </h1>
         
         <h2>
-          Orthogonal distance regression (ODR) คืออะไร
+          การฟิตกราฟหาความสัมพันธ์ระหว่างมวลหลุมดำและมวลดาวฤกษ์
         </h2>
         
         <p>
-          ODR คือการวิเคราะห์หาค่าตัวแปรของสมการที่ดีที่สุด 
-          ด้วยการคำนวณหาตัวแปรของสมการที่ทำให้ระยะที่ลากตั้งฉากจากสมการไปยังจุดข้อมูลเฉลี่ยที่สั้นที่สุด 
-          ซึ่งจะแตกต่างกับ Least square regression (LSR) ในจุดที่ 
-          LSR ใช้การพิจารณาระยะในแนวตั้ง หรือระยะตามแนวแกน y จากจุดข้อมูลไปยังสมการ 
-          ตามที่เห็นใน Figure… ซึ่งแสดงการพิจารณาหาตัวแปรของสมการที่ดีที่สุดในทั้ง 2 algorithm
+          ในแบบฝึกหัดนี้ เราจะทำการวิเคราะห์หาความสัมพันธ์ระหว่างมวลหลุมดำและมวลดาวฤกษ์ด้วยสมการเส้นตรง 
+          เราสามารถใช้ ODR ในการฟิตกราฟหาสมการเส้นตรง ด้วยการใช้โค้ดที่เราทำในแบบฝึกหัดก่อนหน้านี้ 
+          ส่วนที่เราต้องดัดแปลงในโค้ดของแบบฝึกหัดก่อนคือข้อมูลที่เรา input เข้าไปในฟังชั่น ODR
         </p>
         <p>
-          ข้อดีของการทำ ODR คือ 
-          เราสามารถพิจารณาค่า error ของข้อมูลทั้งแกน x และแกน y ได้พร้อมกันในขณะ fit กราฟ 
-          ต่างจาก LSR ที่พิจารณาเพียงค่า error ของข้อมูลในแกน y เท่านั้น
-        </p>
-        <p>
-          ในแบบฝึกหัดนี้ เราจะเรียนรู้จากตัวอย่างการ fit หาสมการเส้นตรงจากการทดลองที่มีการบันทึกค่าไว้ดังนี้
-        </p>  
-          <table border="1" class="dataframe">
-            <thead>
-              <tr style="text-align: right;">
-                <th></th>
-                <th>t (s)</th>
-                <th>t_error (s)</th>
-                <th>v (cm/s)</th>
-                <th>v_error (cm/s)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>0</th>
-                <td>0.0</td>
-                <td>0.02</td>
-                <td>0.5</td>
-                <td>0.05</td>
-              </tr>
-              <tr>
-                <th>1</th>
-                <td>0.1</td>
-                <td>0.02</td>
-                <td>1.3</td>
-                <td>0.10</td>
-              </tr>
-              <tr>
-                <th>2</th>
-                <td>0.2</td>
-                <td>0.02</td>
-                <td>2.7</td>
-                <td>0.40</td>
-              </tr>
-              <tr>
-                <th>3</th>
-                <td>0.3</td>
-                <td>0.02</td>
-                <td>3.4</td>
-                <td>0.10</td>
-              </tr>
-              <tr>
-                <th>4</th>
-                <td>0.4</td>
-                <td>0.02</td>
-                <td>4.3</td>
-                <td>0.20</td>
-              </tr>
-              <tr>
-                <th>5</th>
-                <td>0.5</td>
-                <td>0.02</td>
-                <td>5.2</td>
-                <td>0.20</td>
-              </tr>
-              <tr>
-                <th>6</th>
-                <td>0.6</td>
-                <td>0.02</td>
-                <td>6.3</td>
-                <td>0.10</td>
-              </tr>
-              <tr>
-                <th>7</th>
-                <td>0.7</td>
-                <td>0.02</td>
-                <td>7.1</td>
-                <td>0.40</td>
-              </tr>
-              <tr>
-                <th>8</th>
-                <td>0.8</td>
-                <td>0.02</td>
-                <td>8.6</td>
-                <td>0.30</td>
-              </tr>
-              <tr>
-                <th>9</th>
-                <td>0.9</td>
-                <td>0.02</td>
-                <td>9.4</td>
-                <td>0.40</td>
-              </tr>
-            </tbody>
-          </table>          
-          
-        <p>
-          เราสามารถใช้ฟังชั่น <a href="https://docs.scipy.org/doc/scipy/reference/odr.html"><code>scipy.odr</code></a> จาก <em>scipy</em>
-          ในการทำ ODR เพื่อวิเคราะห์ค่าตัวแปรในสมการเส้นตรงได้ ซึ่งมีขั้นตอนการใช้งานดังนี้          
-          
+          ขั้นตอนในการทำการฟิตกราฟเส้นตรงด้วย ODR จะเหมือนกับในแบบฝึกหัดก่อนหน้านี้ ซึ่งประกอบไปด้วย
           <ol>
-            <li><code>import</code> module ที่เราจะใช้</li>
+          
+            <li>นำเข้า library ที่จำเป็น</li>
             <pre>
               <code class="language-python">
-import numpy as np
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 
 from scipy.odr import ODR, Model, RealData
+from scipy.optimize import curve_fit
+from sklearn.metrics import r2_score              
               </code>
             </pre>
-            <li>สร้าง <code>array</code> เก็บข้อมูลที่จะทำการ fit กราฟ</li>
+            
+            <li>อ่านข้อมูลของหลุมดำจาก link ของไฟล์ .csv ด้วยการใช้ไลบรารี่ pandas</li>
             <pre>
               <code class="language-python">
-# Data, t (time) and v (velocity)
-t = np.arange(0, 1, 0.1)
-t_err = np.zeros(len(t)) + 0.02
-
-v = np.array([0.5, 1.3, 2.7, 3.4, 4.3, 5.2, 6.3, 7.1, 8.6, 9.4])
-v_err = np.array([0.05, 0.1, 0.4, 0.1, 0.2, 0.2, 0.1, 0.4, 0.3, 0.4])
-
-# Create a dataframe and show it to verify correction of input data
-table_column = {'t (s)': t, 't_error (s)': t_err, 'v (cm/s)': v, 'v_error (cm/s)': v_err}
-df = pd.DataFrame(data = table_column)
-df
+# read AGN data from link of .csv file
+AGN_data = pd.read_csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vRa6Y6JsO24emNdI-rtUGFsmo2dSjgcUwAlCSlBfjXRGbSV-thO2e1bj7T_jvdGsp8jjbQlVi9TktZM/pub?gid=1583895277&single=true&output=csv')
+AGN_data              
               </code>
-            </pre>            
-            <li>สร้างฟังชั่นของสมการที่เราจะใช้ในการ fit กับข้อมูล ซึ่งในที่นี้เป็น <code>function_linear()</code></li>
+            </pre>
+            
+            <li>สร้างฟังชั่นสำหรับสมการเส้นตรงเพื่อใช้ในการฟิตกับข้อมูล</li>
             <pre>
               <code class="language-python">
 def function_linear(B, x):
@@ -223,48 +124,13 @@ def function_linear(B, x):
     # x is in the same format as the x passed to Data or RealData.
 
     # Return an array in the same format as y passed to Data or RealData.
-    return B[0] + (B[1] * x)
+    return B[0] + (B[1] * x)              
               </code>
-            </pre>            
-            <li>นิยามโมเดลของสมการที่เราจะใช้ด้วย <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.odr.Model.html#scipy.odr.Model"><code>Model()</code></a> และนิยามข้อมูลที่เราจะใช้ด้วย <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.odr.RealData.html#scipy.odr.RealData"><code>RealData()</code></a></li>
-            <pre>
-              <code class="language-python">
-# Define Model and Data
-linear_model = Model(function_linear)
-data = RealData(x = t, y = v , sx = t_err, sy = v_err)
-              </code>
-            </pre>            
-            <li>ตั้งค่า algorithm ของการ fit กราฟด้วย <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.odr.ODR.html#scipy.odr.ODR"><code>ODR()</code></a></li>
-            <pre>
-              <code class="language-python">
-# Configure the Orthogonal Distance Regression
-odr = ODR(data, linear_model, [1, 1])
-odr.set_job(fit_type = 0)       # 0: explicit ODR, 2: least square method (use for verification)
-              </code>
-            </pre>            
-            <li>ทำการ fit กราฟ</li>
-            <pre>
-              <code class="language-python">
-# Perform ODR fitting
-output = odr.run()
-              </code>
-            </pre>    
-            <li>แสดงผลลัพธ์จากการ fit กราฟ</li>
-            <pre>
-              <code class="language-python">
-# The prediction result of parameters in linear equation
-constant, slope = output.beta
-constant_err, slope_err = output.sd_beta    # The error (or variance) of predicted parameters
-print('Intercept is ', constant, ', error = ', constant_err)
-print('Slope is ', slope, ', error = ', slope_err)
-              </code>              
             </pre>
             
-            <p>
-          เราจะเห็นได้ว่า ขั้นตอนที่ 4 ถึงขั้นตอนที่ 7 นั้นสามารถนำมารวมกันเป็นฟังชั่นเดียวกันได้ 
-          เพื่อความสะดวกในการใช้งาน fit ข้อมูลด้วย ODR เราสามารถรวมขั้นตอนเหล่านี้เข้าด้วยกันได้ดังนี้
+            <li>สร้างฟังชั่นสำหรับการฟิตกราฟด้วย ODR</li>
             <pre>
-              <code>
+              <code class="language-python">
 def ODR_linear_fit(x_data, x_error, y_data, y_error):
 # Define Model and Data
     linear_model = Model(function_linear)
@@ -283,58 +149,70 @@ def ODR_linear_fit(x_data, x_error, y_data, y_error):
     print('Constant is ', constant, ', error = ', constant_err)
     print('Slope is ', slope, ', error = ', slope_err)
 
-    return constant, constant_err, slope, slope_err
-    
-# Invoke ODR fitting function
-constant, constant_err, slope, slope_err = ODR_linear_fit(x_data = t, 
-                                                          x_error = t_err, 
-                                                          y_data = v, 
-                                                          y_error = v_err)
+    return constant, constant_err, slope, slope_err              
               </code>
-            </pre>          
-            </p>
-          
-            <li>สร้างสมการที่ได้จากผลลัพธ์การ fit กราฟ 
-            โดยเราจะใช้ <a href="https://numpy.org/doc/stable/reference/generated/numpy.linspace.html">np.linspace()</a> 
-            ในการสร้างข้อมูลในแกน x ขึ้นมา ชื่อ <code>x_predict</code> 
-            และสร้างข้อมูลในแกน y ด้วยการนำค่า <code>constant</code>, <code>slope</code> ที่เราได้จาก ODR 
-            และ <code>x_predict</code> กลับเข้าไปแทนใน <code>function_linear</code> ที่เรานิยามในการสร้างกราฟเส้นตรง</li>
+            </pre>
+            
+            <li>นิยามข้อมูลที่เราจะ input เข้าไปใน ODR</li>
             <pre>
-              <code>
+              <code class="language-python">
+# Input data for fitting with ODR
+log_M = AGN_data['log_M'].values
+log_M_error = AGN_data['log_M_var'].values
+
+log_Stellar_Mass = AGN_data['s_mass_11'].values
+log_Stellar_Mass_error = AGN_data['s_mass_var'].values              
+              </code>
+            </pre>
+            
+            <li>ทำการรันฟังชั่น ODR ที่เราสร้างไว้</li>
+            <pre>
+              <code class="language-python">
+# Invoke ODR fitting function
+constant, constant_err, slope, slope_err = ODR_linear_fit(x_data = log_M,
+                                                          x_error = log_M_error,
+                                                          y_data = log_Stellar_Mass,
+                                                          y_error = log_Stellar_Mass_error)              
+              </code>
+            </pre>
+            
+            <li>สร้างสมการเส้นตรงด้วยตัวแปรที่ได้จากการวิเคราะห์ของ ODR</li>
+            <pre>
+              <code class="language-python">
 # Find a linear equation from predicted result
-x_predict = np.linspace(t[0], t[-1], 1000)
+x_predict = np.linspace(np.min(log_M), np.max(log_M), 1000)
 y_predict = function_linear([constant, slope], x_predict)              
               </code>
             </pre>
-            <li>นำผลลัพธ์ที่ได้มา plot กราฟ</li>
+            
+            <li>นำข้อมูลของกราฟเส้นตรงที่ได้มาพล็อตกราฟ</li>
             <pre>
               <code class="language-python">
 # Graph plotting
 plt.rcParams.update({'font.size': 14})
-fig = plt.figure(figsize = (5, 8))
+fig = plt.figure(figsize = (8, 5))
 ax = fig.add_subplot(111)
 
-ax.plot(t, v, 'ok', markersize = 8, label = 'Data')
-ax.errorbar(t, v, xerr = t_err, yerr = v_err, fmt = 'none', ecolor = 'orange', capsize = 3.0, label = 'Error of Data')
+ax.plot(log_M, log_Stellar_Mass, 'ok', markersize = 8, label = 'Data')
+ax.errorbar(log_M, log_Stellar_Mass, xerr = log_M_error, yerr = log_Stellar_Mass_error, fmt = 'none', ecolor = 'orange', capsize = 3.0, label = 'Error of Data')
 
 ax.plot(x_predict, y_predict, '-b', label = 'Prediction by ODR')
 
-ax.set_title('Figure of velocity at different time')
-ax.set_xlabel('t (s)')
-ax.set_ylabel('v (cm/s)')
-ax.text(0.35, 0.2, r'Slope = {0:.1f} $\pm$ {1:.1f} cm/s$^2$'.format(slope, slope_err), transform=ax.transAxes)
-ax.text(0.2, 0.1, r'Constant = {0:.2f} $\pm$ {1:.2f} cm/s'.format(constant, constant_err), transform=ax.transAxes)
+ax.set_title('Relationship between Black hole mass and Stellar mass')
+ax.set_xlabel(r'$\log{(M_{\rm BH}/M_{\odot})}$')
+ax.set_ylabel(r'$\log{(M_{\ast}/10^{11}M_{\odot})}$')
+ax.text(0.05, 0.2, r'Slope = {0:.2f} $\pm$ {1:.2f}'.format(slope, slope_err), transform=ax.transAxes)
+ax.text(0.05, 0.1, r'Constant = {0:.2f} $\pm$ {1:.2f}'.format(constant, constant_err), transform=ax.transAxes)
 ax.legend(loc = 'best')
 ax.grid()
-plt.show()
+plt.show()              
               </code>
-            </pre>               
+            </pre>            
             
           </ol>
         </p>
-        
         <p>
-          สามารถดูตัวอย่างของโค้ดที่เสร็จแล้วได้ที่นี่: <a href="https://colab.research.google.com/drive/199vguspw9oW-YfIHxMuWkllgUopiDihT?usp=sharing">colab</a>
+          สามารถดูตัวอย่างของโค้ดที่เสร็จแล้วได้ที่นี่: <a href="https://colab.research.google.com/drive/1gwZu7cFnhjjJF4elfT4HHnh8eIjw1oQJ?usp=sharing">colab</a>
         </p>
 
 
