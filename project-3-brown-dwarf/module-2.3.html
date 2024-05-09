@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title><!-- controlled by: module-header.js --></title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  
+  <!-- Template Main CSS File -->
+  <link href="../assets/css/main.css" rel="stylesheet">
+  <link href="../assets/css/project.css" rel="stylesheet">
+  <link href="../assets/css/default.highlight.style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: UpConstruction
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="../index.html" class="logo logo-project d-flex align-items-center">
+        <h1>AstroCode101<span>.</span></h1>
+      </a>
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+      <nav id="navbar" class="navbar navbar-project">
+			<!-- controlled by: main.js -->
+			</nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs b-head d-flex">
+	  <div class="container position-relative d-flex flex-column aos-init aos-animate" data-aos="fade">
+        <h1><!-- controlled by: module-header.js --></h1>
+    </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Projet Details Section ======= -->
+    <section id="project-details" class="project-details" 
+	style="padding: 0 0 0 0;">
+      <div class="project-content">
+	  
+		  
+	    <div class="project-content-inner">
+		  
+		  <h1 id="brown-dwarf-observation-data">
+			ข้อมูลการสังเกตการณ์ดาวแคระน้ำตาล
+		  </h1>	
+	  
+		  <h2 id="data-processing-augmentation">
+			การเติมข้อมูล (Augmentation) ด้วย Gaussian-distributed noise
+		  </h2>
+		  <p>
+			เนื่องจากข้อมูลดาวฤกษ์หรือวัตถุอื่นที่ไม่ใช่ดาวแคระน้ำตาล (Negative class, label 0) 
+			มีจำนวนมากกว่าข้อมูลดาวแคระน้ำตาล (Positive class, label 1) ประมาณ 2.5 เท่า 
+			เราจึงต้องปรับสมดุลข้อมูลเพื่อทำให้ข้อมูลทั้งสองชนิดนี้มีจำนวนเท่ากัน (หรือใกล้เคียงกัน) ผ่านกระบวนการเติมข้อมูล (Augmentation)
+			
+			ในที่นี้เราจะเพิ่มข้อมูลโดยอาศัยสัญญาณรบกวนที่มีการกระจายตัวแบบเกาส์เซียน (Gaussian-distributed noise) 
+			เพื่อปรับจำนวนข้อมูลของดาวแคระน้ำตาลและดาวฤกษ์ให้มีจำนวนที่ใกล้เคียงกัน   
+		  </p>
+		  
+		  <p>
+			Gaussian-distributed noise สามารถเขียนในรูปฟังก์ชันการแจกแจงความน่าจะเป็น (Probability Density Function, PDF) 
+			ที่มีการกระจายตัวแบบ Gaussian (หรือการแจกแจงปรกติ: Normal distribution) ตามสมการ
+		  </p>
+		  <span class="math-equation">
+		  	$$
+			f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2} \left(\frac{x-\mu}{\sigma}\right)^2}
+			$$
+		  </span>
+		  <p>
+			โดย \(x\) คือ ขนาดของสัญญาณรบกวน, \(\sigma\) คือ ส่วนเบี่ยงเบนมาตรฐาน (standard deviation) 
+			ซึ่งกำหนดความกว้างของ PDF และ 
+			\(\mu\) คือ ค่าเฉลี่ยของข้อมูล (mean) ซึ่งจะเป็นตัวกำหนดจุดกึ่งกลางของ PDF 
+			ดังที่แสดงในรูป 1
+		  </p>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<iframe src="https://www.desmos.com/calculator/kazwqbnnkf?embed" 
+			width="500" 
+			height="300" 
+			style="border: 1px solid #ccc" 
+			frameborder=0>
+			</iframe>
+			<figcaption style="margin-top: 5px;">
+			ตัวอย่างของ Gaussian distribution ที่มีค่า \(\mu = 0, \sigma = 0.5 \)
+			</figcaption>
+		  </figure>
+		  <p>
+			การสร้างหรือจำลอง Gaussian-distributed noise นั้นสามารถใช้คำสั่ง [random.normal (loc=0.0, scale=1.0, size=None)]
+			<a href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.normal.html">
+			  numpy random.normal
+			</a> 
+			ใน Numpy Library คำสั่งนี้จะรับค่าตัวแปร (parameter) 3 ตัว คือ loc, scale และ size โดยที่ 
+			loc คือ ค่าเฉลี่ย (mean) หรือจุดกึ่งกลางของการกระจายตัวของ noise ตาม Gaussian distribution
+			และ scale คือ ส่วนเบี่ยงเบนมาตรฐาน (\(\sigma\)) ซึ่งสัมพันธ์กับความกว้างของการกระจายตัวของ noise
+			ส่วนตัวแปร size คือ ขนาดและรูปแบบของ array ที่จะนำผลออกมา (output) 
+			เมื่อทำการจำลอง noise เสร็จแล้ว ก็สามารถเพิ่ม 'noise' ลงไปในข้อมูล 
+			  โดยกระบวนการทั้งหมดสามารถเขียนเป็นฟังก์ชันได้ตามโค้ด:
+			
+		  </p>
+		  <pre>
+			<code class="language-python">
+import numpy as np
+
+def add_gaussian_noise(data, mean, std): 
+	"""
+	ฟังก์ชันในการใส่ Gaussian noise ลงไปในชุดข้อมูล
+  
+	parameters:
+	- data: ชุดข้อมูลที่ต้องการใส่ noise
+	- mean: ค่าเฉลี่ย (mean) จุดกึ่งกลางของการกระจายตัวของ noise
+	- std: ส่วนเบี่ยงเบนมาตรฐาน (σ) ความกว้างของการกระจายตัวของ noise
+
+	output: ชูดข้อมูลที่ถูกใส่ noise แล้ว ซึ่งจะเป็น array รูปแบบเดียวกับชุดข้อมูลที่ถูกใส่เข้ามา
+
+	"""
+	
+	# สร้าง Gaussian noise ซึ่งมี shape เดียวกันกับ input data 
+	noise = np.random.normal(loc = mean, scale = std, size = data.shape)
+	
+	"""
+	การสร้างฟังชันก์การกระจายตัวของ noise โดยให้ 
+	loc = mean
+	scale = std
+	size = รูปแบบของ output array ให้เป็นแบบเดียวกับชุดข้อมูลที่ถูกใส่เข้ามา
+	"""
+
+
+	"""
+	เมื่อได้ noise distribution แล้ว ก็นำ noise ใส่ในชุดข้อมูลของเรา
+	สุดท้ายเราก็จะได้ ข้อมูลที่ถูกใส่ noise คือ "noisy_data"
+	"""
+	# ใส่ noise ลงใน input data
+	noisy_data = data + noise
+	
+
+	"""
+	และเมื่อเราเรียกใช้ฟังก์ชันนี้ จะให้ผลลัพล์(return) เป็น "noisy_data"
+	"""
+	return noisy_data
+			</code>    
+		  </pre>
+		  <p>
+		         ในการจำลอง Gaussian-distributed noise สำหรับแต่ละ feature นั้น 
+			มักจะกำหนดค่าตัวแปรโดยใช้ค่าเฉลี่ย (mean) ของ error ของแต่ล่ะ feature เป็นค่า \(\mu\) 
+			และใช้ส่วนเบี่ยงเบนมาตราฐานของค่า error ของแต่ล่ะ feature เป็นค่า \(\sigma\) ของ Gaussian function
+			  
+	
+			
+			  <!--
+			  ตัวอย่างโด้ดที่แสดงรายละเอียดขั้นตอนการเติมข้อมูล (Augmentation) นั้นสามารถดูได้ที่นี่: 
+			 <a href="https://colab.research.google.com/drive/1Q9OxwK3cMtHcSgPRLzuMExS4RffxWXpL?usp=drive_link">
+			  Colab
+			</a> -->
+		  </p>
+	      <p>
+			
+		      เราจะเริ่มทำการแยกเก็บ features ไว้ใน data frame ที่ชื่อ aug_pos และแยกเก็บค่าความคลาดเคลื่อนไว้ใน data frame ที่ชื่อ pos_er 
+		      จากนั้นคำนวณ \mu\ และ \sigma\ เพื่อใช้จำลอง Gaussian-distributed noise สำหรับแต่ละ feature และทำการเติมข้อมูล Possitive class ด้วย noise ที่ได้ ดังแสดงในตัวอย่างโค้ด:
+		  </p>
+		  <pre>
+			<code class="language-python">
+aug_pos = Pos_class.drop(['e_feature_1', 'e_feature_2', 'e_feature_3'], axis=1) ## สร้าง data frame สำหรับเก็บค่า feature ทั้งหมด
+pos_er = Pos_class[ ['e_feature_1', 'e_feature_2', 'e_feature_3'] ] ## สร้าง data frame สำหรับเก็บค่า error feature ทั้งหมด
+
+## คำาสั่ง 'zip' จะเป็นการรัน for ลูป ของ colomn ใน data frame() หลายตัวพร้อมๆกัน ในกรณีเรา ต้องการวนลูปของ ของ colomn ใน "aug_pos" และ "pos_er" พร้อมๆกัน
+## attribute ""[aug_pos.columns[:-1]]"" กำหนดขอบเขต for loop ไม่ให้รันถึง colomn สุดท้ายใน data frame 'aug_pos'เนื่องจากเป็น label หรือตัวกำหนด class ของเรา
+for column, column1 in zip( aug_pos[aug_pos.columns[:-1]] , pos_er): 
+    
+    ## คำนวน mean จาก error ของแต่ละ feature
+    mean = np.mean(pos_er[column1]) 
+
+    ## คำนวนส่วนเบี่ยงเบนมาตราฐาน จาก error ของแต่ละ feature
+    std = np.std(pos_er[column1]) 
+   
+    ##ใส่ noise ลงไปในแต่ล่ะ feature ในชุดข้อมูล ด้วย noise ที่คำนวนจาก mean และ  std จาก error ของแต่ละ feature
+    aug_pos[column] = add_gaussian_noise(aug_pos[column], mean=mean, std=std) 
+
+display(aug_pos)
+			</code>    
+		  </pre>
+		  <p>ผลที่ได้จากการนำข้อมูลเดิมมาเพิ่ม noise เป็นดังนี้</p>
+		 
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-brown-dwarf-img/out put-5.png" 
+			style="max-width: 100%; height: auto;">
+		  </figure>
+
+		  <p>
+ 			  ข้อมูลในตารางด้านบนจำนวน 1598 ข้อมูล ซึ่งเกิดจากการเอาข้อมูลเดิมมาใส่ Gaussian-distributed noise จะเปรียบเสมือนข้อมูล Positve class ชุดใหม่
+			  ซึ่งเราสามารถทำการรวมข้อมูลชุดนี้เข้ากับข้อมูล Positve class เดิม ดังแสดงในโค้ด:
+		  </p>
+		  <pre>
+			<code class="language-python">
+#รวมข้อมูลที่ถูกใส่noise กับข้อมูลดั้งเดิม
+all_pos = pd.concat([Pos_class.drop(['e_feature_1', 'e_feature_2', 'e_feature_3'], axis=1), aug_pos])
+display(all_pos)
+
+#ชุดข้อมูล negative class ที่ถูกนำ colomn ที่เป็นค่า error ของแต่ละ feature ออกไป
+all_neg = Neg_class.drop( ['e_feature_1', 'e_feature_2', 'e_feature_3'], axis=1 )
+display(all_neg)
+			</code>    
+		  </pre>
+		  <p>ผลที่ได้จะเป็นดังนี้</p>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-brown-dwarf-img/out put-6.png" 
+			style="max-width: 100%; height: auto;">
+		  </figure>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-brown-dwarf-img/out put-7.png" 
+			style="max-width: 100%; height: auto;">
+		  </figure>
+		  <p>
+			จะเห็นได้ว่าข้อมูลชนิด Possitive class มีจำนวน 3196 ข้อมูล 
+			  (1598 จากข้อมูลเดิม + 1598 จากข้อมูลใหม่ที่จำลองด้วยการเติม noise) 
+			  ซึ่งใกล้เคียงกับจำนวนข้อมูล negative class ที่มี 3657 ข้อมูล
+		  </p>
+		  <p>
+			  ขั้นถัดไปจะเป็นการทดลองสร้างค่าดัชนีสี (color index) โดยค่าดัชนีสีคำนวณได้จากการนำค่า Absolute magnitude ที่วัดได้จาก 2 ฟิลเตอร์ (filter) มาลบกัน 
+		จากข้อมูลนี้เราจะสมมติให้แต่ละ feature เป็นค่า Absolute magnitude ของแต่ละฟิลเตอร์ ดังนั้นเราสามารถคำนวณค่าดัชนีสี 3 ตัว คือ "f1-f2", "f1-f3" และ "f2-f3" และเพิ่มข้อมูลนี้ลงใน data frame ตามตัวอย่างโค้ด:
+
+		  </p>
+		  
+		  <pre>
+			<code class="language-python">
+#รวมข้อมูล negative class และ possitive class เข้าด้วยกัน
+all_df = pd.concat([all_neg, all_pos])
+display(all_df)
+
+# สร้าง color index 3 ตัว คือ "f1-f2", "f1-f3", "f2-f3" ลงใน data frame ของเรา
+all_df['f1-f2'] = all_df['feature_1']-all_df['feature_2']
+all_df['f1-f3'] = all_df['feature_1']-all_df['feature_3']
+all_df['f2-f3'] = all_df['feature_2']-all_df['feature_3']
+display(all_df)
+			</code>    
+		  </pre>
+		  <p>ผลที่ได้จะเป็นดังนี้</p>
+		  <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+			<img src="project-brown-dwarf-img/out put-8.png" 
+			style="max-width: 100%; height: auto;">
+		  </figure>
+		  <p>
+				จากตาราง Data frame ด้านบน ค่าดัชนีสี 3 ตัวที่ได้คือ "f1-f2", "f1-f3" และ "f2-f3" 
+			  เกิดจากการนำค่า 2 features (สมมติเป็นค่า Absolute magnitude 
+			  จาก 2 ฟิลเตอร์) มาลบกัน แต่ในแบบฝึกหัดที่จะดูกันต่อไปซึ่งอิงกับข้อมูลการสังเกตการณ์จริง 
+			  เราจะใช้ค่าดัชนีสีจำนวน 9 ตัว ประกอบดด้วยดัชนี 'i-z'', 'i-y', 'z-y', 'z-J', 'y-J', J-H','H-K','K-W1', W1-W2' มาพิจารณา 
+		  </p>
+		  <p>
+			 
+		  อย่างไรก็ตาม แม้ชนิดข้อมูล Positive class และ Negative class จะมีจำนวนใกล้เคียงกันแล้ว 
+			  จะเห็นได้ว่าข้อมูลโดยรวมยังมี missing values ('NaN') จำนวนมาก 
+			  ดังนั้นก่อนจะนำข้อมูลไปใช้สร้างแบบจำลองการเรียนรู้ของเครื่อง
+			  เราจำเป็นต้องมีการจัดการข้อมูลเพื่อแก้ปัญหา missing value ก่อน
+			ซึ่งจะกล่าวถึงในหัวข้อถัดไป
+		  </p>
+		  
+
+		  <section class="chapter-button">
+      <!-- controlled by: project-generator.js -->
+		  </section>
+    
+		</div>
+      </div>
+    </section><!-- End Projet Details Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="footer-content position-relative">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-info">
+              <h3>กลุ่มวิจัยดาราศาสตร์</h3>
+              <p>
+			          สาขาวิชาฟิสิกส์  สำนักวิชาวิทยาศาสตร์ <br>
+				มหาวิทยาลัยเทคโนโลยีสุรนารี <br>
+			          111  ถนนมหาวิทยาลัย <br>
+                                        ต. สุรนารี  อ. เมือง  จ.นครราชสีมา<br>
+				30000<br>
+                <strong>Phone:</strong> 044-223-000<br>
+                <strong>Fax:</strong> 044-224-070<br>
+              </p>
+              <div class="social-links d-flex mt-3">
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div><!-- End footer info column-->
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Terms of service</a></li>
+              <li><a href="#">Privacy policy</a></li>
+            </ul>
+          </div><!-- End footer links column-->
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><a href="#">Web Design</a></li>
+              <li><a href="#">Web Development</a></li>
+              <li><a href="#">Product Management</a></li>
+              <li><a href="#">Marketing</a></li>
+              <li><a href="#">Graphic Design</a></li>
+            </ul>
+          </div><!-- End footer links column-->
+
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-legal text-center position-relative">
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>UpConstruction</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/ -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+  <!-- End Footer -->
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/change-content.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <script src="module-list.js"></script>
+	<script src="module-header.js"></script>
+	<script src="../assets/js/project-generator.js"></script>
+
+</body>
+
+</html>

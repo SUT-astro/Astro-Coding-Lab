@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copy Python Code Section</title>
+  <style>
+    pre {
+      padding: 10px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+      white-space: pre-wrap; /* Preserve line breaks */
+      max-width: 600px; /* Adjust as needed */
+      overflow-x: auto;
+    }
+
+    .copy-btn {
+      margin-top: 10px;
+      padding: 5px 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .copy-btn:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <section id="pythonCodeSection">
+    <pre id="pythonCode">
+      <code>
+def hello_world():
+    print("Hello, world!")
+
+hello_world()
+      </code>
+    </pre>
+
+    <button class="copy-btn" onclick="copyCode()">Copy Code</button>
+  </section>
+
+  <script>
+    function copyCode() {
+      var codeElement = document.getElementById("pythonCode");
+      var code = codeElement.innerText;
+
+      navigator.clipboard.writeText(code).then(function() {
+        alert("Code copied to clipboard!");
+      }, function() {
+        alert("Failed to copy code to clipboard!");
+      });
+    }
+  </script>
+
+</body>
+</html>

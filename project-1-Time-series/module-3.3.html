@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title><!-- controlled by: module-header.js --></title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  
+  <!-- Template Main CSS File -->
+  <link href="../assets/css/main.css" rel="stylesheet">
+  <link href="../assets/css/project.css" rel="stylesheet">
+  <link href="../assets/css/default.highlight.style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: UpConstruction
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="../index.html" class="logo logo-project d-flex align-items-center">
+        <h1>AstroCode101<span>.</span></h1>
+      </a>
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+      <nav id="navbar" class="navbar navbar-project">
+			<!-- controlled by: main.js -->
+			</nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs b-head d-flex">
+	  <div class="container position-relative d-flex flex-column aos-init aos-animate" data-aos="fade">
+        <h1><!-- controlled by: module-header.js --></h1>
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Projet Details Section ======= -->
+    <section id="project-details" class="project-details" 
+	style="padding: 0 0 0 0;">
+      <div class="project-content">
+
+	    <div class="project-content-inner">
+        <h1 id="machine-learning-for-brown-dwarf-classification">
+          ข้อมูลสังเกตุการณ์นิวเคลียสกาแล็กซีกัมมันต์
+          </h1>
+          
+        <h2 id="decision-tree">
+          โมเดล PSD และ กราฟ fiting
+        </h2>
+        <p>
+          ในบทนี้เราจะแสดงตัวกราฟการ fitting กราฟ PSD ด้วย สมการกำลัง (power-law equation) ซึงเป็นสมการที่ถูกใช้อย่างกว้างขวางในการอธิบายฟิสิกส์(ความแปรปรวน)ของ AGN ในเบื้องต้น โดยจะสามารถเขียนเป็นสมการได้ดังนี้
+        </p>
+        <span class="math-equation">
+          $$
+          \text{PSD} = \frac{k}{f^{\beta}}
+          $$
+        </span>
+        <ul>
+            <li>PSD คือ the Power Spectral Density</li>
+            <li>\( f \) คือ ความถี่</li>
+            <li>\( k \) คือ ค่าคงที่การทำให้เป็นมาตรฐาน (normalization constant)</li>
+            <li>\( \beta \) คือ ดัชนี power-law</li>
+        </ul>
+        <p>
+          ในสมการนี้ PSD จะแสดงถึงปริมาณกำลังความแปรปรวนที่มีอยู่ภายในแต่ช่วงความถี่ ดัชนี power-law (\( \beta \)) แสดงลักษณะความชันของ PSD และกำหนดว่าพลังงานความแปรปรวนจะเปลี่ยนแปลงตามความถี่อย่างไร
+        </p>
+        <p>
+          ถัดไปจะเป็นการแสดงตัวอย่างการ fitting กราฟ PSD จากข้อมูลสังเกตการณ์จริง
+        </p>
+        <p>
+          ขั้นตอนแรกจะเป็นการเรียกใช้ข้อมูลด้วย Pandas library ดังที่เคยทำมาแล้วในแบบผฝึกหัดที่ 1 โดยตัวอย่างโค้ดจะเป็นดังนี้
+        </p>
+        <pre>
+          <code class="language-python">
+import pandas as pd
+# file_id ของไฟล์ใน google drive
+file_id = '1hIAgBOns7Mtw9LkB9KgHIy4oKFMDEmwe'
+# โหลดไฟล์จาก google drive ด้วย link
+data = pd.read_csv(f'https://drive.google.com/uc?id={file_id}')
+#แสดง Data frame
+display(data)
+
+# https://drive.google.com/file/d/1hIAgBOns7Mtw9LkB9KgHIy4oKFMDEmwe/view?usp=sharing
+          </code>    
+        </pre>
+
+        <p>
+          โดยผลลัพธ์จะเป็นดังนี้
+        </p>
+
+        <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+          <img src="project-Time-series-img/out put-12.png" 
+          style="max-width: 100%; height: auto;">
+        </figure>
+
+        <p>
+          จากผลลัพธ์ด้านบนเราจะเห็นว่าใน Data frame ของเรามี 4 column โดย column  'time' และ 't' แสดงถึงเวลา โดยเราจะเห็นว่าความแตกต่างของเวลาแถวของทั้งสองนั้นเท่ากัน คือ 1 วินาที (s) 
+        </p>
+        <p>
+          column  'lc_rev' และ 'lc_con' นั้นแสดงถึงจำนวนของ photon ในแต่ล่ะช่วงพลังที่ถูกตรวจวัดได้ โดยในตัวอย่างนี้เราจะพิจารณาแค่หนึ่งช่วงพลังงานเพื่อการ fitting กราฟ PSD คือ 'lc_rev'
+        </p>
+
+        <p>
+          โค้ดด้านแสดงการพล็อตระหว่างเวลา ('time') และ จำวนวน photon (lc_rev)
+        </p>
+
+        <pre>
+          <code class="language-python">
+            plt.plot(data['time'], data['lc_rev'])
+          </code>    
+        </pre>
+
+        <p>
+          โดยผลลัพธ์จะเป็นดังนี้
+        </p>
+
+        <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+          <img src="project-Time-series-img/out put-13.png" 
+          style="max-width: 100%; height: auto;">
+        </figure>
+
+        <p>
+          จากผลลัพธ์ด้านบนเราจะเห็นว่าในมีบางช่วงของกราฟที่ขาดหายไป ซึ่งเป็นผลมากจาก 'NaN value' ซึ่งหมายถึงในช่วงเวลานั้นกล้องโทรทัศน์นั้นไม่ตรวจพบ photon ดัวนั้นเราควรแทนที่ 'NaN value' ด้วย 0 
+          และเราจะพบว่าบางช่วงนั้นมีจำนวน photon ได้น้อย 0 ซึ่งเป็นไปไม่ได้ ดังนั้นเราจึงจะแทนที่ค่าที่น้อยกว่า 0 ด้วย 0 เช่นกัน โดยจะเขียนเป็น code ได้ดังนี้
+        </p>
+
+        <pre>
+          <code class="language-python">
+# ใช้งาน for loop เพื่อเช็คค่าทั้งหมด
+for i in range(len(data['lc_rev'])) :
+  # จำกัดเงื่่อนไขว่าหากพบว่าเจอค่าในแถวของ 'lc_rev' ที่ น้อยกว่า 0 หรือ เป็น 'NaN value' จะให้ค่าในแถวนั้นเท่ากับ 0
+  if  data['lc_rev'][i] < 0 or math.isnan(data['lc_rev'][i]) == True  : 
+    data['lc_rev'][i]= 0
+# แสดงกราฟระหว่าง 'lc_rev' ที่แก้ไขแล้วกับ 'time'
+plt.plot(data['time'], data['lc_rev'])
+plt.xlabel('time (s)')
+plt.ylabel('Count rate')          
+          </code>    
+        </pre>
+
+        <p>
+          โดยผลลัพธ์จะเป็นดังนี้
+        </p>
+
+        <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+          <img src="project-Time-series-img/out put-14.png" 
+          style="max-width: 100%; height: auto;">
+        </figure>
+
+        <p>
+          จากกราฟด้านบนจะเห็นกราฟนั้นถูกแก้ไขแล้ว
+        </p>
+        <p>
+          ***จะเห็นว่าด้านบนกราฟจะมีการเตือนอยู่ไม่จำเป็นต้องสนใจ มันเตือนว่าเรากำลังเขียนทับค่าใน Data frame ของเราอยู่
+        </p>
+
+        <p>
+          ขั้นตอนถัดไปจะเป็นการ re-bin ข้อมูล (กำหนดช่วงความกว้างของแต่จุดใหม่) ข้อมูลของเรานั้นมี time step อยู่ที่ 1 วินาที่ เราจะ re-bin ให้ time step อยู่ 10 วินาที โดยใช้คำสัง binned_statistic ใน library Scipy
+          ซึ่งการ rebin นั้นสามารถช่วยลดสัญญาณรบกวนในข้อมูลได้ โดยตัวอย่างโค้ดจะเป็นดังนี้
+        </p>
+
+        <pre>
+          <code class="language-python">
+from scipy.stats import binned_statistic
+
+# นำ column data['time'] และ data['time'] ใน Data frame แปลงเป็น array เนื่องจากคำสั้ง binned_statistic นั้น input ต้องเป็น array 
+ttt = data['time'].to_numpy()
+Count_rate = data['time']to_numpy()
+
+# ใช้งาน binned_statistic โดยจะใช้กระบวนการทางสถิติ เป็น statistic='mean' และ re-bin time step เป็น 10 ด้วย arg 'bins = np.arange(ttt[0],ttt[-1], 10)'
+new_lc_bin, new_time_bin, _ = binned_statistic(ttt, Count_rate, statistic='mean', bins = np.arange(ttt[0],ttt[-1], 10))
+
+# ตัดค่าเวลาในตำแหน่งสุดท้ายออก เนื่องจากข้อจำกัดของคำสั้ง binned_statistic
+new_time_bin = new_time_bin[:-1]
+
+# แสดงกราฟที่ถูก rebin แล้ว
+plt.plot(new_time_bin,new_lc_bin)      
+          </code>    
+        </pre>
+
+        <p>
+          โดยผลลัพธ์จะเป็นดังนี้
+        </p>
+
+        <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+          <img src="project-Time-series-img/out put-15.png" 
+          style="max-width: 100%; height: auto;">
+        </figure>
+
+        <p>
+          ถัดไปเป็นการแปลง กราฟแสง เป็น PSD ตัวอย่างโค้ดเป็นดังนี้
+        </p>
+
+        <pre>
+          <code class="language-python">
+#ใช้ฟังก์ชัน 'time_series_to_psd' ในการคำนวน PSD
+f, PSD = time_series_to_psd(new_time_bin, new_lc_bin)
+
+#เราต้องข้อมูลถึงจุดข้อมูลรองสุดท้ายใน array 'f' และ 'PSD' เนื่องจากข้อมูลตัวสุดท้ายเป็นค่าที่ไม่ได้สะท้อนค่าที่แท้จริงอันเนื่องมาจากข้อจำกัดของกระบวนการแปลง fourier
+f = f[1:-1]
+PSD = PSD[1:-1]
+
+#แสดงกราฟ PSD
+plt.plot(f,PSD)
+plt.xlabel('frequency (Hz)')
+plt.ylabel('PSD')
+plt.xscale('log')
+plt.yscale('log')   
+          </code>    
+        </pre>
+
+        <p>
+          โดยผลลัพธ์จะเป็นดังนี้
+        </p>
+
+        <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+          <img src="project-Time-series-img/out put-16.png" 
+          style="max-width: 100%; height: auto;">
+        </figure>
+
+        <p>
+          ถัดไปจะแสดงตัวอย่างการ fitting PSD ด้วยสมการกำลัง (power-law equation) โดยใช้คำสั่ง 'curve_fit' ใน library Scipy
+        </p>
+        <p>
+          ตัวอย่างขั้นตอนการเขียนโค้ดเพื่อ fitting PSD จะเป็นดังนี้
+        </p>
+
+        <pre>
+          <code class="language-python">
+from scipy.optimize import curve_fit
+
+# กำหนดสมการเพื่อใช้ในการ fitting กราฟ
+def power_law_function(x, k, b): 
+    """
+    กำหนดให้สมการเป็นสมการกำลัง (power-law equation)  
+    - x  คือ ความถี่
+    - k  คือ ค่าคงที่การทำให้เป็นมาตรฐาน
+    - b คือ  ดัชนี power-law
+    """
+    return ( k/(x**(b)) )
+
+# เลือกตัวแปร x แลพเพื่อใช้การ fitting กราฟ
+x, y = f, PSD
+
+# ใช้งานคำสั้ง curve_fit ด้วยสมการกำลังเพื่อ fitting กราฟ
+popt, _ = curve_fit( power_law_function, x, y )
+
+# สรุปค่าพารามิเตอร์ ที่ได้จาการ fiting กราฟ
+k, b= popt
+#แสดงค่าพารามิเตอร์ 
+print(" ค่าคงที่การทำให้เป็นมาตรฐาน เท่ากับ % s " %(k))
+print(" ดัชนี power-law เท่ากับ % s " %(b))
+
+
+# พล็อตกราฟ PSD ดั้งเดิม กับ PSD ที่ได้จากการ fiting กราฟ
+
+#พล็อตกราฟ PSD ดั้งเดิม
+plt.plot(f, PSD)
+#สร้าง PSD จากพารามิเตอร์ที่ได้จากการ fitting กราฟ 
+y_line = power_law_function(x, k, b)
+#PSD ที่ได้จากการ fiting กราฟ
+plt.plot(x, y_line, '--', color='red', label= r'P ∝ $f^{%s}$' %b)
+plt.legend(fontsize= 15)
+plt.xscale('log')
+plt.yscale('log')
+          </code>    
+        </pre>
+
+        <p>
+          ผลที่ได้จะเป็นดังนี้
+        </p>
+
+        <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+          <img src="project-Time-series-img/out put-17.png" 
+          style="max-width: 100%; height: auto;">
+        </figure>
+
+        <p>
+          จากผลลัพธ์ข้างต้นจะเห็นว่าเมื่อเปรียบ PSD ดั้งเดิมกับ PSD ที่สร้างจากพารามิเตอร์ที่ได้จากการ fitting กราฟนั้น ณ ที่ความถี่ต่ำจะเห็นว่า PSD ดั้งเดิม นั้นมีค่ามากว่า PSD ที่ได้จากการ fitting 
+          เป็นผลมาจาก White noise ซึ่งจะทำให้ PSD มีค่ามากกว่าปรกติ ซึ่งคล้ายกับกรณีที่เรานำ White nosie รวมกับ Red noise ใน section ที่แล้ว
+        </p>
+        <p>
+          ดังนี้เราจะ fitting กราฟให้ โดยเปลี่ยนสมการที่ใช้ในการ fitting โดยเพิ่มพจน์ของ White noise ('w') ซึ่งเป็นค่าคงที่ลงไปในสมการกำลัง (power-law equation) ของเรา 
+          ตัวอย่างขั้นตอนการเขียนโค้ดจะเป็นดังนี้
+        </p>
+
+        <pre>
+          <code class="language-python">
+from scipy.optimize import curve_fit
+
+# กำหนดสมการเพื่อใช้ในการ fitting กราฟ
+def power_law_with_white_noise_function(x, k, b, w): 
+    """
+    กำหนดให้สมการเป็นสมการกำลัง (power-law equation)  ทีมี White noise รวมอยู่ด้วย
+    - x  คือ ความถี่
+    - k  คือ ค่าคงที่การทำให้เป็นมาตรฐาน
+    - b คือ  ดัชนี power-law
+    - w คือ  พจน์ของ white noise
+    """
+    return ( k/(x**(b)) ) + w
+
+# เลือกตัวแปร x แลพเพื่อใช้การ fitting กราฟ
+x, y = f, PSD
+
+# ใช้งานคำสั้ง curve_fit ด้วยสมการกำลังเพื่อ fitting กราฟ
+popt, _ = curve_fit(  power_law_with_white_noise_function, x, y )
+
+# สรุปค่าพารามิเตอร์ ที่ได้จาการ fiting กราฟ
+k, b, w= popt
+#แสดงค่าพารามิเตอร์ 
+print(" ค่าคงที่การทำให้เป็นมาตรฐาน เท่ากับ % s " %(k))
+print(" ดัชนี power-law เท่ากับ % s " %(b))
+print(" White noise เป็นเป็นค่าคงที่ เท่ากับ % s " %(w))
+
+
+
+# พล็อตกราฟ PSD ดั้งเดิม กับ PSD ที่ได้จากการ fiting กราฟ
+
+#พล็อตกราฟ PSD ดั้งเดิม
+plt.plot(f, PSD)
+#สร้าง PSD จากพารามิเตอร์ที่ได้จากการ fitting กราฟ 
+y_line = power_law_with_white_noise_function(x, k, b, w)
+#พล็อตPSD ที่ได้จากการ fiting กราฟ
+plt.plot(x, y_line, '--', color='red', label= r'PSD with white noise')
+#สร้างPSD ตามสมการกำลัง
+y_line1 = power_law_function(x, k, b)
+plt.plot(x, y_line1, '-.', color='blue', label= r'Original PSD [P ∝ $f^{%s}$]' %b)
+#สร้าง PSD ของ White noise
+y_line2 = np.empty(len(x))
+y_line2.fill(w)
+plt.plot(x, y_line2, ':', color='orange', label= r'White noise')
+
+plt.legend(fontsize= 12)
+plt.xlabel('frequency (Hz)')
+plt.ylabel('PSD')
+plt.xscale('log')
+plt.yscale('log')
+          </code>    
+        </pre>
+
+        <p>
+          ผลที่ได้จะเป็นดังนี้
+        </p>
+
+        <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+          <img src="project-Time-series-img/out put-18.png" 
+          style="max-width: 100%; height: auto;">
+        </figure>
+		    
+
+ 
+		  <section class="chapter-button">
+      <!-- controlled by: project-generator.js -->
+		  </section>
+			
+		</div>
+      </div>
+    </section><!-- End Projet Details Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="footer-content position-relative">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-info">
+              <h3>กลุ่มวิจัยดาราศาสตร์</h3>
+              <p>
+			          สาขาวิชาฟิสิกส์  สำนักวิชาวิทยาศาสตร์ <br>
+				มหาวิทยาลัยเทคโนโลยีสุรนารี <br>
+			          111  ถนนมหาวิทยาลัย <br>
+                                        ต. สุรนารี  อ. เมือง  จ.นครราชสีมา<br>
+				30000<br>
+                <strong>Phone:</strong> 044-223-000<br>
+                <strong>Fax:</strong> 044-224-070<br>
+              </p>
+              <div class="social-links d-flex mt-3">
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div><!-- End footer info column-->
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Terms of service</a></li>
+              <li><a href="#">Privacy policy</a></li>
+            </ul>
+          </div><!-- End footer links column-->
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><a href="#">Web Design</a></li>
+              <li><a href="#">Web Development</a></li>
+              <li><a href="#">Product Management</a></li>
+              <li><a href="#">Marketing</a></li>
+              <li><a href="#">Graphic Design</a></li>
+            </ul>
+          </div><!-- End footer links column-->
+
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-legal text-center position-relative">
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>UpConstruction</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/ -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+  <!-- End Footer -->
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/change-content.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <script src="module-list.js"></script>
+	<script src="module-header.js"></script>
+	<script src="../assets/js/project-generator.js"></script>
+
+</body>
+
+</html>
