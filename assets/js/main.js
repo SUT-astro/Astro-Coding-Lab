@@ -244,9 +244,10 @@ document.addEventListener('DOMContentLoaded', () => {
     navbarSelector.textContent = "";
     
     const projectList = [
-    "project-1-brown-dwarf", 
-    "project-2-Time-series", 
-    "project-3-AGN-ODR"];
+    "project-1-Time-series", 
+    "project-2-AGN-ODR",
+    "project-3-brown-dwarf",
+    ];
     
     const capitalProjects = projectList.map((i) => {
       // Split the string by hyphens
