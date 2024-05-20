@@ -381,6 +381,107 @@ plt.yscale('log')
           <img src="project-Time-series-img/out put-18.png" 
           style="max-width: 100%; height: auto;">
         </figure>
+
+        <p>
+          จากผลลัพธ์ด้านบนเราจะเห็นว่ากราฟทที่ fit ออกมาได้นั้นมีแน้วโน้มว่าจะเบนตาม white noise (เส้นสีส้ม) มากกว่า อันเนื่องมากจากจุดข้อมูลที่มีความถี่สูง (ขวามือ)
+          มีน้อยกว่าจุดข้อมูลที่มีความถี่ต่ำมากๆ ดังนั้นเราจะทำการ re-bin กราฟก่อนทำการ fitting อีกครั้งเพื่อให้ได้ค่าที่ถูกต้องแม่นยำมากขึ้น โดยตัวอย่างโค้ดและผลลัพธ์ที่ได้จะเป็นดังนี้
+        </p>
+
+        <pre>
+          <code class="language-python">
+# ตรวจสอบความยาวของจุดข้อมูล
+print(" จำนวนจุดข้อมูลก่อนทำการ re-bin เท่ากับ % s " %(len(PSD)))
+# re-bin จาก 11961 จุด ให้เหลือเพียง 3500 จุด
+new_PSD, new_f, _ = binned_statistic(f, PSD, statistic='mean', bins = np.linspace(f[0], f[-1], 3500) )
+ 
+new_f = new_f[:-1] # ตัดค่าเวลาในตำแหน่งสุดท้ายออก เนื่องจากข้อจำกัดของคำสั้ง binned_statistic
+
+# แสดงกราฟที่ถูก rebin แล้ว
+plt.plot(new_f,new_PSD)
+plt.xlabel('frequency (Hz)')
+plt.ylabel('PSD')
+plt.xscale('log')
+plt.yscale('log')
+          </code>    
+        </pre>
+
+        <p>
+          ผลที่ได้จะเป็นดังนี้
+        </p>
+
+        <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+          <img src="project-Time-series-img/out put-19.png" 
+          style="max-width: 100%; height: auto;">
+        </figure>
+
+      <p>
+        ต่อไปเป็นการ fitting กราฟ PSD อีกครั้ง
+      </p>
+
+      <pre>
+        <code class="language-python">
+from scipy.optimize import curve_fit
+
+# กำหนดสมการเพื่อใช้ในการ fitting กราฟ
+def power_law_with_white_noise_function(x, k, b, w):
+    """
+    กำหนดให้สมการเป็นสมการกำลัง (power-law equation)  ทีมี White noise รวมอยู่ด้วย
+    - x  คือ ความถี่
+    - k  คือ ค่าคงที่การทำให้เป็นมาตรฐาน
+    - b คือ  ดัชนี power-law
+    - w คือ  พจน์ของ white noise
+    """
+    return ( k/(x**(b)) ) + w
+
+# เลือกตัวแปร x แลพเพื่อใช้การ fitting กราฟ
+x, y = new_f,new_PSD
+
+# ใช้งานคำสั้ง curve_fit ด้วยสมการกำลังเพื่อ fitting กราฟ
+popt, _ = curve_fit(  power_law_with_white_noise_function, x, y )
+
+# สรุปค่าพารามิเตอร์ ที่ได้จาการ fiting กราฟ
+k, b, w= popt
+#แสดงค่าพารามิเตอร์
+print(" ค่าคงที่การทำให้เป็นมาตรฐาน เท่ากับ % s " %(k))
+print(" ดัชนี power-law เท่ากับ % s " %(b))
+print(" White noise เป็นเป็นค่าคงที่ เท่ากับ % s " %(w))
+
+
+
+# พล็อตกราฟ PSD ดั้งเดิม กับ PSD ที่ได้จากการ fiting กราฟ
+
+#พล็อตกราฟ PSD ดั้งเดิม
+plt.plot(new_f,new_PSD)
+#สร้าง PSD จากพารามิเตอร์ที่ได้จากการ fitting กราฟ
+y_line = power_law_with_white_noise_function(x, k, b, w)
+#พล็อตPSD ที่ได้จากการ fiting กราฟ
+plt.plot(x, y_line, '--', color='red', label= r'PSD with white noise')
+#สร้างPSD ตามสมการกำลัง
+y_line1 = power_law_function(x, k, b)
+plt.plot(x, y_line1, '-.', color='blue', label= r'Original PSD [P ∝ $f^{%s}$]' %b)
+
+#สร้าง PSD ของ White noise
+y_line2 = np.empty(len(x))
+y_line2.fill(w)
+plt.plot(x, y_line2, ':', color='orange', label= r'White noise')
+
+plt.legend(fontsize= 12)
+plt.xlabel('frequency (Hz)')
+plt.ylabel('PSD')
+plt.xscale('log')
+plt.yscale('log')
+        </code>    
+      </pre>
+
+      <p>
+        ผลที่ได้จะเป็นดังนี้
+      </p>
+
+      <figure style="text-align: center; margin: 0; padding: 0; margin-bottom: 30px;">
+        <img src="project-Time-series-img/out put-20.png" 
+        style="max-width: 100%; height: auto;">
+      </figure>
+
 		    
 
  
