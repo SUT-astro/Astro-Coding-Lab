@@ -235,6 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function createLink(linkText, linkDestination) {
     const link = document.createElement("a");
     link.setAttribute("href", linkDestination);
+    link.setAttribute("target", "_blank");
     link.appendChild(document.createTextNode(linkText));
     return link;
   }
@@ -282,7 +283,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const rootURL = (modulePage.slice(0, 5) === "index" || modulePage.slice(0, 5) === "") ? "./" : "../";
     for (let i = 0; i < projectList.length; i++) {
-      const linkURL = `${rootURL}${projectList[i]}/objective.html`;
+      let linkURL = `${rootURL}${projectList[i]}/objective.html`;
+      if (i === 0) {
+        linkURL = "https://calm-pram-662.notion.site/Data-analysis-of-AGN-light-curves-c0080cfc3a8b4459a32b0a19250e187f";
+      }
       const liSubProject = document.createElement("li");
       const aSubProject = createLink(capitalProjects[i], linkURL);
       liSubProject.appendChild(aSubProject);
