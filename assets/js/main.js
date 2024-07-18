@@ -286,6 +286,8 @@ document.addEventListener('DOMContentLoaded', () => {
       let linkURL = `${rootURL}${projectList[i]}/objective.html`;
       if (i === 0) {
         linkURL = "https://calm-pram-662.notion.site/Data-analysis-of-AGN-light-curves-c0080cfc3a8b4459a32b0a19250e187f";
+      } else if (i === 1) {
+        linkURL = "https://calm-pram-662.notion.site/LAB-2-e33b36ebacb94f3bab070dab53cc6616";        
       }
       const liSubProject = document.createElement("li");
       const aSubProject = createLink(capitalProjects[i], linkURL);
