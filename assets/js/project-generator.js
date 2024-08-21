@@ -27,17 +27,19 @@ function createBottonCopyCode() {
   const selectPre = document.querySelectorAll("pre");
   
   selectPre.forEach((thisPre) => {
-    const codeRaw = thisPre.textContent; // text of <pre>, which is <code>
-    const codeText = codeRaw.replace(/^\s+|\s+$/g, "");  // remove line break at beginning and ending
-    const createButton = Object.assign(document.createElement("button"), {
-      type: "button"
-    });
-    createButton.textContent = "Copy";
-    createButton.classList.add("code-button");
-    createButton.addEventListener("click", () => {
-      navigator.clipboard.writeText(codeText);
-    })
-    thisPre.insertBefore(createButton, thisPre.firstChild);
+    if (thisPre.querySelector("code") !== null) {  // check if <pre> contain <code> element
+      const codeRaw = thisPre.textContent; // text of <pre>, which is <code>
+      const codeText = codeRaw.replace(/^\s+|\s+$/g, "");  // remove line break at beginning and ending
+      const createButton = Object.assign(document.createElement("button"), {
+        type: "button"
+      });
+      createButton.textContent = "Copy";
+      createButton.classList.add("code-button");
+      createButton.addEventListener("click", () => {
+        navigator.clipboard.writeText(codeText);
+      })
+      thisPre.insertBefore(createButton, thisPre.firstChild);
+    }
   });
 }
 
