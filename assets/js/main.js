@@ -285,9 +285,9 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < projectList.length; i++) {
       let linkURL = `${rootURL}${projectList[i]}/objective.html`;
       if (i === 0) {
-        linkURL = "https://calm-pram-662.notion.site/Data-analysis-of-AGN-light-curves-c0080cfc3a8b4459a32b0a19250e187f";
+        linkURL = "https://www.notion.so/Coding-Lab-1-Data-analysis-of-AGN-light-curves-7a6fe18b2d8140e2aa56bb3a6feb0169";
       } else if (i === 1) {
-        linkURL = "https://calm-pram-662.notion.site/LAB-2-e33b36ebacb94f3bab070dab53cc6616";        
+        linkURL = "https://www.notion.so/Coding-Lab-2-linear-regression-e91d8dac8f5d4e8fa23c1b4d01af435b";        
       }
       const liSubProject = document.createElement("li");
       const aSubProject = createLink(capitalProjects[i], linkURL);
